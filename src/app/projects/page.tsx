@@ -18,14 +18,16 @@ export default function Component() {
                   translateZ="50"
                   className="text-xl font-bold text-neutral-600 dark:text-white"
                 >
-                  Project-1
+                  DrawIO - Eraser Clone
                 </CardItem>
                 <CardItem
                   as="p"
+                  href="https://github.com/princesinghrajput/drawio"
                   translateZ="60"
                   className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                 >
-                  Tech used
+                  NextJS | Typescript | ConvexDB | TailwindCSS 
+                  | ShadCn
                 </CardItem>
                 <CardItem
                   translateZ="100"
@@ -34,7 +36,7 @@ export default function Component() {
                   className="w-full mt-4"
                 >
                   <Image
-                    src="/assests/pregcaree.pn"
+                    src="/assests/drawio.png"
                     height="1000"
                     width="1000"
                     className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -46,7 +48,7 @@ export default function Component() {
                     translateZ={20}
                     translateX={-40}
                     as="a"
-                    href=""
+                    href="https://erasor-clone.vercel.app/"
                     className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                   >
                     Live Link →
@@ -56,7 +58,7 @@ export default function Component() {
                     translateZ={20}
                     translateX={40}
                     as="a"
-                    href=""
+                    href="https://github.com/princesinghrajput/drawio"
                     className="flex items-center px-4 py-2 text-white text-xl font-bold"
                   >
                     <GitHubLogoIcon className="w-8 h-8" />
@@ -77,7 +79,7 @@ export default function Component() {
                   translateZ="60"
                   className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                 >
-                  Next.js , Tailwind , Shadcn
+                  Next.js | MongoDB | TypeScript | Shadcn | TinyMCE | Zod
                 </CardItem>
                 <CardItem
                   translateZ="100"
@@ -86,8 +88,8 @@ export default function Component() {
                   className="w-full mt-4"
                 >
                   <Image
-                    src="/assests/magicdocs.pn"
-                    height="1000"
+                    src="/assests/devoverflow.png"
+                    height="900"
                     width="1000"
                     className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
                     alt="thumbnail"
@@ -98,7 +100,7 @@ export default function Component() {
                     translateZ={20}
                     translateX={-40}
                     as="a"
-                    href=""
+                    href="https://nextjs14-devoverflow.vercel.app/"
                     className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                   >
                     Live Link →
@@ -107,7 +109,7 @@ export default function Component() {
                     translateZ={20}
                     translateX={40}
                     as="a"
-                    href=""
+                    href="https://github.com/princesinghrajput/dev-overflow"
                     className="flex items-center px-4 py-2 text-white text-xl font-bold"
                   >
                     <GitHubLogoIcon className="w-8 h-8" />
@@ -128,7 +130,7 @@ export default function Component() {
                   translateZ="60"
                   className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                 >
-                  DJango, Sqlite3 
+                  DJango | Sqlite3 | HTML | CSS | JavaScript
                 </CardItem>
                 <CardItem
                   translateZ="100"
@@ -137,7 +139,7 @@ export default function Component() {
                   className="w-full mt-4"
                 >
                   <Image
-                    src="/assests/cah.pn"
+                    src="/assests/studybud.png"
                     height="1000"
                     width="1000"
                     className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -158,7 +160,7 @@ export default function Component() {
                     translateZ={20}
                     translateX={40}
                     as="a"
-                    href=""
+                    href="https://github.com/princesinghrajput/StudyBud"
                     className="flex items-center px-4 py-2 text-white text-xl font-bold"
                   >
                     <GitHubLogoIcon className="w-8 h-8" />
@@ -166,7 +168,7 @@ export default function Component() {
                 </div>
               </CardBody>
             </CardContainer>
-            <CardContainer className="inter-var">
+            {/* <CardContainer className="inter-var">
               <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                 <CardItem
                   translateZ="50"
@@ -259,7 +261,7 @@ export default function Component() {
                   </CardItem>
                 </div>
               </CardBody>
-            </CardContainer>
+            </CardContainer> */}
           </div>
           <LinkPreviewDemo />
         </div>

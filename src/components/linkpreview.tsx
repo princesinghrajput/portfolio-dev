@@ -19,15 +19,12 @@ export function LinkPreviewDemo() {
       </p>
       <p className="text-neutral-500 dark:text-neutral-400 text-xl md:text-3xl max-w-3xl mx-auto">
         Other small projects include mini-games like{" "}
-        <LinkPreview url="https://github.com/princesinghrajput" className="font-bold">
-          Flippy Bird
-        </LinkPreview>{" "} ,{" "}
-        <LinkPreview url="https://github.com/princesinghrajput" className="font-bold">
-          Stone Paper Scissors
-        </LinkPreview>{" "} and{" "}
-        <LinkPreview url="https://github.com/princesinghrajput" className="font-bold">
-          Currency Converter
-        </LinkPreview>{" "} .
+        <LinkPreview url="https://flappy-bird-prince.vercel.app/" className="font-bold">
+          Flappy Bird
+        </LinkPreview>{" "} and {" "}
+        <LinkPreview url="https://rock-paper-scissors-mauve-eight.vercel.app/" className="font-bold">
+          Rock Paper Scissors
+        </LinkPreview>{" "} 
       
       </p>
     </div>
