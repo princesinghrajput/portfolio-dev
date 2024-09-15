@@ -6,7 +6,7 @@ import { toast } from "./ui/use-toast";
 const CopyCmd = () => {
     const [copied, setCopied] = useState(false);
     const handleCopyToClipboard = () => {
-        const textToCopy = "npx prince";
+        const textToCopy = "npx prince-dev";
         navigator.clipboard
             .writeText(textToCopy)
             .then(() => {
