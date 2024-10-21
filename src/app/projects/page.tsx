@@ -219,20 +219,20 @@ export default function Component() {
                 </div>
               </CardBody>
             </CardContainer>
-            {/* <CardContainer className="inter-var">
+            <CardContainer className="inter-var">
               <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                 <CardItem
                   translateZ="50"
                   className="text-xl font-bold text-neutral-600 dark:text-white"
                 >
-                  Restaurant Management System
+                  ErgoSmart - AI-powered posture coach
                 </CardItem>
                 <CardItem
                   as="p"
                   translateZ="60"
                   className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                 >
-                  ReactJs , NodeJs , MongoDB, ExpressJs, TailwindCSS 
+                  ReactJs | Tensorflow.js | Mediapipe | TailwindCSS 
                 </CardItem>
                 <CardItem
                   translateZ="100"
@@ -241,7 +241,7 @@ export default function Component() {
                   className="w-full mt-4"
                 >
                   <Image
-                    src="/assests/rtmp simulator.p"
+                    src="/assests/ergoLogo.png"
                     height="1000"
                     width="1000"
                     className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -249,19 +249,27 @@ export default function Component() {
                   />
                 </CardItem>
                 <div className="flex justify-between items-center mt-20">
-                  
+                <CardItem
+                    translateZ={20}
+                    translateX={-40}
+                    as="a"
+                    href="https://ergosmart.vercel.app/"
+                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+                  >
+                    Live Link →
+                  </CardItem>
                   <CardItem
                     translateZ={20}
                     translateX={40}
                     as="a"
-                    href=""
+                    href="https://github.com/princesinghrajput/ergoSmart"
                     className="flex items-center px-4 py-2 text-white text-xl font-bold"
                   >
                     <GitHubLogoIcon className="w-8 h-8" />
                   </CardItem>
                 </div>
               </CardBody>
-            </CardContainer> */}
+            </CardContainer>
           </div>
           <LinkPreviewDemo />
         </div>
