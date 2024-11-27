@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
 import { GitHubLogoIcon, InstagramLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
-import { ChevronRight, MailPlus, MouseIcon, Terminal } from "lucide-react";
+import { ChevronRight, MailPlus, MouseIcon, Terminal, FileText } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import MyProjects from "@/components/projects";
@@ -13,6 +15,8 @@ import { DockDemo } from "@/components/dock";
 import HoverImageComponent from "@/components/skills";
 import ReadmeDisplay from "@/components/readme";
 import ContactMe from "@/components/contact";
+import { motion } from "framer-motion";
+import ResumeSection from '@/components/ResumeSection';
 
 const projects = [
     { title: ' Cards against Humanity', description: 'A game built with React.', icon: <FaReact className='text-blue-500' /> },
@@ -74,6 +78,7 @@ const page = () => {
     <DockDemo />
 </div>
 <HoverImageComponent />
+<ResumeSection />
 <div>
 <MyProjects projects={projects} />
 </div>
