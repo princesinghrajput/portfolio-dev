@@ -1,21 +1,7 @@
 import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
 import { analyticsStore } from '@/lib/analytics';
 
-const SECRET_TOKEN = process.env.ANALYTICS_SECRET_TOKEN || 'default_secret_token';
-
-export async function GET(req: Request) {
-  const headersList = headers();
-  const token = headersList.get('authorization')?.split(' ')[1];
-
-  if (!token) {
-    return NextResponse.json({ error: 'No authorization token provided' }, { status: 401 });
-  }
-
-  if (token !== SECRET_TOKEN) {
-    return NextResponse.json({ error: 'Invalid authorization token' }, { status: 401 });
-  }
-
+export async function GET() {
   try {
     const stats = analyticsStore.getStats();
     return NextResponse.json(stats);

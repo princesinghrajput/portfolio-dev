@@ -12,21 +12,13 @@ interface AnalyticsData {
 
 export default function SecretAnalytics() {
   const [data, setData] = useState<AnalyticsData | null>(null);
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [token, setToken] = useState('');
 
   const fetchData = async () => {
     try {
-      const response = await fetch('/api/analytics/secret', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      
+      const response = await fetch('/api/analytics/secret');
       if (response.ok) {
         const json = await response.json();
         setData(json);
-        setIsAuthorized(true);
       }
     } catch (error) {
       console.error('Failed to fetch analytics:', error);
@@ -34,34 +26,10 @@ export default function SecretAnalytics() {
   };
 
   useEffect(() => {
-    if (isAuthorized) {
-      const interval = setInterval(fetchData, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isAuthorized]);
-
-  if (!isAuthorized) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-full max-w-md p-6">
-          <h1 className="text-2xl font-bold mb-4">Secret Analytics</h1>
-          <input
-            type="password"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-            placeholder="Enter access token"
-            className="w-full p-2 mb-4 border rounded"
-          />
-          <button
-            onClick={fetchData}
-            className="w-full p-2 bg-blue-500 text-white rounded"
-          >
-            Access Analytics
-          </button>
-        </div>
-      </div>
-    );
-  }
+    fetchData();
+    const interval = setInterval(fetchData, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="p-8">
