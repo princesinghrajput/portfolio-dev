@@ -11,6 +11,7 @@ export async function GET(req: Request) {
   if (token !== SECRET_TOKEN) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
+  
 
   try {
     const stats = analyticsStore.getStats();
