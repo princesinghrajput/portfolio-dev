@@ -80,7 +80,7 @@ const HoverImageComponent: React.FC = () => {
                 alt={image.alt}
                 width={48}
                 height={48}
-                className="object-cover"
+                className="object-cover mix-blend-screen"
               />
             ) : (
               <div></div> // Placeholder for empty image
