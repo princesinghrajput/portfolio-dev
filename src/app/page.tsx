@@ -98,7 +98,7 @@ const page = () => {
             
     <DockDemo />
 </div>
-<HoverImageComponent />
+<HoverImageComponent  />
 <ResumeSection />
 <ExperienceSection />
 <div>

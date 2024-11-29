@@ -31,7 +31,7 @@ const images: ImageData[] = [
   { src: '/assests/skills/kubernetes.webp', alt: 'Kubernetes', tooltip: 'Kubernetes' },
   { src: '/assests/skills/mongoDB.webp', alt: 'MongoDB', tooltip: 'MongoDB' },
   { src: '/assests/skills/mysql.webp', alt: 'MySQL', tooltip: 'MySQL' },
-  { src: '/assests/skills/next.webp', alt: 'Next.js', tooltip: 'Next.js' },
+  { src: '/assests/skills/nextjs.webp', alt: 'Next.js', tooltip: 'Next.js' },
   { src: '/assests/skills/nodejs.webp', alt: 'Node.js', tooltip: 'Node.js' },
   { src: '/assests/skills/photoshop.webp', alt: 'Photoshop', tooltip: 'Photoshop' },
   { src: '/assests/skills/postgre.webp', alt: 'PostgreSQL', tooltip: 'PostgreSQL' },
@@ -41,7 +41,7 @@ const images: ImageData[] = [
   { src: '/assests/skills/sass.webp', alt: 'Sass', tooltip: 'Sass' },
   { src: '/assests/skills/typescript.webp', alt: 'TypeScript', tooltip: 'TypeScript' },
   { src: '/assests/skills/ubuntu.webp', alt: 'Ubuntu', tooltip: 'Ubuntu' },
-  { src: '/assests/skills/vercel.webp', alt: 'Vercel', tooltip: 'Vercel' },
+  { src: '/assests/skills/vercels.webp', alt: 'Vercel', tooltip: 'Vercel' },
   
   // { src: '/assests/skills/web3js.webp', alt: 'Web3.js', tooltip: 'Web3.js' },
   { src: '/assests/skills/vite.webp', alt: 'Vite', tooltip: 'Vite' },
@@ -80,7 +80,7 @@ const HoverImageComponent: React.FC = () => {
                 alt={image.alt}
                 width={48}
                 height={48}
-                className="object-cover mix-blend-screen"
+                className="object-cover"
               />
             ) : (
               <div></div> // Placeholder for empty image
@@ -103,4 +103,3 @@ const HoverImageComponent: React.FC = () => {
 };
 
 export default HoverImageComponent;
-
