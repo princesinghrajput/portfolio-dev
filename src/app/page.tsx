@@ -17,6 +17,7 @@ import ReadmeDisplay from "@/components/readme";
 import ContactMe from "@/components/contact";
 import { motion } from "framer-motion";
 import ResumeSection from '@/components/ResumeSection';
+import ExperienceSection from '@/components/ExperienceSection';
 
 const projects = [
     { title: ' Cards against Humanity', description: 'A game built with React.', icon: <FaReact className='text-blue-500' /> },
@@ -79,6 +80,7 @@ const page = () => {
 </div>
 <HoverImageComponent />
 <ResumeSection />
+<ExperienceSection />
 <div>
 <MyProjects projects={projects} />
 </div>
