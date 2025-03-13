@@ -102,3 +102,58 @@
   opacity: 1 !important;
 }
 
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Mobile chat optimizations */
+@media (max-width: 768px) {
+  .chat-container {
+    height: calc(100vh - 200px);
+    max-height: 70vh;
+  }
+  
+  .mobile-bottom-spacing {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-220px * 4));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Add smooth transition for scroll behavior */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: none;
+  pointer-events: auto;
+  touch-action: pan-x;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
