@@ -40,7 +40,7 @@ export const cloudProps: Omit<ICloud, "children"> = {
     centreFunc: (text: any) => {
       text.style.opacity = "1";
     },
-    shape: "vring",
+    shape: "sphere",
   },
 };
 
