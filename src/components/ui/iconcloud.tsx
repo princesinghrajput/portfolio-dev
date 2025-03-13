@@ -33,7 +33,14 @@ export const cloudProps: Omit<ICloud, "children"> = {
     outlineColour: "#0000",
     maxSpeed: 0.03,
     minSpeed: 0.01,
-    // dragControl: true,
+    dragControl: true,
+    freezeActive: true,
+    fadeIn: 1000,
+    shuffleTags: true,
+    centreFunc: (text: any) => {
+      text.style.opacity = "1";
+    },
+    shape: "vring",
   },
 };
 
