@@ -6,7 +6,7 @@ import { TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const socialLinks = [
   { name: "Email", href: "mailto:psr8084@gmail.com", icon: Mail },
-  { name: "Twitter", href: "https://x.com/its_me_prince1_", icon: () => <TwitterLogoIcon className="h-3.5 w-3.5" /> },
+  { name: "Twitter", href: "https://x.com/its_me_prince1_", icon: TwitterLogoIcon },
   { name: "GitHub", href: "https://github.com/princesinghrajput", icon: Github },
   { name: "LinkedIn", href: "https://linkedin.com/in/prince-kumar-05", icon: Linkedin },
 ];
@@ -103,7 +103,7 @@ const ContactMe: React.FC = () => {
               whileTap={{ scale: 0.98 }}
             >
               <span className="text-muted-foreground group-hover:text-primary transition-colors">
-                {typeof IconComponent === 'function' ? <IconComponent /> : <IconComponent className="h-3.5 w-3.5" />}
+                <IconComponent className="h-3.5 w-3.5" />
               </span>
               <span>{link.name}</span>
             </motion.a>
