@@ -4,48 +4,64 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    /* Light Mode - Clean & Minimal */
+    --background: 0 0% 99%;
+    --foreground: 240 10% 6%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 240 10% 6%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 142.1 76.2% 36.3%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 240 10% 6%;
+
+    /* Primary - Deep Teal */
+    --primary: 173 58% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 240 10% 6%;
+
+    /* Accent - Coral */
+    --accent: 12 76% 61%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
-    --radius: 0.5rem;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 173 58% 39%;
+    --radius: 0.625rem;
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    /* Dark Mode - Deep Space with Teal accents */
+    --background: 220 20% 6%;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
+    --card: 220 20% 8%;
     --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
+    --popover: 220 20% 8%;
     --popover-foreground: 0 0% 95%;
-    --primary: 142.1 70.6% 45.3%;
-    --primary-foreground: 144.9 80.4% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 142.4 71.8% 29.2%;
+
+    /* Primary - Vibrant Teal */
+    --primary: 173 80% 45%;
+    --primary-foreground: 220 20% 6%;
+
+    /* Secondary */
+    --secondary: 220 20% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    /* Accent - Soft Coral */
+    --accent: 12 76% 61%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 220 12% 55%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 86% 97%;
+    --border: 220 20% 14%;
+    --input: 220 20% 14%;
+    --ring: 173 80% 45%;
   }
 }
 
@@ -53,70 +69,176 @@
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-foreground;
   }
 }
 
-.homepagecontactbtn {
-  padding: 18px;
-  display: none; /* Hide by default for small screens */
-  gap: 10px;
-  outline: none;
-  justify-content: center;
-  align-items: center;
-  width: 25%;
-  border: 2px solid #808080 !important;
-  transition: all ease-in 0.2s !important;
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+.heading-xl {
+  @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.1];
 }
 
-/* Show on medium screens and larger */
-@media (min-width: 768px) {
-  .homepagecontactbtn {
-    display: flex;
+.heading-lg {
+  @apply text-2xl sm:text-3xl font-bold tracking-tight;
+}
+
+.heading-md {
+  @apply text-xl font-semibold tracking-tight;
+}
+
+.heading-sm {
+  @apply text-base font-semibold;
+}
+
+.body-lg {
+  @apply text-base sm:text-lg text-muted-foreground leading-relaxed;
+}
+
+.body-sm {
+  @apply text-sm text-muted-foreground;
+}
+
+.label {
+  @apply text-xs font-medium uppercase tracking-wider text-muted-foreground;
+}
+
+/* ========================================
+   SPACING
+   ======================================== */
+
+.section {
+  @apply py-12 sm:py-16;
+}
+
+.section-header {
+  @apply mb-8;
+}
+
+.section-title {
+  @apply text-xl sm:text-2xl font-bold mb-2;
+}
+
+.section-subtitle {
+  @apply text-muted-foreground text-sm sm:text-base;
+}
+
+/* ========================================
+   GLASS & CARDS
+   ======================================== */
+
+.glass {
+  @apply bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10;
+}
+
+.card {
+  @apply bg-card border border-border rounded-lg;
+}
+
+.card-interactive {
+  @apply bg-card border border-border rounded-lg transition-all duration-200 ease-out;
+  @apply hover:border-primary/40 hover:shadow-md hover:shadow-primary/5;
+}
+
+/* ========================================
+   MICRO-INTERACTIONS
+   ======================================== */
+
+/* Button hover lift */
+.btn-lift {
+  @apply transition-all duration-200 ease-out;
+  @apply hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:shadow-sm;
+}
+
+/* Magnetic hover */
+.magnetic {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Icon scale */
+.icon-pop {
+  @apply transition-transform duration-200;
+}
+
+.group:hover .icon-pop {
+  @apply scale-110;
+}
+
+/* Link with underline grow */
+.link-grow::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-200;
+}
+
+.link-grow:hover::after {
+  @apply w-full;
+}
+
+/* Subtle pulse */
+.pulse-subtle {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes rotate360 {
-  from { transform: rotate(0deg) scale(1.5); }
-  to { transform: rotate(360deg) scale(1.5); }
-}
-
-.rotate-360 {
-  animation: rotate360 0.5s linear;
-}
-
-@keyframes smoothRotate {
-  from { transform: rotate(0deg) scale(1.25); }
-  to { transform: rotate(360deg) scale(1.25); }
-}
-
-.rotate-smooth {
-  animation: smoothRotate 2s linear infinite;
-}
-
-.homepagecontactbtn:hover {
-  box-shadow: none;
-  transform: translateY(6px) !important;
-  transition: all ease-in 0.2s;
-  opacity: 1 !important;
-}
-
-@layer utilities {
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
+  from {
+    transform: rotate(0deg) scale(1.5);
   }
-}
 
-/* Mobile chat optimizations */
-@media (max-width: 768px) {
-  .chat-container {
-    height: calc(100vh - 200px);
-    max-height: 70vh;
-  }
-  
-  .mobile-bottom-spacing {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 4rem);
+  to {
+    transform: rotate(360deg) scale(1.5);
   }
 }
 
@@ -124,36 +246,120 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(calc(-220px * 4));
   }
 }
 
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.rotate-360 {
+  animation: rotate360 0.5s linear;
+}
+
 .animate-scroll {
   animation: scroll 30s linear infinite;
   will-change: transform;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  perspective: 1000px;
-  transform-style: preserve-3d;
 }
 
-.animate-scroll:hover {
-  animation-play-state: paused;
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2;
+  @apply active:scale-[0.98];
 }
 
-/* Add smooth transition for scroll behavior */
+.btn-primary {
+  @apply btn px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90;
+}
+
+.btn-secondary {
+  @apply btn px-4 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border;
+}
+
+.btn-ghost {
+  @apply btn px-4 py-2 hover:bg-muted;
+}
+
+/* ========================================
+   COPY CMD BOX
+   ======================================== */
+
+.copy-cmd {
+  @apply inline-flex items-center gap-3 px-4 py-2.5 rounded-lg;
+  @apply bg-muted/50 border border-border font-mono text-sm;
+  @apply cursor-pointer select-none;
+  @apply transition-all duration-200 ease-out;
+  @apply hover:bg-muted hover:border-primary/30;
+  @apply active:scale-[0.98];
+}
+
+.copy-cmd:hover .copy-icon {
+  @apply text-primary;
+}
+
+/* ========================================
+   PRESERVED STYLES
+   ======================================== */
+
+.homepagecontactbtn {
+  @apply inline-flex items-center gap-3 px-4 py-2.5 rounded-lg;
+  @apply bg-muted/50 border border-border font-mono text-sm;
+  @apply cursor-pointer select-none;
+  @apply transition-all duration-200 ease-out;
+  @apply hover:bg-muted hover:border-primary/30;
+  @apply active:scale-[0.98];
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30;
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: none;
-  pointer-events: auto;
-  touch-action: pan-x;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
+/* ========================================
+   UTILITIES
+   ======================================== */
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    height: calc(100vh - 200px);
+    max-height: 70vh;
+  }
+}

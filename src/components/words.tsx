@@ -1,20 +1,23 @@
+"use client";
+
 import React from "react";
 import { FlipWords } from "./ui/words";
 
 export function FlipWordsDemo() {
-  const words = [ "Developer", // bc space k lie bhi unicode 
-        // "MERN\u00A0Developer",
-
-    "Coder",
-  "Freelancer"]
+  const words = [
+    "Full Stack Developer",
+    "UI/UX Enthusiast",
+    "Problem Solver",
+    "Tech Explorer"
+  ];
 
   return (
-    <div className="justify-center items-center px-4">
-      <div className="text-4xl mx-auto font-normal text-neutral-600 dark:text-neutral-400 mt-5 mb-3">
-      I am a 
-        <FlipWords words={words} /> <br />
-       
-      </div>
-    </div>
+    <p className="body-lg">
+      <span className="text-foreground">I'm a </span>
+      <FlipWords
+        words={words}
+        className="font-semibold text-primary"
+      />
+    </p>
   );
 }

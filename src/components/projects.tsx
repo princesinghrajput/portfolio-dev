@@ -1,9 +1,9 @@
-// components/MyProjects.tsx
 'use client';
-import React, { useState } from 'react';
-import { FaFolderOpen, FaReact, FaNodeJs, FaDatabase } from 'react-icons/fa';
-import { SiTypescript, SiNextdotjs, SiTailwindcss } from 'react-icons/si';
-import LoadMoreButton from './loadmore';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaFolderOpen } from 'react-icons/fa';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface Project {
   title: string;
@@ -13,42 +13,64 @@ interface Project {
 
 interface MyProjectsProps {
   projects: Project[];
-  showLoadMore?: boolean;
 }
 
-const MyProjects: React.FC<MyProjectsProps> = ({ projects, showLoadMore = false }) => {
-  const [visibleProjects, setVisibleProjects] = useState(2);
-
-  const handleLoadMore = () => {
-    setVisibleProjects((prev) => prev + 2);
-  };
-
+const MyProjects: React.FC<MyProjectsProps> = ({ projects }) => {
   return (
-    <div className='mt-20'>
-      <div className='flex justify-center items-center'>
-        <FaFolderOpen className='text-2xl mr-2' />
-        <h1 className='text-center'> | My Projects |</h1>
+    <section className='section'>
+      {/* Header */}
+      <div className='section-header'>
+        <div className='flex items-center gap-1.5 label mb-2'>
+          <FaFolderOpen className='text-primary' />
+          <span>Portfolio</span>
+        </div>
+        <h2 className='section-title'>Featured Projects</h2>
       </div>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-y-5 justify-items-center px-2 py-2 mt-10'>
-        {projects.slice(0, visibleProjects).map((project, index) => (
-          <div key={index} className='bg-white dark:bg-transparent p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 border border-b;lue-700'>
 
-            <div className='flex items-center mb-4'>
-              <div className='text-4xl mr-4 transition-transform duration-300 hover:scale-150'>
-                {project.icon}
+      {/* Grid */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3'>
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: index * 0.08 }}
+          >
+            <motion.div
+              className='group card-interactive p-4 h-full'
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className='flex items-start gap-3'>
+                <div className='p-2 rounded-lg bg-muted group-hover:bg-primary/10 transition-colors'>
+                  <div className='text-lg'>{project.icon}</div>
+                </div>
+                <div className='flex-1 min-w-0'>
+                  <h3 className='text-sm font-semibold mb-0.5 truncate group-hover:text-primary transition-colors'>
+                    {project.title}
+                  </h3>
+                  <p className='text-xs text-muted-foreground line-clamp-2'>{project.description}</p>
+                </div>
               </div>
-              <div>
-                <h2 className='text-xl font-bold text-gray-800 dark:text-white'>{project.title}</h2>
-                <p className='text-sm text-gray-600 dark:text-gray-300'>{project.description}</p>
-              </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
-     <div>
-      <LoadMoreButton />
-     </div>
-    </div>
+
+      {/* CTA */}
+      <div className='mt-6 text-center'>
+        <Link href="/projects">
+          <motion.span
+            className='group inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline underline-offset-2'
+            whileHover={{ x: 2 }}
+          >
+            View All
+            <ArrowRight className='w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5' />
+          </motion.span>
+        </Link>
+      </div>
+    </section>
   );
 };
 

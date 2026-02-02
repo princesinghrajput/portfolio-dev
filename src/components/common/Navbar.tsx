@@ -1,84 +1,112 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Home, Info, Code, TerminalIcon, Bot } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "../ui/darkmode";
-import { ShinyButton } from "../ui/shiny-button";
 import AskMe from "../AskMe";
+import { motion } from "framer-motion";
 
 const navbarItems = [
-    {
-        name: "Home",
-        href: "/",
-        icon: Home,
-    },
-    {
-        name: "Projects",
-        href: "/projects",
-        icon: TerminalIcon,
-    },
-    {
-        name: "Skills",
-        href: "/skills",
-        icon: Code,
-    },
-    {
-        name: "About",
-        href: "/about",
-        icon: Info,
-    },
-   
+    { name: "Home", href: "/", icon: Home },
+    { name: "Projects", href: "/projects", icon: TerminalIcon },
+    { name: "Skills", href: "/skills", icon: Code },
+    { name: "About", href: "/about", icon: Info },
 ];
 
 const Navbar = () => {
     const pathname = usePathname();
     const [isAskMeOpen, setIsAskMeOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <nav className="z-50 lg:sticky max-w-[90%] m-auto lg:top-0">
-                {/* Desktop Navbar */}
-                <section className="flex w-full justify-between items-center m-auto p-2">
-                    <Link href="/" className="uppercase text-3xl font-bold tracking-widest relative">
-                        PS<span className="text-blue-700 font-bold text-8xl absolute -bottom-2">.</span>
-                    </Link>
-                    <div className="hidden lg:flex gap-5 min-w-96 justify-center items-center backdrop-blur-lg p-2">
-                        {navbarItems.map((item) => {
-                            const isActive = (pathname.includes(item.href) && item.href.length > 1) || pathname === item.href;
-                            return (
-                                <Link href={item.href} key={item.name} className={`${isActive ? "text-blue-700" : "text-gray-800 dark:text-gray-200"} flex items-center justify-center gap-2 uppercase hover:text-blue-500 duration-200 ease-linear w-36 font-medium text-center`}>
-                                    <item.icon /> {item.name}
-                                </Link>
-                            );
-                        })}
-                        <ShinyButton onClick={() => setIsAskMeOpen(true)} />
-                    </div>
-                    <ModeToggle />
-                </section>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "py-2" : "py-4"}`}>
+                <div className={`max-w-5xl mx-auto px-4 transition-all duration-300 ${scrolled
+                    ? "bg-background/80 backdrop-blur-md border border-border rounded-full shadow-soft"
+                    : ""
+                    }`}>
+                    <section className="flex w-full justify-between items-center py-2.5 px-2">
+                        {/* Logo */}
+                        <Link href="/" className="group">
+                            <div className="text-2xl font-bold tracking-tight">
+                                <span className="text-foreground group-hover:text-primary transition-colors duration-200">
+                                    Prince
+                                </span>
+                                <span className="text-primary">.</span>
+                            </div>
+                        </Link>
 
-                {/* Mobile Navbar */}
-                <section className="fixed z-50 md:w-[30rem] md:m-auto lg:hidden bottom-10 left-0 right-0 flex flex-wrap justify-center w-full">
-                    <div className="flex items-center gap-4 px-6 py-3 bg-black/20 dark:bg-white/5 backdrop-blur-lg rounded-full">
+                        {/* Desktop Navigation */}
+                        <div className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-muted/50">
+                            {navbarItems.map((item) => {
+                                const isActive = (pathname.includes(item.href) && item.href.length > 1) || pathname === item.href;
+                                return (
+                                    <Link href={item.href} key={item.name}>
+                                        <div className={`relative flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive
+                                            ? "bg-primary text-primary-foreground"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                            }`}>
+                                            <item.icon className="w-4 h-4" />
+                                            {item.name}
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+
+                        {/* Right side */}
+                        <div className="hidden lg:flex items-center gap-3">
+                            <button
+                                onClick={() => setIsAskMeOpen(true)}
+                                className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-200"
+                            >
+                                <Bot className="w-4 h-4" />
+                                Ask AI
+                            </button>
+                            <ModeToggle />
+                        </div>
+                    </section>
+                </div>
+
+                {/* Mobile Navigation */}
+                <section className="fixed lg:hidden bottom-4 left-4 right-4 z-50">
+                    <div className="flex items-center justify-between gap-2 px-4 py-3 mx-auto max-w-sm bg-background/95 backdrop-blur-md rounded-2xl border border-border shadow-medium">
                         {navbarItems.map((item) => {
                             const isActive = (pathname.includes(item.href) && item.href.length > 1) || pathname === item.href;
                             return (
-                                <Link key={item.name} href={item.href} className={`${isActive ? "text-blue-700" : "text-gray-800 dark:text-gray-200"}`}>
-                                    <item.icon className="w-5 h-5" />
+                                <Link key={item.name} href={item.href}>
+                                    <div className={`p-2.5 rounded-xl transition-all duration-200 ${isActive
+                                        ? "bg-primary text-primary-foreground"
+                                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                                        }`}>
+                                        <item.icon className="w-5 h-5" />
+                                    </div>
                                 </Link>
                             );
                         })}
+
                         <button
                             onClick={() => setIsAskMeOpen(true)}
-                            className="relative text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-500 transition-colors"
+                            className="p-2.5 rounded-xl bg-primary/10 text-primary"
                         >
                             <Bot className="w-5 h-5" />
-                            <span className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
                         </button>
+
+                        <div className="pl-2 border-l border-border">
+                            <ModeToggle />
+                        </div>
                     </div>
                 </section>
             </nav>
+
             <AskMe isOpen={isAskMeOpen} onClose={() => setIsAskMeOpen(false)} />
         </>
     );

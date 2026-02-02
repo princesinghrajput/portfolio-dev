@@ -2,102 +2,145 @@
 import React, { useState } from 'react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 import Image from 'next/image';
-import { FaTools } from 'react-icons/fa';
-interface ImageData {
+import { motion, AnimatePresence } from 'framer-motion';
+import { Layers, Server, Cloud, Wrench } from 'lucide-react';
+
+interface Skill {
   src: string;
   alt: string;
   tooltip: string;
+  category: 'frontend' | 'backend' | 'cloud' | 'tools';
 }
 
-const images: ImageData[] = [
-  { src: '/assests/skills/aws.webp', alt: 'AWS', tooltip: 'AWS' },
-  { src: '/assests/skills/c++.webp', alt: 'C++', tooltip: 'C++' },
-  // { src: '/assests/skills/c-sharp.webp', alt: 'C#', tooltip: 'C#' },
-  { src: '/assests/skills/css.webp', alt: 'CSS', tooltip: 'CSS' },
-  { src: '/assests/skills/docker.webp', alt: 'Docker', tooltip: 'Docker' },
-  // { src: '/assests/skills/ethers.webp', alt: 'Ethers', tooltip: 'Ethers' },
-  // { src: '/assests/skills/fastapi.webp', alt: 'FastAPI', tooltip: 'FastAPI' },
-  { src: '/assests/skills/figma.webp', alt: 'Figma', tooltip: 'Figma' },
-  { src: '/assests/skills/firebase.webp', alt: 'Firebase', tooltip: 'Firebase' },
-  { src: '/assests/skills/git.webp', alt: 'Git', tooltip: 'Git' },
-  { src: '/assests/skills/github.webp', alt: 'GitHub', tooltip: 'GitHub' },
-  { src: '/assests/skills/githubActions.webp', alt: 'GitHub Actions', tooltip: 'GitHub Actions' },
-  { src: '/assests/skills/gitlab.webp', alt: 'GitLab', tooltip: 'GitLab' },
-  // { src: '/assests/skills/go.webp', alt: 'Go', tooltip: 'Go' },
-  { src: '/assests/skills/graphql.webp', alt: 'GraphQL', tooltip: 'GraphQL' },
-  { src: '/assests/skills/heroku.webp', alt: 'Heroku', tooltip: 'Heroku' },
-  { src: '/assests/skills/html.webp', alt: 'HTML', tooltip: 'HTML' },
-  { src: '/assests/skills/js.webp', alt: 'JavaScript', tooltip: 'JavaScript' },
-  { src: '/assests/skills/kubernetes.webp', alt: 'Kubernetes', tooltip: 'Kubernetes' },
-  { src: '/assests/skills/mongoDB.webp', alt: 'MongoDB', tooltip: 'MongoDB' },
-  { src: '/assests/skills/mysql.webp', alt: 'MySQL', tooltip: 'MySQL' },
-  { src: '/assests/skills/nextjs.webp', alt: 'Next.js', tooltip: 'Next.js' },
-  { src: '/assests/skills/nodejs.webp', alt: 'Node.js', tooltip: 'Node.js' },
-  { src: '/assests/skills/photoshop.webp', alt: 'Photoshop', tooltip: 'Photoshop' },
-  { src: '/assests/skills/postgre.webp', alt: 'PostgreSQL', tooltip: 'PostgreSQL' },
-  { src: '/assests/skills/react.webp', alt: 'React', tooltip: 'React' },
-  { src: '/assests/skills/replit.webp', alt: 'Replit', tooltip: 'Replit' },
-  // { src: '/assests/skills/rust.webp', alt: 'Rust', tooltip: 'Rust' },
-  { src: '/assests/skills/sass.webp', alt: 'Sass', tooltip: 'Sass' },
-  { src: '/assests/skills/typescript.webp', alt: 'TypeScript', tooltip: 'TypeScript' },
-  { src: '/assests/skills/ubuntu.webp', alt: 'Ubuntu', tooltip: 'Ubuntu' },
-  { src: '/assests/skills/vercels.webp', alt: 'Vercel', tooltip: 'Vercel' },
-  
-  // { src: '/assests/skills/web3js.webp', alt: 'Web3.js', tooltip: 'Web3.js' },
-  { src: '/assests/skills/vite.webp', alt: 'Vite', tooltip: 'Vite' },
-  { src: '/assests/skills/tailwind.webp', alt: 'Tailwind CSS', tooltip: 'Tailwind CSS' },
-  // { src: '/assests/skills/solidity.webp', alt: 'Solidity', tooltip: 'Solidity' },
-  { src: '/assests/skills/python.webp', alt: 'Python', tooltip: 'Python' },
-  { src: '/assests/skills/netlify.webp', alt: 'Netlify', tooltip: 'Netlify' },
+const skills: Skill[] = [
+  { src: '/assests/skills/react.webp', alt: 'React', tooltip: 'React', category: 'frontend' },
+  { src: '/assests/skills/nextjs.webp', alt: 'Next.js', tooltip: 'Next.js', category: 'frontend' },
+  { src: '/assests/skills/typescript.webp', alt: 'TypeScript', tooltip: 'TypeScript', category: 'frontend' },
+  { src: '/assests/skills/js.webp', alt: 'JavaScript', tooltip: 'JavaScript', category: 'frontend' },
+  { src: '/assests/skills/html.webp', alt: 'HTML', tooltip: 'HTML', category: 'frontend' },
+  { src: '/assests/skills/css.webp', alt: 'CSS', tooltip: 'CSS', category: 'frontend' },
+  { src: '/assests/skills/tailwind.webp', alt: 'Tailwind CSS', tooltip: 'Tailwind CSS', category: 'frontend' },
+  { src: '/assests/skills/sass.webp', alt: 'Sass', tooltip: 'Sass', category: 'frontend' },
+  { src: '/assests/skills/vite.webp', alt: 'Vite', tooltip: 'Vite', category: 'frontend' },
+  { src: '/assests/skills/nodejs.webp', alt: 'Node.js', tooltip: 'Node.js', category: 'backend' },
+  { src: '/assests/skills/python.webp', alt: 'Python', tooltip: 'Python', category: 'backend' },
+  { src: '/assests/skills/c++.webp', alt: 'C++', tooltip: 'C++', category: 'backend' },
+  { src: '/assests/skills/graphql.webp', alt: 'GraphQL', tooltip: 'GraphQL', category: 'backend' },
+  { src: '/assests/skills/mongoDB.webp', alt: 'MongoDB', tooltip: 'MongoDB', category: 'backend' },
+  { src: '/assests/skills/mysql.webp', alt: 'MySQL', tooltip: 'MySQL', category: 'backend' },
+  { src: '/assests/skills/postgre.webp', alt: 'PostgreSQL', tooltip: 'PostgreSQL', category: 'backend' },
+  { src: '/assests/skills/firebase.webp', alt: 'Firebase', tooltip: 'Firebase', category: 'backend' },
+  { src: '/assests/skills/aws.webp', alt: 'AWS', tooltip: 'AWS', category: 'cloud' },
+  { src: '/assests/skills/docker.webp', alt: 'Docker', tooltip: 'Docker', category: 'cloud' },
+  { src: '/assests/skills/kubernetes.webp', alt: 'Kubernetes', tooltip: 'Kubernetes', category: 'cloud' },
+  { src: '/assests/skills/vercels.webp', alt: 'Vercel', tooltip: 'Vercel', category: 'cloud' },
+  { src: '/assests/skills/heroku.webp', alt: 'Heroku', tooltip: 'Heroku', category: 'cloud' },
+  { src: '/assests/skills/netlify.webp', alt: 'Netlify', tooltip: 'Netlify', category: 'cloud' },
+  { src: '/assests/skills/git.webp', alt: 'Git', tooltip: 'Git', category: 'tools' },
+  { src: '/assests/skills/github.webp', alt: 'GitHub', tooltip: 'GitHub', category: 'tools' },
+  { src: '/assests/skills/githubActions.webp', alt: 'GitHub Actions', tooltip: 'GitHub Actions', category: 'tools' },
+  { src: '/assests/skills/gitlab.webp', alt: 'GitLab', tooltip: 'GitLab', category: 'tools' },
+  { src: '/assests/skills/figma.webp', alt: 'Figma', tooltip: 'Figma', category: 'tools' },
+  { src: '/assests/skills/photoshop.webp', alt: 'Photoshop', tooltip: 'Photoshop', category: 'tools' },
+  { src: '/assests/skills/replit.webp', alt: 'Replit', tooltip: 'Replit', category: 'tools' },
+  { src: '/assests/skills/ubuntu.webp', alt: 'Ubuntu', tooltip: 'Ubuntu', category: 'tools' },
+];
+
+const categories = [
+  { id: 'frontend', label: 'Frontend', icon: Layers },
+  { id: 'backend', label: 'Backend', icon: Server },
+  { id: 'cloud', label: 'Cloud', icon: Cloud },
+  { id: 'tools', label: 'Tools', icon: Wrench },
 ];
 
 const HoverImageComponent: React.FC = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const filteredSkills = activeCategory
+    ? skills.filter(skill => skill.category === activeCategory)
+    : skills;
 
   return (
     <TooltipProvider delayDuration={0}>
-      <div className='mt-20'>
-        <div className='flex justify-center items-center'>
-          <FaTools className='text-2xl mr-2' />
-          <h1 className='text-center'> | My skills |</h1>
+      <section className="section">
+        {/* Header */}
+        <div className="section-header">
+          <p className="label mb-2">Tech Stack</p>
+          <h2 className="section-title">Skills & Technologies</h2>
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-y-14 gap-x-14 justify-items-center px-2 py-2 mt-10">
-  {images.map((image, index) => (
-    <Tooltip key={index}>
-      <TooltipTrigger asChild>
-        <div
-          className="relative"
-          onMouseEnter={() => setHoveredIndex(index)}
-          onMouseLeave={() => setHoveredIndex(null)}
-        >
-          <div className={`transition-all duration-300 ease-in-out
-            ${hoveredIndex === index ? 'scale-125 z-10 rotate-360 ' : 'scale-80'}
-            ${hoveredIndex !== null && hoveredIndex !== index ? 'blur-sm scale-75' : ''}`}
-          >
-            {image ? (
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={48}
-                height={48}
-                className="object-cover"
-              />
-            ) : (
-              <div></div> // Placeholder for empty image
-            )}
-          </div>
-        </div>
-      </TooltipTrigger>
-      {hoveredIndex === index && image && (
-        <TooltipContent className="p-2 text-sm bg-black text-white rounded">
-          <p className='font-bold text-xl'>{image.tooltip}</p>
-        </TooltipContent>
-      )}
-    </Tooltip>
-  ))}
-</div>
 
-      </div>
+        {/* Filters */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          <motion.button
+            onClick={() => setActiveCategory(null)}
+            className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${!activeCategory
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted text-muted-foreground hover:text-foreground'
+              }`}
+            whileTap={{ scale: 0.95 }}
+          >
+            All
+          </motion.button>
+          {categories.map((cat) => (
+            <motion.button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${activeCategory === cat.id
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
+                }`}
+              whileTap={{ scale: 0.95 }}
+            >
+              <cat.icon className="w-3 h-3" />
+              {cat.label}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <motion.div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2" layout>
+          <AnimatePresence mode="popLayout">
+            {filteredSkills.map((skill, index) => (
+              <Tooltip key={skill.alt}>
+                <TooltipTrigger asChild>
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2, delay: index * 0.015 }}
+                    onMouseEnter={() => setHoveredSkill(skill.alt)}
+                    onMouseLeave={() => setHoveredSkill(null)}
+                  >
+                    <motion.div
+                      className={`flex items-center justify-center p-2.5 rounded-lg cursor-pointer transition-all duration-150
+                        ${hoveredSkill === skill.alt
+                          ? 'bg-card border border-primary/40 shadow-sm z-10'
+                          : 'bg-muted/40 border border-transparent hover:bg-card hover:border-border'}
+                        ${hoveredSkill && hoveredSkill !== skill.alt ? 'opacity-40' : ''}
+                      `}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Image
+                        src={skill.src}
+                        alt={skill.alt}
+                        width={28}
+                        height={28}
+                        className="object-contain w-6 h-6 sm:w-7 sm:h-7"
+                      />
+                    </motion.div>
+                  </motion.div>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="text-xs px-2 py-1">
+                  {skill.tooltip}
+                </TooltipContent>
+              </Tooltip>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </section>
     </TooltipProvider>
   );
 };
