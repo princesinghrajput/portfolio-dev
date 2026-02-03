@@ -332,6 +332,21 @@
 }
 
 /* ========================================
+   THEME TRANSITION
+   ======================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+}
+
+/* Ensure the top layer is always on top */
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* ========================================
    SCROLLBAR
    ======================================== */
 
