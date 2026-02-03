@@ -32,7 +32,7 @@ const CopyCmd = () => {
     return (
         <motion.button
             onClick={handleCopyToClipboard}
-            className="group relative inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-muted/70 border border-border font-mono text-xs sm:text-sm cursor-pointer select-none transition-all duration-300 hover:bg-muted hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
+            className="hidden sm:inline-flex group relative items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-muted/70 border border-border font-mono text-xs sm:text-sm cursor-pointer select-none transition-all duration-300 hover:bg-muted hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
             whileHover={{ scale: 1.03, y: -3 }}
             whileTap={{ scale: 0.97 }}
         >

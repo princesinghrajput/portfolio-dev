@@ -67,21 +67,20 @@ const MyProjects: React.FC = () => {
   const otherProjects = projects.filter(p => !p.featured);
 
   return (
-    <section className='section py-10 sm:py-12'>
-      {/* Header */}
-      <div className='mb-8 sm:mb-10'>
-        <div className='flex items-center gap-2 mb-2'>
-          <div className='p-2 rounded-lg bg-primary/10'>
-            <Folder className='w-4 h-4 text-primary' />
+    <section className='section py-4 sm:py-10'>
+      {/* Header - More compact on mobile */}
+      <div className='mb-4 sm:mb-8'>
+        <div className='flex items-center gap-2 mb-1.5 sm:mb-2'>
+          <div className='p-1.5 sm:p-2 rounded-lg bg-primary/10'>
+            <Folder className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary' />
           </div>
-          <span className='text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider'>Portfolio</span>
+          <span className='text-[10px] sm:text-sm font-medium text-muted-foreground uppercase tracking-wider'>Portfolio</span>
         </div>
-        <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight'>
+        <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight'>
           Things I&apos;ve <span className='gradient-text'>Built</span>
         </h2>
-        <p className='mt-3 text-sm sm:text-base text-muted-foreground max-w-xl'>
-          Side projects, experiments, and things I built because I thought &quot;how hard can it be?&quot;
-          <span className='text-muted-foreground/60'> (It was usually harder than expected)</span>
+        <p className='mt-2 text-xs sm:text-sm text-muted-foreground max-w-xl hidden sm:block'>
+          Side projects and things I built. <span className='text-muted-foreground/60'>(Usually harder than expected)</span>
         </p>
       </div>
 
@@ -177,8 +176,8 @@ const MyProjects: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Other Projects Grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5'>
+      {/* Other Projects Grid - More compact on mobile */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4'>
         {otherProjects.map((project, index) => (
           <motion.div
             key={index}
@@ -188,6 +187,7 @@ const MyProjects: React.FC = () => {
             transition={{ duration: 0.4, delay: index * 0.1 }}
             onMouseEnter={() => setHoveredProject(project.title)}
             onMouseLeave={() => setHoveredProject(null)}
+            onClick={() => window.innerWidth < 1024 && setHoveredProject(hoveredProject === project.title ? null : project.title)}
           >
             <motion.div
               className='group card-premium overflow-hidden h-full flex flex-col'
@@ -214,7 +214,7 @@ const MyProjects: React.FC = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className='p-2.5 rounded-xl bg-background/90 backdrop-blur-sm hover:bg-background text-foreground transition-all'
+                    className='p-2.5 rounded-xl bg-background/90 backdrop-blur-sm hover:bg-background active:bg-background active:scale-95 text-foreground transition-all'
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                   >

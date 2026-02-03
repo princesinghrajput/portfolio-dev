@@ -6,7 +6,7 @@ import { FileText, Download, ExternalLink } from 'lucide-react';
 
 const ResumeSection = () => {
     return (
-        <section className="py-8 sm:py-10">
+        <section className="py-4 sm:py-10">
             {/* Header */}
             <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">

@@ -527,3 +527,119 @@
     max-height: 70vh;
   }
 }
+
+/* ========================================
+   MOBILE-SPECIFIC STYLES
+   ======================================== */
+
+/* Touch-friendly tap targets */
+@layer utilities {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  .touch-target-sm {
+    @apply min-h-[36px] min-w-[36px];
+  }
+}
+
+/* Mobile active states (for touch feedback) */
+@media (hover: none) and (pointer: coarse) {
+  .card-premium:active {
+    @apply scale-[0.98] shadow-none;
+    transform: translateY(0) scale(0.98);
+  }
+
+  .btn:active {
+    @apply scale-[0.95];
+  }
+
+  .btn-lift:active {
+    @apply translate-y-0 shadow-none;
+  }
+}
+
+/* Improved mobile text readability */
+@media (max-width: 640px) {
+  .heading-xl {
+    @apply text-3xl leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-xl;
+  }
+
+  .body-lg {
+    @apply text-sm;
+  }
+
+  /* Reduce motion for mobile performance */
+  .orb {
+    @apply opacity-10;
+    animation-duration: 30s;
+  }
+}
+
+/* Safe area handling for mobile devices with notches */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .mb-safe {
+    margin-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Mobile navigation spacing helper */
+.content-with-mobile-nav {
+  @apply pb-24 lg:pb-0;
+}
+
+/* Mobile-optimized scrolling containers */
+.mobile-scroll-x {
+  @apply overflow-x-auto scrollbar-hide -mx-4 px-4;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-scroll-x>* {
+  scroll-snap-align: start;
+}
+
+/* Prevent text selection on interactive elements (mobile) */
+.no-select-mobile {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Mobile card improvements */
+@media (max-width: 640px) {
+  .card-premium {
+    @apply rounded-lg;
+  }
+
+  .card-premium:hover {
+    transform: none;
+    @apply border-border shadow-md;
+  }
+}
+
+/* Improved focus states for accessibility */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}
+
+/* Mobile-friendly input styles */
+@media (max-width: 640px) {
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+    /* Prevents iOS zoom on focus */
+  }
+}

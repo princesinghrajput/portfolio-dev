@@ -93,9 +93,9 @@ const Navbar = () => {
 
             {/* Mobile Navigation - Bottom Bar */}
             <section className="fixed lg:hidden bottom-0 left-0 right-0 z-50 pb-safe">
-                <div className="mx-3 sm:mx-4 mb-3 sm:mb-4">
+                <div className="mx-3 sm:mx-4 mb-2 sm:mb-3">
                     <motion.div
-                        className="flex items-center justify-around gap-1 px-2 py-2 bg-background/95 backdrop-blur-md rounded-2xl border border-border shadow-xl"
+                        className="flex items-center justify-around gap-0.5 px-1.5 py-1.5 bg-background/95 backdrop-blur-md rounded-2xl border border-border shadow-xl"
                         initial={{ y: 100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.3 }}
@@ -104,16 +104,16 @@ const Navbar = () => {
                         {navbarItems.map((item) => {
                             const isActive = (pathname.includes(item.href) && item.href.length > 1) || pathname === item.href;
                             return (
-                                <Link key={item.name} href={item.href} className="flex-1 max-w-[60px]">
+                                <Link key={item.name} href={item.href} className="flex-1">
                                     <motion.div
-                                        className={`flex flex-col items-center gap-0.5 py-2 rounded-xl transition-all duration-200 ${isActive
-                                            ? "bg-primary text-primary-foreground"
-                                            : "text-muted-foreground"
+                                        className={`flex flex-col items-center justify-center gap-0.5 py-2.5 min-h-[52px] rounded-xl transition-all duration-200 active:scale-95 ${isActive
+                                            ? "bg-primary text-primary-foreground shadow-sm"
+                                            : "text-muted-foreground hover:bg-muted/50 active:bg-muted"
                                             }`}
-                                        whileTap={{ scale: 0.9 }}
+                                        whileTap={{ scale: 0.92 }}
                                     >
-                                        <item.icon className="w-5 h-5" />
-                                        <span className="text-[9px] font-medium">{item.name}</span>
+                                        <item.icon className="w-5 h-5" strokeWidth={isActive ? 2.5 : 2} />
+                                        <span className={`text-[10px] font-medium ${isActive ? 'font-semibold' : ''}`}>{item.name}</span>
                                     </motion.div>
                                 </Link>
                             );
@@ -122,12 +122,12 @@ const Navbar = () => {
                         {/* AI Button - Mobile */}
                         <motion.button
                             onClick={() => setIsAskMeOpen(true)}
-                            className="flex-1 max-w-[60px]"
-                            whileTap={{ scale: 0.9 }}
+                            className="flex-1"
+                            whileTap={{ scale: 0.92 }}
                         >
-                            <div className="flex flex-col items-center gap-0.5 py-2 rounded-xl bg-primary/10 text-primary">
-                                <Bot className="w-5 h-5" />
-                                <span className="text-[9px] font-medium">Ask AI</span>
+                            <div className="flex flex-col items-center justify-center gap-0.5 py-2.5 min-h-[52px] rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary border border-primary/20 active:scale-95 active:bg-primary/20 transition-all">
+                                <Bot className="w-5 h-5" strokeWidth={2} />
+                                <span className="text-[10px] font-semibold">Ask AI</span>
                             </div>
                         </motion.button>
                     </motion.div>

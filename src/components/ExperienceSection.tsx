@@ -111,8 +111,8 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
         <div className="hidden sm:flex flex-col items-center">
           <motion.div
             className={`w-10 h-10 rounded-full border-2 flex items-center justify-center ${exp.type === "full-time"
-                ? "border-primary bg-primary/10"
-                : "border-accent bg-accent/10"
+              ? "border-primary bg-primary/10"
+              : "border-accent bg-accent/10"
               }`}
             whileHover={{ scale: 1.1 }}
           >
@@ -123,8 +123,8 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
         {/* Card */}
         <motion.div
           className={`flex-1 rounded-2xl border overflow-hidden transition-all duration-300 ${isExpanded
-              ? "bg-card border-primary/30 shadow-lg shadow-primary/5"
-              : "bg-card/50 border-border hover:border-primary/20"
+            ? "bg-card border-primary/30 shadow-lg shadow-primary/5"
+            : "bg-card/50 border-border hover:border-primary/20"
             }`}
           whileHover={{ y: -2 }}
         >
@@ -137,8 +137,8 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
               {/* Type badge */}
               <span
                 className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider ${exp.type === "full-time"
-                    ? "bg-primary/10 text-primary"
-                    : "bg-accent/10 text-accent"
+                  ? "bg-primary/10 text-primary"
+                  : "bg-accent/10 text-accent"
                   }`}
               >
                 {exp.type === "full-time" ? "Full-time" : "Internship"}
@@ -248,7 +248,7 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
 
 const ExperienceSection = () => {
   return (
-    <section className="py-10 sm:py-12">
+    <section className="py-4 sm:py-12">
       {/* Header */}
       <div className="mb-8 sm:mb-10">
         <div className="flex items-center gap-2 mb-2">

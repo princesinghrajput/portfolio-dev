@@ -20,7 +20,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-8 sm:py-12 mt-8 sm:mt-12 border-t border-border mb-20 lg:mb-0">
+    <footer className="relative py-8 sm:py-12 mt-8 sm:mt-12 border-t border-border mb-24 lg:mb-0">
       {/* Subtle gradient background */}
       <div className="absolute inset-0 bg-gradient-to-t from-muted/20 to-transparent pointer-events-none" />
 
@@ -36,7 +36,7 @@ export default function Footer() {
                       <Link
                         href={link.href}
                         target="_blank"
-                        className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
+                        className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted active:bg-muted active:scale-95 transition-all duration-200"
                       >
                         <link.icon className="h-4 w-4" />
                       </Link>

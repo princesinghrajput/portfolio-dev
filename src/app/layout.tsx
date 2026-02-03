@@ -45,7 +45,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Global Cursor + Pet - on all pages */}
+          {/* Global Cursor + Pet - desktop only */}
           <GlobalCursor />
 
           <Toaster />

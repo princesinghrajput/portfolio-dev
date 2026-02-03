@@ -43,36 +43,69 @@ const FunFacts: React.FC = () => {
     const allRevealed = revealedFacts.length === funFacts.length;
 
     return (
-        <section className="py-10 sm:py-12">
-            {/* Header */}
-            <div className="mb-6 sm:mb-8">
-                <div className="flex items-center gap-2 mb-2">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                        <Heart className="w-4 h-4 text-primary" />
+        <section className="py-4 sm:py-10">
+            {/* Header - More compact on mobile */}
+            <div className="mb-4 sm:mb-6">
+                <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+                    <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
+                        <Heart className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                     </div>
-                    <span className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">Beyond the Code</span>
+                    <span className="text-[10px] sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">Beyond the Code</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight">
                     More Than a <span className="gradient-text">Developer</span>
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-                    Sure, I write code. But I also spend time understanding why people do what they do, how different cultures approach problems, and finding beauty in systems that just <em>work</em>.
+                <p className="mt-2 text-xs sm:text-sm text-muted-foreground max-w-2xl leading-relaxed hidden sm:block">
+                    Sure, I write code. But I also spend time understanding why people do what they do.
                 </p>
             </div>
 
-            {/* Fun Facts Grid - Tap to Reveal */}
-            <div className="mb-8 sm:mb-10">
-                <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-primary" />
-                        Random facts about me
+            {/* Fun Facts - Horizontal scroll on mobile */}
+            <div className="mb-4 sm:mb-8">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <h3 className="text-xs sm:text-sm font-semibold text-foreground flex items-center gap-1.5 sm:gap-2">
+                        <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                        Random facts
                     </h3>
-                    <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
-                        {revealedFacts.length}/{funFacts.length} discovered
+                    <span className="text-[9px] sm:text-xs text-muted-foreground bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
+                        {revealedFacts.length}/{funFacts.length}
                     </span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+                {/* Mobile: Horizontal scroll, Desktop: Grid */}
+                <div className="sm:hidden -mx-4 px-4">
+                    <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
+                        {funFacts.map((fact, index) => {
+                            const isRevealed = revealedFacts.includes(index);
+                            const IconComponent = fact.icon;
+                            return (
+                                <motion.button
+                                    key={index}
+                                    onClick={() => handleRevealFact(index)}
+                                    className={`snap-start flex-shrink-0 relative w-[120px] p-2.5 rounded-lg border text-left transition-all duration-300 ${isRevealed
+                                        ? "bg-gradient-to-br from-card to-muted/50 border-primary/30"
+                                        : "bg-muted/30 border-border/50 active:bg-muted/50"
+                                        }`}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    {isRevealed ? (
+                                        <p className="text-[10px] text-foreground font-medium leading-snug">
+                                            {fact.text}
+                                        </p>
+                                    ) : (
+                                        <div className="flex flex-col items-center justify-center h-full gap-0.5 py-2">
+                                            <IconComponent className={`w-5 h-5 ${fact.color} opacity-60`} />
+                                            <span className="text-[8px] text-muted-foreground/70">tap!</span>
+                                        </div>
+                                    )}
+                                </motion.button>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Desktop: Grid */}
+                <div className="hidden sm:grid sm:grid-cols-4 gap-3">
                     {funFacts.map((fact, index) => {
                         const isRevealed = revealedFacts.includes(index);
                         const IconComponent = fact.icon;
@@ -80,9 +113,9 @@ const FunFacts: React.FC = () => {
                             <motion.button
                                 key={index}
                                 onClick={() => handleRevealFact(index)}
-                                className={`relative group p-3 sm:p-4 rounded-xl border text-left min-h-[80px] sm:min-h-[100px] transition-all duration-300 ${isRevealed
-                                        ? "bg-gradient-to-br from-card to-muted/50 border-primary/30 shadow-lg shadow-primary/5"
-                                        : "bg-muted/30 border-border/50 hover:border-primary/40 hover:bg-muted/50 cursor-pointer"
+                                className={`relative group p-4 rounded-xl border text-left min-h-[100px] transition-all duration-300 ${isRevealed
+                                    ? "bg-gradient-to-br from-card to-muted/50 border-primary/30 shadow-lg shadow-primary/5"
+                                    : "bg-muted/30 border-border/50 hover:border-primary/40 hover:bg-muted/50 cursor-pointer"
                                     }`}
                                 whileHover={!isRevealed ? { scale: 1.03, y: -3 } : {}}
                                 whileTap={!isRevealed ? { scale: 0.97 } : {}}
@@ -95,7 +128,7 @@ const FunFacts: React.FC = () => {
                                             animate={{ opacity: 1, scale: 1 }}
                                             className="flex flex-col justify-center h-full"
                                         >
-                                            <p className="text-xs sm:text-sm text-foreground font-medium leading-snug">
+                                            <p className="text-sm text-foreground font-medium leading-snug">
                                                 {fact.text}
                                             </p>
                                         </motion.div>
@@ -157,52 +190,52 @@ const FunFacts: React.FC = () => {
             </div>
 
             {/* Two Column - Interests + Currently Learning */}
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
-                {/* Interests */}
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                {/* Interests - Horizontal scroll on mobile */}
                 <motion.div
-                    className="card-premium p-4 sm:p-5"
-                    whileHover={{ y: -3 }}
-                    transition={{ duration: 0.2 }}
+                    className="card-premium p-3 sm:p-4"
+                    whileTap={{ scale: 0.98 }}
                 >
-                    <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-                        <Compass className="w-4 h-4 text-primary" />
-                        Rabbit holes I enjoy
+                    <h3 className="text-xs sm:text-sm font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-1.5 sm:gap-2">
+                        <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                        Interests
                     </h3>
-                    <div className="flex flex-wrap gap-2">
-                        {interests.map((interest, i) => (
-                            <motion.span
-                                key={i}
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-primary/10 transition-all cursor-default border border-transparent hover:border-primary/20"
-                                whileHover={{ scale: 1.05, y: -2 }}
-                            >
-                                <span>{interest.emoji}</span>
-                                <span>{interest.label}</span>
-                            </motion.span>
-                        ))}
+                    <div className="-mx-3 px-3 sm:mx-0 sm:px-0">
+                        <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-hide sm:flex-wrap">
+                            {interests.map((interest, i) => (
+                                <motion.span
+                                    key={i}
+                                    className="flex-shrink-0 sm:flex-shrink inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium bg-muted/70 text-muted-foreground active:text-foreground active:bg-primary/10 transition-all cursor-default border border-transparent active:border-primary/20"
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <span>{interest.emoji}</span>
+                                    <span className="whitespace-nowrap">{interest.label}</span>
+                                </motion.span>
+                            ))}
+                        </div>
                     </div>
                 </motion.div>
 
-                {/* Currently Learning */}
+                {/* Currently Learning - More compact on mobile */}
                 <motion.div
-                    className="card-premium p-4 sm:p-5"
-                    whileHover={{ y: -3 }}
-                    transition={{ duration: 0.2 }}
+                    className="card-premium p-3 sm:p-4"
+                    whileTap={{ scale: 0.98 }}
                 >
-                    <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-                        <Book className="w-4 h-4 text-primary" />
-                        Currently leveling up
+                    <h3 className="text-xs sm:text-sm font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-1.5 sm:gap-2">
+                        <Book className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+                        Leveling up
                     </h3>
-                    <div className="space-y-4">
+                    <div className="space-y-2 sm:space-y-3">
                         {currentlyLearning.map((item, i) => (
                             <div key={i}>
-                                <div className="flex items-center justify-between mb-1.5">
-                                    <span className="text-sm text-foreground flex items-center gap-1.5">
+                                <div className="flex items-center justify-between mb-1">
+                                    <span className="text-[10px] sm:text-sm text-foreground flex items-center gap-1 sm:gap-1.5">
                                         <span>{item.emoji}</span>
                                         <span>{item.item}</span>
                                     </span>
-                                    <span className="text-[10px] text-muted-foreground font-mono">{item.progress}%</span>
+                                    <span className="text-[8px] sm:text-[10px] text-muted-foreground font-mono">{item.progress}%</span>
                                 </div>
-                                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                                <div className="h-1.5 sm:h-2 bg-muted rounded-full overflow-hidden">
                                     <motion.div
                                         className={`h-full bg-gradient-to-r ${item.color} rounded-full`}
                                         initial={{ width: 0 }}
@@ -214,8 +247,8 @@ const FunFacts: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                    <p className="text-[10px] text-muted-foreground/60 mt-3 italic">
-                        * Progress is subjective and may decrease after a Netflix binge
+                    <p className="text-[8px] sm:text-[10px] text-muted-foreground/60 mt-2 sm:mt-3 italic hidden sm:block">
+                        * Progress may decrease after a Netflix binge
                     </p>
                 </motion.div>
             </div>

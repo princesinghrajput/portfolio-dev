@@ -62,7 +62,7 @@ const HoverImageComponent: React.FC = () => {
     activeCategory === "all" ? skills : skills.filter((skill) => skill.category === activeCategory);
 
   return (
-    <section className="py-10 sm:py-12">
+    <section className="py-4 sm:py-12">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <div className="flex items-center gap-2 mb-2">
@@ -77,12 +77,12 @@ const HoverImageComponent: React.FC = () => {
           My <span className="gradient-text">Tech Stack</span>
         </h2>
         <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl">
-          Tools and technologies I use to bring ideas to life. Hover over them to see my comfort level!
+          Tools and technologies I use to bring ideas to life. <span className="hidden sm:inline">Hover</span><span className="sm:hidden">Tap</span> to see my comfort level!
         </p>
       </div>
 
-      {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 mb-6 text-xs">
+      {/* Legend - Hidden on mobile, shown on larger screens */}
+      <div className="hidden sm:flex flex-wrap items-center gap-3 mb-6 text-xs">
         <span className="text-muted-foreground">Skill level:</span>
         {Object.entries(levelLabels).map(([key, label]) => (
           <span key={key} className="flex items-center gap-1.5">
@@ -100,8 +100,8 @@ const HoverImageComponent: React.FC = () => {
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={`flex-shrink-0 inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${activeCategory === cat.id
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-muted"
+                ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                : "bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -113,8 +113,8 @@ const HoverImageComponent: React.FC = () => {
         </div>
       </div>
 
-      {/* Skills Grid */}
-      <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4" layout>
+      {/* Skills Grid - More compact on mobile with 3 columns */}
+      <motion.div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3" layout>
         <AnimatePresence mode="popLayout">
           {filteredSkills.map((skill, index) => (
             <motion.div
@@ -126,30 +126,31 @@ const HoverImageComponent: React.FC = () => {
               transition={{ duration: 0.25, delay: index * 0.03 }}
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
+              onClick={() => setHoveredSkill(hoveredSkill === skill.name ? null : skill.name)}
             >
               <motion.div
-                className="group relative flex flex-col items-center gap-3 p-4 sm:p-5 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 cursor-default overflow-hidden"
-                whileHover={{ y: -6 }}
+                className="group relative flex flex-col items-center gap-1.5 sm:gap-3 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 cursor-default overflow-hidden"
+                whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Level indicator */}
+                {/* Level indicator - always visible on mobile as colored bar */}
                 <div
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${levelColors[skill.level]} opacity-0 group-hover:opacity-100 transition-opacity`}
+                  className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r ${levelColors[skill.level]} sm:opacity-0 sm:group-hover:opacity-100 transition-opacity`}
                 />
 
-                {/* Icon */}
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14">
+                {/* Icon - smaller on mobile */}
+                <div className="relative w-8 h-8 sm:w-12 sm:h-12">
                   <Image
                     src={skill.icon}
                     alt={skill.name}
                     fill
                     className="object-contain transition-transform duration-300 group-hover:scale-110"
-                    sizes="(max-width: 640px) 48px, 56px"
+                    sizes="(max-width: 640px) 32px, 48px"
                   />
                 </div>
 
-                {/* Name */}
-                <span className="text-sm font-medium text-foreground text-center">{skill.name}</span>
+                {/* Name - smaller on mobile */}
+                <span className="text-[10px] sm:text-sm font-medium text-foreground text-center leading-tight">{skill.name}</span>
 
                 {/* Hover tooltip */}
                 <AnimatePresence>

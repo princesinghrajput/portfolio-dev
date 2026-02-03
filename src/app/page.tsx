@@ -60,7 +60,7 @@ const Page = () => {
           <div className="absolute inset-0 bg-dot-pattern opacity-30" />
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pt-24 sm:pt-28 lg:pt-36 pb-24 sm:pb-28">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 pt-20 sm:pt-28 lg:pt-36 pb-16 sm:pb-28">
           {/* Hero Section */}
           <motion.div
             className="relative"
@@ -147,7 +147,7 @@ const Page = () => {
           </motion.div>
 
           {/* Sections */}
-          <div className="space-y-12 sm:space-y-16 lg:space-y-20 mt-12 sm:mt-16 lg:mt-20">
+          <div className="space-y-6 sm:space-y-16 lg:space-y-20 mt-6 sm:mt-16 lg:mt-20">
             {/* Fun Facts - New! */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -312,3 +312,4 @@ const InteractiveCodeCard = () => {
 };
 
 export default Page;
+

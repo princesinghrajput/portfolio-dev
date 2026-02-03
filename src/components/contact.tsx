@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MessageSquare, Send, Terminal, Sparkles } from 'lucide-react';
+import { Mail, Github, Linkedin, MessageSquare, Send, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
 import { TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const socialLinks = [
@@ -15,35 +15,51 @@ const ContactMe: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [command, setCommand] = useState('');
   const [formStatus, setFormStatus] = useState('');
+  const [currentStep, setCurrentStep] = useState(0);
 
   const handleCommandChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCommand(e.target.value);
+    if (formStatus === 'Invalid command') setFormStatus('');
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') processCommand();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      processCommand();
+    }
   };
 
   const processCommand = () => {
-    const addRegex = /^git add \. /;
-    const commitRegex = /^git commit -m "(.*)"/;
-    const pushRegex = /^git push origin prince$/;
+    const trimmedCommand = command.trim();
 
-    if (addRegex.test(command)) {
-      const message = addRegex.exec(command)?.[1] || '';
-      setFormData({ ...formData, message });
+    // Pattern: git add . "message content"
+    const addMatch = trimmedCommand.match(/^git add \. ["'](.+)["']$/);
+    // Pattern: git commit -m "email@example.com"
+    const commitMatch = trimmedCommand.match(/^git commit -m ["'](.+)["']$/);
+    // Pattern: git push origin prince
+    const pushMatch = trimmedCommand.match(/^git push origin prince$/);
+
+    if (addMatch && addMatch[1]) {
+      setFormData({ ...formData, message: addMatch[1] });
       setCommand('');
-      setFormStatus('');
-    } else if (commitRegex.test(command)) {
-      const email = commitRegex.exec(command)?.[1] || '';
-      setFormData({ ...formData, email });
+      setFormStatus('✓ Message staged!');
+      setCurrentStep(1);
+      setTimeout(() => setFormStatus(''), 2000);
+    } else if (commitMatch && commitMatch[1]) {
+      setFormData({ ...formData, email: commitMatch[1] });
       setCommand('');
-      setFormStatus('');
-    } else if (pushRegex.test(command)) {
+      setFormStatus('✓ Email committed!');
+      setCurrentStep(2);
+      setTimeout(() => setFormStatus(''), 2000);
+    } else if (pushMatch) {
+      if (!formData.message || !formData.email) {
+        setFormStatus('⚠ Stage message & commit email first');
+        return;
+      }
       handleSubmit();
       setCommand('');
     } else {
-      setFormStatus('Invalid command');
+      setFormStatus('Invalid command - check the format above');
     }
   };
 
@@ -78,7 +94,7 @@ const ContactMe: React.FC = () => {
   };
 
   return (
-    <section className="py-8 sm:py-10">
+    <section className="py-4 sm:py-10" id="contact">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
@@ -112,11 +128,11 @@ const ContactMe: React.FC = () => {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className={`group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 card-premium transition-all duration-200 ${link.color}`}
+                  className={`group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 card-premium transition-all duration-200 active:scale-95 ${link.color}`}
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="p-2 rounded-lg bg-muted group-hover:bg-transparent transition-colors">
+                  <div className="p-2 rounded-lg bg-muted group-hover:bg-transparent group-active:bg-transparent transition-colors">
                     <IconComponent className="h-4 w-4" />
                   </div>
                   <span className="text-sm font-medium">{link.name}</span>
@@ -136,65 +152,96 @@ const ContactMe: React.FC = () => {
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
               </div>
-              <span className="flex-1 text-center text-xs text-muted-foreground font-mono">git — contact</span>
+              <span className="flex-1 text-center text-[10px] sm:text-xs text-muted-foreground font-mono">git — contact</span>
               <Terminal className="w-3.5 h-3.5 text-muted-foreground" />
             </div>
 
             {/* Terminal Content */}
             <div className="p-3 sm:p-4 font-mono text-xs sm:text-sm space-y-3">
-              <p className="text-muted-foreground text-xs">
+              <p className="text-muted-foreground text-[10px] sm:text-xs">
                 <span className="text-primary font-bold">$</span> Send a message using git commands:
               </p>
 
-              <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-muted/30 border border-border text-xs">
-                <p className="flex items-center gap-1.5 overflow-x-auto">
-                  <span className="text-emerald-500 font-bold">$</span>
-                  <span className="text-muted-foreground">git add .</span>
-                  <span className="text-foreground truncate">&quot;{formData.message || 'message...'}&quot;</span>
-                  {formData.message && <span className="text-emerald-500">✓</span>}
-                </p>
-                <p className="flex items-center gap-1.5 overflow-x-auto">
-                  <span className="text-emerald-500 font-bold">$</span>
-                  <span className="text-muted-foreground">git commit -m</span>
-                  <span className="text-foreground truncate">&quot;{formData.email || 'email'}&quot;</span>
-                  {formData.email && <span className="text-emerald-500">✓</span>}
-                </p>
-                <p className="text-muted-foreground flex items-center gap-1.5">
-                  <span className="text-emerald-500 font-bold">$</span>
-                  <span>git push origin prince</span>
-                </p>
+              {/* Command Steps with progress indication */}
+              <div className="space-y-2 p-2.5 sm:p-3 rounded-lg bg-muted/30 border border-border text-[10px] sm:text-xs">
+                {/* Step 1: Add message */}
+                <div className={`flex items-start gap-1.5 p-1.5 rounded transition-colors ${currentStep >= 1 ? 'bg-emerald-500/10' : ''}`}>
+                  <span className="text-emerald-500 font-bold shrink-0">1.</span>
+                  <div className="flex-1 min-w-0">
+                    <code className="text-muted-foreground">git add . "</code>
+                    <code className="text-foreground break-all">{formData.message || 'your message'}</code>
+                    <code className="text-muted-foreground">"</code>
+                  </div>
+                  {formData.message && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />}
+                </div>
+
+                {/* Step 2: Commit email */}
+                <div className={`flex items-start gap-1.5 p-1.5 rounded transition-colors ${currentStep >= 2 ? 'bg-emerald-500/10' : ''}`}>
+                  <span className="text-emerald-500 font-bold shrink-0">2.</span>
+                  <div className="flex-1 min-w-0">
+                    <code className="text-muted-foreground">git commit -m "</code>
+                    <code className="text-foreground break-all">{formData.email || 'your@email.com'}</code>
+                    <code className="text-muted-foreground">"</code>
+                  </div>
+                  {formData.email && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />}
+                </div>
+
+                {/* Step 3: Push */}
+                <div className="flex items-start gap-1.5 p-1.5 rounded">
+                  <span className="text-emerald-500 font-bold shrink-0">3.</span>
+                  <div className="flex-1">
+                    <code className="text-muted-foreground">git push origin prince</code>
+                  </div>
+                </div>
               </div>
 
-              {/* Input */}
-              <div className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 border border-border focus-within:border-primary/50 transition-colors">
-                <span className="text-primary font-bold">$</span>
+              {/* Input - Enhanced for mobile with higher z-index */}
+              <div className="relative z-50 flex items-center gap-2 p-2 sm:p-2.5 rounded-lg bg-muted/50 border border-border focus-within:border-primary/50 transition-colors">
+                <span className="text-primary font-bold shrink-0">$</span>
                 <input
                   type="text"
                   value={command}
                   onChange={handleCommandChange}
-                  onKeyPress={handleKeyPress}
-                  className="flex-1 bg-transparent focus:outline-none text-foreground placeholder:text-muted-foreground/50 text-xs sm:text-sm min-w-0"
-                  placeholder="Type git command..."
+                  onKeyDown={handleKeyDown}
+                  className="flex-1 bg-transparent focus:outline-none text-foreground placeholder:text-muted-foreground/50 text-[11px] sm:text-sm min-w-0 pointer-events-auto"
+                  placeholder='git add . "Hello!"'
+                  autoComplete="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  inputMode="text"
                 />
                 <motion.button
                   onClick={processCommand}
-                  className="p-1.5 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex-shrink-0"
+                  className="p-2 sm:p-1.5 rounded-md bg-primary/10 text-primary hover:bg-primary/20 active:bg-primary/30 transition-colors shrink-0"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
                 </motion.button>
               </div>
 
+              {/* Status Message */}
               {formStatus && (
                 <motion.p
-                  className={`text-xs ${formStatus.includes('✓') ? 'text-emerald-500' : 'text-muted-foreground'}`}
+                  className={`text-[10px] sm:text-xs font-medium ${formStatus.includes('✓')
+                    ? 'text-emerald-500'
+                    : formStatus.includes('⚠')
+                      ? 'text-amber-500'
+                      : formStatus.includes('Invalid')
+                        ? 'text-red-400'
+                        : 'text-muted-foreground'
+                    }`}
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
                   {formStatus}
                 </motion.p>
               )}
+
+              {/* Mobile hint */}
+              <p className="text-[9px] text-muted-foreground/50 text-center sm:hidden">
+                💡 Copy commands from above, replace placeholder with your info
+              </p>
             </div>
           </div>
         </div>
