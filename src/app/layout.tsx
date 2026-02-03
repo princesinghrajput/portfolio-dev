@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Rubik, Quicksand } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/common/Navbar";
@@ -7,15 +7,15 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import GlobalCursor from "@/components/GlobalCursor";
 
-const inter = Inter({
+const quicksand = Quicksand({
   subsets: ["latin"],
-  variable: '--font-inter',
+  variable: '--font-quicksand',
   display: 'swap',
 });
 
-const outfit = Outfit({
+const rubik = Rubik({
   subsets: ["latin"],
-  variable: '--font-outfit',
+  variable: '--font-rubik',
   display: 'swap',
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${quicksand.variable} ${rubik.variable}`}>
       <body className="font-sans bg-background min-h-screen">
         <ThemeProvider
           attribute="class"
