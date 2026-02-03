@@ -1,14 +1,14 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MessageSquare, Send, Terminal } from 'lucide-react';
+import { Mail, Github, Linkedin, MessageSquare, Send, Terminal, Sparkles } from 'lucide-react';
 import { TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const socialLinks = [
-  { name: "Email", href: "mailto:psr8084@gmail.com", icon: Mail },
-  { name: "Twitter", href: "https://x.com/its_me_prince1_", icon: TwitterLogoIcon },
-  { name: "GitHub", href: "https://github.com/princesinghrajput", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/in/prince-kumar-05", icon: Linkedin },
+  { name: "Email", href: "mailto:psr8084@gmail.com", icon: Mail, color: "hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30" },
+  { name: "Twitter", href: "https://x.com/its_me_prince1_", icon: TwitterLogoIcon, color: "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/30" },
+  { name: "GitHub", href: "https://github.com/princesinghrajput", icon: Github, color: "hover:bg-purple-500/10 hover:text-purple-400 hover:border-purple-500/30" },
+  { name: "LinkedIn", href: "https://linkedin.com/in/prince-kumar-05", icon: Linkedin, color: "hover:bg-blue-600/10 hover:text-blue-500 hover:border-blue-600/30" },
 ];
 
 const ContactMe: React.FC = () => {
@@ -25,7 +25,7 @@ const ContactMe: React.FC = () => {
   };
 
   const processCommand = () => {
-    const addRegex = /^git add \. "(.*)"/;
+    const addRegex = /^git add \. /;
     const commitRegex = /^git commit -m "(.*)"/;
     const pushRegex = /^git push origin prince$/;
 
@@ -78,94 +78,125 @@ const ContactMe: React.FC = () => {
   };
 
   return (
-    <section className="section">
+    <section className="py-8 sm:py-10">
       {/* Header */}
-      <div className="section-header">
-        <div className="flex items-center gap-1.5 label mb-2">
-          <MessageSquare className="w-3.5 h-3.5 text-primary" />
-          <span>Contact</span>
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
+            <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+          </div>
+          <span className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">Contact</span>
         </div>
-        <h2 className="section-title">Get in Touch</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          Get in <span className="gradient-text">Touch</span>
+        </h2>
+        <p className="mt-2 text-xs sm:text-sm text-muted-foreground max-w-xl">
+          Have a project in mind? Reach out through any of these channels
+        </p>
       </div>
 
-      {/* Social */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {socialLinks.map((link, index) => {
-          const IconComponent = link.icon;
-          return (
-            <motion.a
-              key={index}
-              href={link.href}
-              target={link.href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-3 py-2 card border border-border text-xs font-medium hover:border-primary/40 transition-colors"
-              whileHover={{ y: -1 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="text-muted-foreground group-hover:text-primary transition-colors">
-                <IconComponent className="h-3.5 w-3.5" />
-              </span>
-              <span>{link.name}</span>
-            </motion.a>
-          );
-        })}
-      </div>
-
-      {/* Terminal */}
-      <div className="card overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-muted/50 border-b border-border">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-red-500/80" />
-            <div className="w-2 h-2 rounded-full bg-yellow-500/80" />
-            <div className="w-2 h-2 rounded-full bg-green-500/80" />
+      {/* Two Column Layout */}
+      <div className="grid lg:grid-cols-2 gap-5 sm:gap-6">
+        {/* Left - Social Links */}
+        <div className="space-y-4">
+          <h3 className="text-sm sm:text-base font-semibold flex items-center gap-2">
+            <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
+            Connect with me
+          </h3>
+          <div className="grid grid-cols-2 gap-2 sm:gap-3">
+            {socialLinks.map((link, index) => {
+              const IconComponent = link.icon;
+              return (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  className={`group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 card-premium transition-all duration-200 ${link.color}`}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="p-2 rounded-lg bg-muted group-hover:bg-transparent transition-colors">
+                    <IconComponent className="h-4 w-4" />
+                  </div>
+                  <span className="text-sm font-medium">{link.name}</span>
+                </motion.a>
+              );
+            })}
           </div>
-          <span className="flex-1 text-center text-xs text-muted-foreground font-mono">git</span>
-          <Terminal className="w-3 h-3 text-muted-foreground" />
         </div>
 
-        {/* Content */}
-        <div className="p-4 font-mono text-xs">
-          <p className="text-muted-foreground mb-3">
-            <span className="text-primary">$</span> Send a message using git:
-          </p>
+        {/* Right - Terminal */}
+        <div className="relative">
+          <div className="card-premium overflow-hidden">
+            {/* Terminal Header */}
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-3 bg-muted/50 border-b border-border">
+              <div className="flex gap-1 sm:gap-1.5">
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
+              </div>
+              <span className="flex-1 text-center text-xs text-muted-foreground font-mono">git — contact</span>
+              <Terminal className="w-3.5 h-3.5 text-muted-foreground" />
+            </div>
 
-          <div className="space-y-1 mb-4 p-3 rounded-md bg-muted/30 border border-border">
-            <p><span className="text-emerald-500">$</span> git add . "{formData.message || '...'}" {formData.message && <span className="text-emerald-500">✓</span>}</p>
-            <p><span className="text-emerald-500">$</span> git commit -m "{formData.email || '...'}" {formData.email && <span className="text-emerald-500">✓</span>}</p>
-            <p className="text-muted-foreground"><span className="text-emerald-500">$</span> git push origin prince</p>
+            {/* Terminal Content */}
+            <div className="p-3 sm:p-4 font-mono text-xs sm:text-sm space-y-3">
+              <p className="text-muted-foreground text-xs">
+                <span className="text-primary font-bold">$</span> Send a message using git commands:
+              </p>
+
+              <div className="space-y-1.5 p-2.5 sm:p-3 rounded-lg bg-muted/30 border border-border text-xs">
+                <p className="flex items-center gap-1.5 overflow-x-auto">
+                  <span className="text-emerald-500 font-bold">$</span>
+                  <span className="text-muted-foreground">git add .</span>
+                  <span className="text-foreground truncate">&quot;{formData.message || 'message...'}&quot;</span>
+                  {formData.message && <span className="text-emerald-500">✓</span>}
+                </p>
+                <p className="flex items-center gap-1.5 overflow-x-auto">
+                  <span className="text-emerald-500 font-bold">$</span>
+                  <span className="text-muted-foreground">git commit -m</span>
+                  <span className="text-foreground truncate">&quot;{formData.email || 'email'}&quot;</span>
+                  {formData.email && <span className="text-emerald-500">✓</span>}
+                </p>
+                <p className="text-muted-foreground flex items-center gap-1.5">
+                  <span className="text-emerald-500 font-bold">$</span>
+                  <span>git push origin prince</span>
+                </p>
+              </div>
+
+              {/* Input */}
+              <div className="flex items-center gap-2 p-2.5 rounded-lg bg-muted/50 border border-border focus-within:border-primary/50 transition-colors">
+                <span className="text-primary font-bold">$</span>
+                <input
+                  type="text"
+                  value={command}
+                  onChange={handleCommandChange}
+                  onKeyPress={handleKeyPress}
+                  className="flex-1 bg-transparent focus:outline-none text-foreground placeholder:text-muted-foreground/50 text-xs sm:text-sm min-w-0"
+                  placeholder="Type git command..."
+                />
+                <motion.button
+                  onClick={processCommand}
+                  className="p-1.5 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex-shrink-0"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </motion.button>
+              </div>
+
+              {formStatus && (
+                <motion.p
+                  className={`text-xs ${formStatus.includes('✓') ? 'text-emerald-500' : 'text-muted-foreground'}`}
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  {formStatus}
+                </motion.p>
+              )}
+            </div>
           </div>
-
-          {/* Input */}
-          <div className="flex items-center gap-2 p-2 rounded-md bg-muted/50 border border-border focus-within:border-primary/50 transition-colors">
-            <span className="text-primary font-bold">$</span>
-            <input
-              type="text"
-              value={command}
-              onChange={handleCommandChange}
-              onKeyPress={handleKeyPress}
-              className="flex-1 bg-transparent focus:outline-none text-foreground placeholder:text-muted-foreground/50"
-              placeholder="git command..."
-            />
-            <motion.button
-              onClick={processCommand}
-              className="p-1.5 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Send className="w-3 h-3" />
-            </motion.button>
-          </div>
-
-          {formStatus && (
-            <motion.p
-              className={`mt-3 ${formStatus.includes('✓') ? 'text-emerald-500' : 'text-muted-foreground'}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {formStatus}
-            </motion.p>
-          )}
         </div>
       </div>
     </section>

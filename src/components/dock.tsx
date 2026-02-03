@@ -3,66 +3,35 @@
 import { Dock, DockIcon } from "./ui/dock";
 import React from "react";
 import { motion } from "framer-motion";
+import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
-export function DockDemo() {
-  const socialLinks = [
-    { href: "https://github.com/princesinghrajput", icon: Icons.gitHub, label: "GitHub" },
-    { href: "https://www.linkedin.com/in/prince-kumar-05/", icon: Icons.linkedin, label: "LinkedIn" },
-    { href: "https://x.com/its_me_prince1_", icon: Icons.twitte, label: "Twitter" },
-    { href: "", icon: Icons.medium, label: "Medium" },
-    { href: "mailto:psr8084@gmail.com", icon: Icons.Gmail, label: "Email" },
-  ];
+const socialLinks = [
+  { href: "https://github.com/princesinghrajput", icon: Github, label: "GitHub", color: "hover:text-purple-400" },
+  { href: "https://www.linkedin.com/in/prince-kumar-05/", icon: Linkedin, label: "LinkedIn", color: "hover:text-blue-500" },
+  { href: "https://x.com/its_me_prince1_", icon: Twitter, label: "Twitter", color: "hover:text-sky-400" },
+  { href: "mailto:psr8084@gmail.com", icon: Mail, label: "Email", color: "hover:text-red-400" },
+];
 
+export function DockDemo() {
   return (
-    <Dock className="bg-muted/40 border border-border rounded-full backdrop-blur-sm">
+    <Dock className="bg-muted/70 border border-border rounded-2xl backdrop-blur-md shadow-lg px-1">
       {socialLinks.map((link, index) => (
         <DockIcon key={index}>
           <motion.a
             href={link.href}
             target={link.href.startsWith("mailto") ? undefined : "_blank"}
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+            className={`flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-muted-foreground ${link.color} transition-all duration-200`}
             aria-label={link.label}
-            whileHover={{ scale: 1.15, y: -2 }}
+            whileHover={{ scale: 1.2, y: -4 }}
             whileTap={{ scale: 0.9 }}
           >
-            <link.icon className="h-3.5 w-3.5" />
+            <link.icon className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </motion.a>
         </DockIcon>
       ))}
     </Dock>
   );
 }
-
-const Icons = {
-  gitHub: (props: IconProps) => (
-    <svg viewBox="0 0 438.549 438.549" {...props}>
-      <path fill="currentColor" d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z" />
-    </svg>
-  ),
-  Gmail: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path d="M22 6L12 13L2 6V4L12 11L22 4V6Z" fill="currentColor" />
-      <path d="M2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6L12 13L2 6Z" fill="currentColor" fillOpacity="0.7" />
-    </svg>
-  ),
-  linkedin: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z" fill="currentColor" />
-    </svg>
-  ),
-  twitte: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path d="M22 5.8a8.49 8.49 0 01-2.36.64 4.13 4.13 0 001.81-2.27 8.21 8.21 0 01-2.61 1 4.1 4.1 0 00-7 3.74 11.64 11.64 0 01-8.45-4.29 4.16 4.16 0 00-.55 2.07 4.09 4.09 0 001.82 3.41 4.05 4.05 0 01-1.86-.51v.05a4.1 4.1 0 003.3 4 3.93 3.93 0 01-1.1.17 4.9 4.9 0 01-.77-.07 4.11 4.11 0 003.83 2.84A8.22 8.22 0 012 18.28a11.57 11.57 0 006.29 1.85A11.59 11.59 0 0020 8.45v-.53a8.43 8.43 0 002-2.12z" fill="currentColor" />
-    </svg>
-  ),
-  medium: (props: IconProps) => (
-    <svg viewBox="0 0 24 24" fill="none" {...props}>
-      <path d="M13 12C13 15.3137 10.3137 18 7 18C3.68629 18 1 15.3137 1 12C1 8.68629 3.68629 6 7 6C10.3137 6 13 8.68629 13 12Z" fill="currentColor" />
-      <path d="M23 12C23 14.7614 22.5523 17 22 17C21.4477 17 21 14.7614 21 12C21 9.23858 21.4477 7 22 7C22.5523 7 23 9.23858 23 12Z" fill="currentColor" />
-      <path d="M17 18C18.6569 18 20 15.3137 20 12C20 8.68629 18.6569 6 17 6C15.3431 6 14 8.68629 14 12C14 15.3137 15.3431 18 17 18Z" fill="currentColor" />
-    </svg>
-  ),
-};

@@ -4,19 +4,22 @@ import React from "react";
 import { FlipWords } from "./ui/words";
 
 export function FlipWordsDemo() {
+  // More fun and personality-driven phrases
   const words = [
-    "Full Stack Developer",
-    "UI/UX Enthusiast",
-    "Problem Solver",
-    "Tech Explorer"
+    "curious builder",
+    "system thinker",
+    "chai enthusiast",
+    "culture explorer",
+    "minimalist designer",
+    "full-stack dev",
   ];
 
   return (
     <p className="body-lg">
-      <span className="text-foreground">I'm a </span>
+      <span className="text-muted-foreground">I&apos;m a </span>
       <FlipWords
         words={words}
-        className="font-semibold text-primary"
+        className="font-semibold text-foreground"
       />
     </p>
   );

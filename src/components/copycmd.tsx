@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Clipboard, ClipboardCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { Check, Terminal } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "./ui/use-toast";
 
 const CopyCmd = () => {
@@ -13,10 +13,7 @@ const CopyCmd = () => {
             .writeText(textToCopy)
             .then(() => {
                 setCopied(true);
-                setTimeout(() => {
-                    setCopied(false);
-                }, 2000);
-
+                setTimeout(() => setCopied(false), 2500);
                 toast({
                     title: "Copied to clipboard",
                     description: "Paste the command in your terminal :3",
@@ -35,14 +32,55 @@ const CopyCmd = () => {
     return (
         <motion.button
             onClick={handleCopyToClipboard}
-            className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-muted/60 border border-border font-mono text-sm cursor-pointer select-none transition-all duration-200 hover:bg-muted hover:border-primary/40"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="group relative inline-flex items-center gap-2.5 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-muted/70 border border-border font-mono text-xs sm:text-sm cursor-pointer select-none transition-all duration-300 hover:bg-muted hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
+            whileHover={{ scale: 1.03, y: -3 }}
+            whileTap={{ scale: 0.97 }}
         >
-            <span className="text-primary transition-transform duration-200 group-hover:scale-110">
-                {copied ? <ClipboardCheck size={16} /> : <Clipboard size={16} />}
-            </span>
-            <span className="text-foreground">npx prince-dev</span>
+            <motion.span
+                className="p-1.5 rounded-lg bg-primary/10 text-primary"
+                animate={{ rotate: copied ? 360 : 0 }}
+                transition={{ duration: 0.3 }}
+            >
+                <AnimatePresence mode="wait">
+                    {copied ? (
+                        <motion.div
+                            key="check"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                        >
+                            <Check size={14} className="sm:w-4 sm:h-4" />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="terminal"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0, opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                        >
+                            <Terminal size={14} className="sm:w-4 sm:h-4" />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.span>
+
+            <span className="text-foreground font-medium">npx prince-dev</span>
+
+            <AnimatePresence>
+                {copied && (
+                    <motion.span
+                        className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500 text-white shadow-lg"
+                        initial={{ scale: 0, opacity: 0, y: 5 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0, opacity: 0, y: 5 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                    >
+                        Copied!
+                    </motion.span>
+                )}
+            </AnimatePresence>
         </motion.button>
     );
 };

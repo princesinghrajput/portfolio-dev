@@ -347,6 +347,170 @@
   display: none;
 }
 
+/* Safe area padding for mobile notch */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ========================================
+   GRADIENT TEXT
+   ======================================== */
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(173, 80%, 60%) 50%, hsl(var(--accent)) 100%);
+}
+
+.gradient-text-subtle {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 100%);
+}
+
+/* ========================================
+   GLOW EFFECTS
+   ======================================== */
+
+.glow-primary {
+  box-shadow: 0 0 20px -5px hsl(var(--primary) / 0.4),
+    0 0 40px -10px hsl(var(--primary) / 0.2);
+}
+
+.glow-primary-lg {
+  box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5),
+    0 0 80px -20px hsl(var(--primary) / 0.3);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px -5px hsl(var(--accent) / 0.4),
+    0 0 40px -10px hsl(var(--accent) / 0.2);
+}
+
+/* ========================================
+   DECORATIVE BACKGROUNDS
+   ======================================== */
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(var(--border) / 0.3) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(ellipse at center, hsl(var(--primary) / 0.08) 0%, transparent 70%);
+}
+
+/* ========================================
+   FLOATING ORBS
+   ======================================== */
+
+.orb {
+  @apply absolute rounded-full blur-3xl opacity-30 pointer-events-none;
+}
+
+.orb-primary {
+  background: hsl(var(--primary));
+}
+
+.orb-accent {
+  background: hsl(var(--accent));
+}
+
+@keyframes orb-float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(10px, -20px) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-5px, -10px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(-15px, 10px) scale(1.02);
+  }
+}
+
+.animate-orb {
+  animation: orb-float 15s ease-in-out infinite;
+}
+
+.animate-orb-slow {
+  animation: orb-float 25s ease-in-out infinite;
+}
+
+/* ========================================
+   CARD ENHANCEMENTS
+   ======================================== */
+
+.card-gradient {
+  @apply bg-gradient-to-br from-card to-card/80;
+  background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--card) / 0.6) 100%);
+}
+
+.card-glow {
+  @apply transition-all duration-300;
+}
+
+.card-glow:hover {
+  @apply glow-primary;
+}
+
+.card-premium {
+  @apply relative overflow-hidden bg-card border border-border rounded-xl transition-all duration-300;
+  @apply hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1;
+}
+
+.card-premium::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, transparent 50%);
+}
+
+.card-premium:hover::before {
+  @apply opacity-100;
+}
+
+/* ========================================
+   SECTION STYLING
+   ======================================== */
+
+.section-divider {
+  @apply w-full h-px bg-gradient-to-r from-transparent via-border to-transparent;
+}
+
+.section-modern {
+  @apply py-16 lg:py-24;
+}
+
+.section-header-modern {
+  @apply mb-10 lg:mb-12;
+}
+
+/* ========================================
+   BADGE STYLES
+   ======================================== */
+
+.badge-primary {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full;
+  @apply bg-primary/10 border border-primary/20 text-primary text-xs font-medium;
+}
+
+.badge-secondary {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full;
+  @apply bg-muted border border-border text-muted-foreground text-xs font-medium;
+}
+
 /* ========================================
    UTILITIES
    ======================================== */

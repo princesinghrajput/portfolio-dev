@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
+import GlobalCursor from "@/components/GlobalCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,12 +21,12 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Prince Kumar | Full Stack Developer",
-  description: "Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Building beautiful, performant, and scalable applications.",
-  keywords: ["Full Stack Developer", "React", "Next.js", "Node.js", "TypeScript", "Portfolio"],
+  description: "A calm, curious engineer who enjoys building systems, studying people and cultures, and exploring ideas beyond the obvious. Full Stack Developer specializing in React, Next.js, Node.js.",
+  keywords: ["Full Stack Developer", "React", "Next.js", "Node.js", "TypeScript", "Portfolio", "Prince Kumar"],
   authors: [{ name: "Prince Kumar" }],
   openGraph: {
     title: "Prince Kumar | Full Stack Developer",
-    description: "Full Stack Developer specializing in React, Next.js, and modern web technologies.",
+    description: "A calm, curious engineer who enjoys building systems, studying people and cultures, and exploring ideas beyond the obvious.",
     type: "website",
   },
 };
@@ -44,6 +45,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {/* Global Cursor + Pet - on all pages */}
+          <GlobalCursor />
+
           <Toaster />
           <Navbar />
           <main className="relative">
