@@ -119,15 +119,13 @@ export const CursorPet: React.FC = () => {
 
     // Initialize position on mount
     useEffect(() => {
-        const isMobile = window.matchMedia("(max-width: 1024px)").matches;
-        if (isMobile) return;
-
+        // Enable on all devices
         setIsVisible(true);
         // Start at bottom-left corner
-        setCatPos({ x: 80, y: window.innerHeight - 100 });
+        setCatPos({ x: 80, y: typeof window !== "undefined" ? window.innerHeight - 100 : 0 });
     }, []);
 
-    // Track cursor position
+    // Track cursor/touch position
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             setCursorPos({ x: e.clientX, y: e.clientY });
@@ -135,8 +133,29 @@ export const CursorPet: React.FC = () => {
             if (mood === "sleepy") setMood("hunting");
         };
 
+        const handleTouch = (e: TouchEvent) => {
+            if (e.touches.length > 0) {
+                setCursorPos({ x: e.touches[0].clientX, y: e.touches[0].clientY });
+                lastMoveTime.current = Date.now();
+                if (mood === "sleepy") setMood("hunting");
+            }
+        };
+
+        const handleClick = (e: MouseEvent) => {
+            setCursorPos({ x: e.clientX, y: e.clientY });
+            lastMoveTime.current = Date.now();
+            if (mood === "sleepy") setMood("hunting");
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
+        window.addEventListener("touchstart", handleTouch);
+        window.addEventListener("click", handleClick);
+
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchstart", handleTouch);
+            window.removeEventListener("click", handleClick);
+        };
     }, [mood]);
 
     // Main game loop - cat chases cursor
