@@ -66,13 +66,14 @@ const Navbar = () => {
                         {/* Right Side - Resume, AI, Dark Mode */}
                         <div className="flex items-center gap-1 sm:gap-2">
                             {/* Resume Link - Always visible */}
+                            {/* Resume Link - Updated for Mobile Visibility */}
                             <Link
                                 href="/assests/resume.pdf"
                                 target="_blank"
-                                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors duration-200"
+                                className="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm shadow-primary/20"
                             >
-                                <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                                <span className="hidden sm:inline">Resume</span>
+                                <FileText className="w-3.5 h-3.5" />
+                                <span>Resume</span>
                             </Link>
 
                             {/* Ask AI Button - Desktop only */}

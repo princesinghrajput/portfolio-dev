@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Coffee, Music, Book, Code2, Gamepad2, Globe, Moon, Lightbulb, Heart, Sparkles, Compass } from "lucide-react";
+import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 const funFacts = [
     { icon: Coffee, text: "Runs on chai, not coffee ☕", color: "text-amber-500" },
@@ -200,12 +201,12 @@ const FunFacts: React.FC = () => {
                         <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                         Interests
                     </h3>
-                    <div className="-mx-3 px-3 sm:mx-0 sm:px-0">
-                        <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-1 scrollbar-hide sm:flex-wrap">
+                    <div className="w-full overflow-hidden">
+                        <div className="flex gap-1.5 sm:gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap -mx-1 px-1">
                             {interests.map((interest, i) => (
                                 <motion.span
                                     key={i}
-                                    className="flex-shrink-0 sm:flex-shrink inline-flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium bg-muted/70 text-muted-foreground active:text-foreground active:bg-primary/10 transition-all cursor-default border border-transparent active:border-primary/20"
+                                    className="flex-shrink-0 sm:flex-shrink inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-medium bg-muted/70 text-muted-foreground active:text-foreground active:bg-primary/10 transition-all cursor-default border border-transparent active:border-primary/20"
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     <span>{interest.emoji}</span>
@@ -216,7 +217,12 @@ const FunFacts: React.FC = () => {
                     </div>
                 </motion.div>
 
-                {/* Currently Learning - More compact on mobile */}
+                {/* Spotify Now Playing - New Addition */}
+                <SpotifyNowPlaying />
+            </div>
+
+            {/* Currently Learning - Moved to full width or separate */}
+            <div className="mt-3">
                 <motion.div
                     className="card-premium p-3 sm:p-4"
                     whileTap={{ scale: 0.98 }}

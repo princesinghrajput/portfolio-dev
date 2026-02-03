@@ -90,7 +90,7 @@ const Page = () => {
 
                 {/* Name with wave */}
                 <motion.h1 variants={item} className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight">
-                  <span className="inline-block">Hey, I&apos;m </span>
+                  <span className="inline-block">Hey, I&apos;m&nbsp;</span>
                   <span className="gradient-text">Prince</span>
                   <motion.span
                     className="inline-block ml-2"
