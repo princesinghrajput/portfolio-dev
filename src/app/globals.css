@@ -537,6 +537,43 @@
 }
 
 /* ========================================
+   PROJECT CARD STYLES
+   ======================================== */
+
+.project-card {
+  @apply h-full;
+}
+
+.project-card .card-premium {
+  @apply bg-card/80 backdrop-blur-sm;
+}
+
+.project-card:hover .card-premium {
+  @apply shadow-xl shadow-primary/10;
+}
+
+/* Tech badge styling */
+.tech-badge {
+  @apply px-2 py-0.5 text-[10px] font-medium bg-muted rounded-md text-muted-foreground;
+}
+
+/* Feature item styling */
+.feature-item {
+  @apply flex items-start gap-2.5;
+}
+
+.feature-item-icon {
+  @apply p-1 rounded bg-primary/10 shrink-0 mt-0.5;
+}
+
+/* Gallery button accent */
+.gallery-btn {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-lg;
+  @apply bg-emerald-500/10 border border-emerald-500/30 text-emerald-500;
+  @apply text-xs font-medium hover:bg-emerald-500/20 transition-colors;
+}
+
+/* ========================================
    UTILITIES
    ======================================== */
 

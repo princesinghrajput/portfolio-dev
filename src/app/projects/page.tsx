@@ -1,280 +1,138 @@
+'use client';
 
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3dcard"; "next/link";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Folder, Filter } from 'lucide-react';
+import { projects, categoryLabels, Project } from '@/lib/projects-data';
+import ProjectCard from '@/components/ProjectCard';
 
-import Image from "next/image";
-import { LinkPreviewDemo } from "@/components/linkpreview";
+type CategoryFilter = 'all' | Project['category'];
 
-export default function Component() {
+const categoryFilters: { value: CategoryFilter; label: string }[] = [
+  { value: 'all', label: 'All Projects' },
+  { value: 'fullstack', label: 'Full Stack' },
+  { value: 'ai', label: 'AI/ML' },
+  { value: 'tool', label: 'Tools' },
+  { value: 'extension', label: 'Extensions' }
+];
+
+export default function ProjectsPage() {
+  const [activeFilter, setActiveFilter] = useState<CategoryFilter>('all');
+
+  const filteredProjects = activeFilter === 'all'
+    ? projects
+    : projects.filter(p => p.category === activeFilter);
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
-        <div className="space-y-6">
-
-          <div className="grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
-                >
-                  DrawIO - Eraser Clone
-                </CardItem>
-                <CardItem
-                  as="p"
-                  href="https://github.com/princesinghrajput/drawio"
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  NextJS | Typescript | ConvexDB | TailwindCSS 
-                  | ShadCn
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={-3}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src="/assests/drawio.png"
-                    height="1000"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-20">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="a"
-                    href="https://erasor-clone.vercel.app/"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Live Link →
-                  </CardItem>
-
-                  <CardItem
-                    translateZ={20}
-                    translateX={40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/drawio"
-                    className="flex items-center px-4 py-2 text-white text-xl font-bold"
-                  >
-                    <GitHubLogoIcon className="w-8 h-8" />
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="60"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
-                >
-                  Stack-OverFlow
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Next.js | MongoDB | TypeScript | Shadcn | TinyMCE | Zod
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={-3}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src="/assests/devoverflow.png"
-                    height="900"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-20">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="a"
-                    href="https://nextjs14-devoverflow.vercel.app/"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Live Link →
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    translateX={40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/dev-overflow"
-                    className="flex items-center px-4 py-2 text-white text-xl font-bold"
-                  >
-                    <GitHubLogoIcon className="w-8 h-8" />
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
-                >
-                  StudyBuddy
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  DJango | Sqlite3 | HTML | CSS | JavaScript
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={-3}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src="/assests/studybud.png"
-                    height="1000"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-20">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="a"
-                    href=""
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Live Link →
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    translateX={40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/StudyBud"
-                    className="flex items-center px-4 py-2 text-white text-xl font-bold"
-                  >
-                    <GitHubLogoIcon className="w-8 h-8" />
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
-                >
-                  Twitter Restrictor 🚫
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                Javascript | HTML | CSS | Chrome Extensions API
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={-3}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src="/assests/twitter-restrictor.png"
-                    height="1000"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-20">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/twitter-restrictor"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Live Link →
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    translateX={40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/twitter-restrictor"
-                    className="flex items-center px-4 py-2 text-white text-xl font-bold"
-                  >
-                    <GitHubLogoIcon className="w-8 h-8" />
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-            <CardContainer className="inter-var">
-              <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-transparent dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
-                >
-                  ErgoSmart - AI-powered posture coach
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  ReactJs | Tensorflow.js | Mediapipe | TailwindCSS 
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={-3}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src="/assests/ergoLogo.png"
-                    height="1000"
-                    width="1000"
-                    className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-20">
-                <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="a"
-                    href="https://ergosmart.vercel.app/"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Live Link →
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    translateX={40}
-                    as="a"
-                    href="https://github.com/princesinghrajput/ergoSmart"
-                    className="flex items-center px-4 py-2 text-white text-xl font-bold"
-                  >
-                    <GitHubLogoIcon className="w-8 h-8" />
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
+    <main className="min-h-screen py-16 sm:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 sm:mb-12"
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-2 rounded-lg bg-primary/10">
+              <Folder className="w-5 h-5 text-primary" />
+            </div>
+            <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+              My Work
+            </span>
           </div>
-          <LinkPreviewDemo />
-        </div>
-      </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            Projects & <span className="gradient-text">Experiments</span>
+          </h1>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
+            A collection of things I&apos;ve built, from side projects to learning experiments.
+            Some actually work, some are works in progress. 🚀
+          </p>
+        </motion.div>
 
-    </section>
-  )
+        {/* Filter Tabs */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Filter className="w-4 h-4 text-muted-foreground" />
+            <span className="text-sm font-medium text-muted-foreground">Filter by category</span>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {categoryFilters.map((filter) => (
+              <button
+                key={filter.value}
+                onClick={() => setActiveFilter(filter.value)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${activeFilter === filter.value
+                    ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'
+                  }`}
+              >
+                {filter.label}
+                {filter.value !== 'all' && (
+                  <span className="ml-1.5 text-xs opacity-70">
+                    ({projects.filter(p => p.category === filter.value).length})
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Projects Grid */}
+        <motion.div
+          layout
+          className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6"
+        >
+          {filteredProjects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              variant="full"
+              index={index}
+            />
+          ))}
+        </motion.div>
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <p className="text-muted-foreground">No projects in this category yet. Stay tuned! 🔧</p>
+          </motion.div>
+        )}
+
+        {/* GitHub CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-12 sm:mt-16 text-center"
+        >
+          <div className="inline-block p-6 rounded-2xl bg-muted/50 border border-border">
+            <p className="text-sm text-muted-foreground mb-4">
+              Want to see more? Check out my GitHub for all the experiments! 🧪
+            </p>
+            <a
+              href="https://github.com/princesinghrajput"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" />
+              </svg>
+              View GitHub Profile
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </main>
+  );
 }
