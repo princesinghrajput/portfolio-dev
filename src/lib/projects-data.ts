@@ -34,6 +34,83 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 'virtual-focus-room',
+    title: 'Virtual Focus Room',
+    description: 'Production-grade real-time collaboration platform with WebRTC streaming and automated CI/CD',
+    longDescription: 'A full-stack coworking simulation combining low-latency WebRTC video conferencing with productivity tracking. Features a complete DevOps pipeline with Docker containerization, GitHub Actions automation, and AWS EC2 deployment.',
+    thumbnail: '/assests/focus-room.png',
+    images: ['/assests/dark-home.png', '/assests/focus-room.png', '/assests/room.png', '/assests/focus-timer.png', '/assests/focus-sound.png', '/assests/jamboard.png','/assests/focus-participants.png', '/assests/focus-chats.png', '/assests/calender.png',  '/assests/focus-dashboard.png'],
+    techStack: ['React.js', 'Node.js', 'Socket.io', 'WebRTC', 'MongoDB', 'Docker', 'GitHub Actions', 'AWS EC2'],
+    liveUrl: 'https://virtual-focus-room-gules.vercel.app/',
+    githubUrl: 'https://github.com/princesinghrajput/Virtual-focus-room',
+    featured: true,
+    category: 'fullstack',
+    impact: 'P2P WebRTC streaming • Automated CI/CD • Role-based access control • EC2',
+    features: [
+      {
+        icon: 'Video',
+        title: 'Hybrid Real-Time Architecture',
+        description: 'Dual-layer system: Socket.io for instant signaling (room presence, chat) + WebRTC for peer-to-peer media streaming with minimal server costs'
+      },
+      {
+        icon: 'Workflow',
+        title: 'Automated CI/CD Pipeline',
+        description: 'GitHub Actions triggered by semantic version tags (v1.0.0) → Docker build → DockerHub push → SSH deployment to AWS EC2 with zero manual intervention'
+      },
+      {
+        icon: 'Share2',
+        title: 'Dynamic Media Renegotiation',
+        description: 'Custom replaceTracksInAllConnections() logic enables seamless camera/screen-share switching without dropping P2P connections'
+      },
+      {
+        icon: 'Shield',
+        title: 'Tiered RBAC System',
+        description: 'JWT authentication with Guest/Free/Premium tiers. Custom middleware enforces permissions at both API and Socket levels'
+      },
+      {
+        icon: 'Database',
+        title: 'Optimized Data Aggregation',
+        description: 'MongoDB aggregation pipelines for weekly focus summaries - offloads complex time-tracking calculations to database layer'
+      }
+    ]
+  },
+  {
+    id: 'dev-overflow',
+    title: 'DevOverflow - Q&A Platform',
+    description: 'Full-stack Stack Overflow clone with voting, search, and rich text editing',
+    longDescription: 'A production-grade Q&A platform with OAuth authentication, MongoDB aggregation for complex queries, and TinyMCE for rich formatting. Features tag-based filtering and reputation system.',
+    thumbnail: '/assests/devoverflow.png',
+    images: ['/assests/devoverflow.png'],
+    techStack: ['Next.js 14', 'MongoDB', 'TypeScript', 'NextAuth.js', 'TinyMCE', 'Zod', 'Server Actions'],
+    liveUrl: 'https://nextjs14-devoverflow.vercel.app/',
+    githubUrl: 'https://github.com/princesinghrajput/dev-overflow',
+    featured: true,
+    category: 'fullstack',
+    impact: 'OAuth integration • Aggregation pipelines • Server Actions',
+    features: [
+      {
+        icon: 'Lock',
+        title: 'Secure OAuth Authentication',
+        description: 'NextAuth.js with GitHub/Google OAuth providers, session management, and protected API routes'
+      },
+      {
+        icon: 'Database',
+        title: 'MongoDB Aggregation Pipelines',
+        description: 'Complex queries for reputation, hot questions, related posts using MongoDB aggregation framework'
+      },
+      {
+        icon: 'TrendingUp',
+        title: 'Reputation & Voting System',
+        description: 'Stack Overflow-style reputation with upvotes/downvotes affecting user scores and badge system'
+      },
+      {
+        icon: 'FileCode',
+        title: 'Rich Text with Code Highlighting',
+        description: 'TinyMCE editor with syntax highlighting, markdown support, and code block formatting'
+      }
+    ]
+  },
+  {
     id: 'ergosmart',
     title: 'ErgoSmart - AI Posture Coach',
     description: 'Real-time AI posture analysis using browser-based machine learning',
@@ -102,42 +179,6 @@ export const projects: Project[] = [
         icon: 'PenTool',
         title: 'Rich Drawing Tools',
         description: 'Freehand, shapes, arrows, sticky notes, text annotations with custom styling and layers'
-      }
-    ]
-  },
-  {
-    id: 'dev-overflow',
-    title: 'DevOverflow - Q&A Platform',
-    description: 'Full-stack Stack Overflow clone with voting, search, and rich text editing',
-    longDescription: 'A production-grade Q&A platform with OAuth authentication, MongoDB aggregation for complex queries, and TinyMCE for rich formatting. Features tag-based filtering and reputation system.',
-    thumbnail: '/assests/devoverflow.png',
-    images: ['/assests/devoverflow.png'],
-    techStack: ['Next.js 14', 'MongoDB', 'TypeScript', 'NextAuth.js', 'TinyMCE', 'Zod', 'Server Actions'],
-    liveUrl: 'https://nextjs14-devoverflow.vercel.app/',
-    githubUrl: 'https://github.com/princesinghrajput/dev-overflow',
-    featured: true,
-    category: 'fullstack',
-    impact: 'OAuth integration • Aggregation pipelines • Server Actions',
-    features: [
-      {
-        icon: 'Lock',
-        title: 'Secure OAuth Authentication',
-        description: 'NextAuth.js with GitHub/Google OAuth providers, session management, and protected API routes'
-      },
-      {
-        icon: 'Database',
-        title: 'MongoDB Aggregation Pipelines',
-        description: 'Complex queries for reputation, hot questions, related posts using MongoDB aggregation framework'
-      },
-      {
-        icon: 'TrendingUp',
-        title: 'Reputation & Voting System',
-        description: 'Stack Overflow-style reputation with upvotes/downvotes affecting user scores and badge system'
-      },
-      {
-        icon: 'FileCode',
-        title: 'Rich Text with Code Highlighting',
-        description: 'TinyMCE editor with syntax highlighting, markdown support, and code block formatting'
       }
     ]
   },
