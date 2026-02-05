@@ -8,7 +8,7 @@ export type IconName =
   | 'Smartphone' | 'Globe' | 'Terminal' | 'GitBranch' | 'Layers'
   | 'Sparkles' | 'Eye' | 'Target' | 'Settings' | 'Timer'
   | 'PenTool' | 'Share2' | 'CheckCircle' | 'TrendingUp' | 'BarChart3'
-  | 'Cpu' | 'Server' | 'Workflow' | 'FileCode' | 'Gauge';
+  | 'Cpu' | 'Server' | 'Workflow' | 'FileCode' | 'Gauge' | 'ShieldCheck';
 
 export interface ProjectFeature {
   icon: IconName;
@@ -27,7 +27,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl: string;
   featured?: boolean;
-  category: 'fullstack' | 'ai' | 'tool' | 'extension';
+  category: 'fullstack' | 'ai' | 'tool' | 'extension' | 'freelance';
   features: ProjectFeature[];
   impact?: string; // Short impact statement
 }
@@ -71,6 +71,58 @@ export const projects: Project[] = [
         icon: 'Database',
         title: 'Optimized Data Aggregation',
         description: 'MongoDB aggregation pipelines for weekly focus summaries - offloads complex time-tracking calculations to database layer'
+      }
+    ]
+  },
+  {
+    id: 'algoforge-lms',
+    title: 'AlgoForge Studios — Enterprise Learning Management System',
+    description: 'Freelance project for an EdTech institute focused on managing hybrid (online + offline) learning at scale.',
+    longDescription: 'Designed and built a production-ready Learning Management System for a fast-growing educational institute running both online and offline programs. The core challenge was handling hybrid cohorts without operational complexity. The platform supports scalable content delivery, structured role-based access, and smooth deployments via automated CI/CD. AWS S3 is used for reliable, cost-efficient asset management, ensuring performance and scalability from the start.',
+    thumbnail: '/assests/algoforge.png',
+    images: [
+      '/assests/algoblog.png',
+      '/assests/algoblogs.png',
+      '/assests/algoforge.png',
+      '/assests/algomindmaps.png',
+      '/assests/algoresources.png',
+      '/assests/algoreview.png',
+      '/assests/algoteam.png'
+    ],
+    techStack: [
+      'Next.js 15',
+      'TypeScript',
+      'MongoDB (Mongoose)',
+      'AWS S3',
+      'GitHub Actions (CI/CD)',
+      'Tailwind CSS',
+      'Zod'
+    ],
+    liveUrl: 'https://algo-forge-studios.vercel.app/',
+    githubUrl: 'https://github.com/princesinghrajput/AlgoForgeStudios',
+    featured: true,
+    category: 'freelance',
+    impact: 'Hybrid cohort support • ~60% reduction in server load via S3 offloading • Zero-downtime deployments',
+    features: [
+      {
+        icon: 'Server',
+        title: 'Scalable Infrastructure',
+        description: 'Built with AWS S3 for asset offloading and automated CI/CD pipelines, enabling reliable scaling and high availability.'
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Role-Based Access Control',
+        description: 'Secure separation of Admin and Student workflows using JWT-based authentication and middleware-protected routes.'
+      },
+      {
+        icon: 'Database',
+        title: 'Flexible Data Architecture',
+        description: 'Polymorphic MongoDB schemas designed to support multiple curriculum structures, including generic and executive programs.'
+      },
+      {
+        icon: 'Zap',
+        title: 'Hybrid Learning Engine',
+        description: 'Content and session management optimized for live online classes as well as in-person attendance and progress tracking.'
       }
     ]
   },
@@ -267,7 +319,7 @@ export const getProjectById = (id: string): Project | undefined => {
 };
 
 export const getAllCategories = (): Project['category'][] => {
-  return ['fullstack', 'ai', 'tool', 'extension'];
+  return ['fullstack', 'ai', 'tool', 'extension', 'freelance'];
 };
 
 export const categoryLabels: Record<Project['category'], { label: string; color: string; bgColor: string }> = {
@@ -290,5 +342,10 @@ export const categoryLabels: Record<Project['category'], { label: string; color:
     label: 'Extension',
     color: 'text-amber-400',
     bgColor: 'bg-amber-500/10 border-amber-500/20'
+  },
+  freelance: {
+    label: 'Freelance',
+    color: 'text-rose-400',
+    bgColor: 'bg-rose-500/10 border-rose-500/20'
   }
 };

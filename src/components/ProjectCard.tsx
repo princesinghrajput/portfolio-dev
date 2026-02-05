@@ -10,7 +10,7 @@ import {
     Smartphone, Globe, Terminal, GitBranch, Layers,
     Sparkles, Eye, Target, Settings, Timer,
     PenTool, Share2, CheckCircle, TrendingUp, BarChart3,
-    Cpu, Server, Workflow, FileCode, Gauge
+    Cpu, Server, Workflow, FileCode, Gauge, ShieldCheck
 } from 'lucide-react';
 import Image from 'next/image';
 import { Project, categoryLabels, IconName } from '@/lib/projects-data';
@@ -24,7 +24,7 @@ const iconMap: Record<IconName, React.ComponentType<{ className?: string }>> = {
     Smartphone, Globe, Terminal, GitBranch, Layers,
     Sparkles, Eye, Target, Settings, Timer,
     PenTool, Share2, CheckCircle, TrendingUp, BarChart3,
-    Cpu, Server, Workflow, FileCode, Gauge
+    Cpu, Server, Workflow, FileCode, Gauge, ShieldCheck
 };
 
 interface ProjectCardProps {
@@ -71,7 +71,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                             {project.techStack.slice(0, variant === 'compact' ? 4 : 6).map((tech, i) => (
                                 <span
                                     key={i}
-                                    className="px-2 py-0.5 text-[10px] font-medium bg-primary/5 border border-primary/20 rounded-md text-foreground/80 hover:bg-primary/10 hover:border-primary/30 transition-colors"
+                                    className={`px-2 py-0.5 text-[10px] font-medium rounded-md border transition-colors ${tech === 'Freelance'
+                                            ? 'bg-rose-500/10 border-rose-500/20 text-rose-500 hover:bg-rose-500/20'
+                                            : 'bg-primary/5 border-primary/20 text-foreground/80 hover:bg-primary/10 hover:border-primary/30'
+                                        }`}
                                 >
                                     {tech}
                                 </span>
