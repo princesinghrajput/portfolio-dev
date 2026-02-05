@@ -111,6 +111,42 @@ export const projects: Project[] = [
     ]
   },
   {
+    id: 'drawio',
+    title: 'DrawIO - Collaborative Whiteboard',
+    description: 'Real-time collaborative infinite canvas with live synchronization',
+    longDescription: 'A full-featured Eraser.io clone with real-time collaboration, infinite canvas, and instant sync. Built with ConvexDB for real-time updates and optimistic UI for seamless drawing experience.',
+    thumbnail: '/assests/draw-board.png',
+    images: ['/assests/draw-board.png', '/assests/drawio-home.png', '/assests/drawio-field.png', '/assests/drawio-teams.png', '/assests/eraser-login.png'],
+    techStack: ['Next.js 14', 'TypeScript', 'ConvexDB', 'React Flow', 'TailwindCSS', 'ShadCN UI'],
+    liveUrl: 'https://erasor-clone.vercel.app/',
+    githubUrl: 'https://github.com/princesinghrajput/drawio',
+    featured: true,
+    category: 'tool',
+    impact: 'Real-time sync • Infinite canvas • Multi-user',
+    features: [
+      {
+        icon: 'Users',
+        title: 'Live Collaboration',
+        description: 'Real-time multi-user drawing with live cursor tracking, conflict-free replicated data types (CRDT)'
+      },
+      {
+        icon: 'Layers',
+        title: 'Infinite Canvas Engine',
+        description: 'Pan/zoom with hardware acceleration, efficient viewport culling for rendering 1000+ elements'
+      },
+      {
+        icon: 'Cloud',
+        title: 'Instant Sync with ConvexDB',
+        description: 'Optimistic updates with automatic sync - changes appear instantly with background persistence'
+      },
+      {
+        icon: 'PenTool',
+        title: 'Rich Drawing Tools',
+        description: 'Freehand, shapes, arrows, sticky notes, text annotations with custom styling and layers'
+      }
+    ]
+  },
+  {
     id: 'ergosmart',
     title: 'ErgoSmart - AI Posture Coach',
     description: 'Real-time AI posture analysis using browser-based machine learning',
@@ -146,42 +182,7 @@ export const projects: Project[] = [
       }
     ]
   },
-  {
-    id: 'drawio',
-    title: 'DrawIO - Collaborative Whiteboard',
-    description: 'Real-time collaborative infinite canvas with live synchronization',
-    longDescription: 'A full-featured Eraser.io clone with real-time collaboration, infinite canvas, and instant sync. Built with ConvexDB for real-time updates and optimistic UI for seamless drawing experience.',
-    thumbnail: '/assests/drawio.png',
-    images: ['/assests/drawio.png'],
-    techStack: ['Next.js 14', 'TypeScript', 'ConvexDB', 'React Flow', 'TailwindCSS', 'ShadCN UI'],
-    liveUrl: 'https://erasor-clone.vercel.app/',
-    githubUrl: 'https://github.com/princesinghrajput/drawio',
-    featured: true,
-    category: 'tool',
-    impact: 'Real-time sync • Infinite canvas • Multi-user',
-    features: [
-      {
-        icon: 'Users',
-        title: 'Live Collaboration',
-        description: 'Real-time multi-user drawing with live cursor tracking, conflict-free replicated data types (CRDT)'
-      },
-      {
-        icon: 'Layers',
-        title: 'Infinite Canvas Engine',
-        description: 'Pan/zoom with hardware acceleration, efficient viewport culling for rendering 1000+ elements'
-      },
-      {
-        icon: 'Cloud',
-        title: 'Instant Sync with ConvexDB',
-        description: 'Optimistic updates with automatic sync - changes appear instantly with background persistence'
-      },
-      {
-        icon: 'PenTool',
-        title: 'Rich Drawing Tools',
-        description: 'Freehand, shapes, arrows, sticky notes, text annotations with custom styling and layers'
-      }
-    ]
-  },
+
   {
     id: 'studybuddy',
     title: 'StudyBuddy - Study Room Platform',
