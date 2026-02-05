@@ -12,6 +12,7 @@ import ContactMe from "@/components/contact";
 import ResumeSection from "@/components/ResumeSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import FunFacts from "@/components/FunFacts";
+import AchievementsSection from "@/components/AchievementsSection";
 
 const container = {
   hidden: { opacity: 0 },
@@ -204,6 +205,18 @@ const Page = () => {
               transition={{ duration: 0.5 }}
             >
               <ResumeSection />
+            </motion.div>
+
+            <div className="section-divider" />
+
+            {/* Achievements */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <AchievementsSection />
             </motion.div>
 
             <div className="section-divider" />
