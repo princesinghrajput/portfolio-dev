@@ -207,17 +207,17 @@ const Page = () => {
               <ResumeSection />
             </motion.div>
 
-            <div className="section-divider" />
+            {/* <div className="section-divider" /> */}
 
             {/* Achievements */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5 }}
             >
               <AchievementsSection />
-            </motion.div>
+            </motion.div> */}
 
             <div className="section-divider" />
 
