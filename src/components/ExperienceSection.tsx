@@ -25,36 +25,56 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     id: 1,
-    period: "July 2024 - Present",
-    duration: "8+ months",
-    title: "Full Stack Developer",
+    period: "January 2023 – Present",
+    duration: "2+ years",
+    title: "Software Engineer → Team Lead",
     company: "Sensation Software Solutions",
     companyUrl: "https://sensationsolutions.com",
     location: "Mohali, Punjab",
     type: "full-time",
     achievements: [
       {
-        text: "Built AppyPay's merchant dashboard from scratch — a responsive, themeable interface that cut code redundancy by 40%",
-        highlights: ["AppyPay", "40%"],
+        text: "Led cross-functional teams of 4–7 engineers across 8+ projects, improving delivery predictability by 35% through structured sprint planning and async workflows",
+        highlights: ["4–7 engineers", "8+ projects", "35%"],
       },
       {
-        text: "Designed a merchant onboarding flow handling payment integrations, bank validation, and KYC — the kind of complex logic that keeps you up at night (in a good way)",
-        highlights: ["KYC", "payment integrations"],
+        text: "Architected Dullet POS from ground up: 14 REST API modules, RBAC with granular permissions, atomic order generation eliminating race conditions under 500+ daily transactions",
+        highlights: ["Dullet POS", "14 REST API", "RBAC", "500+ daily"],
       },
       {
-        text: "Created an AI-powered exercise correction platform using TensorFlow.js — it watches you do squats and tells you when your form is off 🏋️",
-        highlights: ["TensorFlow.js", "AI-powered"],
+        text: "Engineered a 50+ page React 19 + TypeScript SPA with service-oriented architecture, enabling independent module scaling and 30% faster feature delivery",
+        highlights: ["50+ page", "React 19", "TypeScript", "30%"],
       },
       {
-        text: "Shipped features for Supra.tools analytics dashboard — turning boring data into pretty charts people actually understand",
-        highlights: ["Supra.tools", "analytics"],
+        text: "Spearheaded TraceVenue B2B2C platform development: real-time Socket.IO bookings, multi-tenant isolation, scaled to handle 10,000+ venue bookings",
+        highlights: ["TraceVenue", "Socket.IO", "10,000+"],
+      },
+      {
+        text: "Reduced frontend code duplication by 40% on AppyPay through reusable component architecture and centralized Redux state management",
+        highlights: ["40%", "AppyPay", "Redux"],
+      },
+      {
+        text: "Built AI exercise correction platform with TensorFlow.js: real-time pose estimation achieving <100ms inference latency for form feedback",
+        highlights: ["TensorFlow.js", "<100ms", "pose estimation"],
+      },
+      {
+        text: "Shipped 3 enterprise GSSC systems (Accommodation, Vehicle, Complaint Management), reducing manual effort by 50% and scheduling conflicts by 40%",
+        highlights: ["GSSC", "50%", "40%"],
+      },
+      {
+        text: "Optimized DentalMarketing.com with Next.js SSR/SSG, improving Core Web Vitals and organic search visibility",
+        highlights: ["DentalMarketing.com", "SSR/SSG", "Core Web Vitals"],
+      },
+      {
+        text: "Built Supra.tools analytics dashboards with Chart.js, reducing stakeholder analysis time by 40% through interactive data visualization",
+        highlights: ["Supra.tools", "Chart.js", "40%"],
       },
     ],
-    skills: ["React", "Next.js", "Redux", "TensorFlow.js", "Material-UI"],
+    skills: ["React 19", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Socket.IO", "AWS S3", "TensorFlow.js", "Redis", "Docker"],
   },
   {
     id: 2,
-    period: "Jan 2024 - June 2024",
+    period: "July 2022 – December 2022",
     duration: "6 months",
     title: "Software Developer Intern",
     company: "Sensation Software Solutions",
@@ -63,19 +83,27 @@ const experiences: ExperienceItem[] = [
     type: "internship",
     achievements: [
       {
-        text: "Automated order processing that improved efficiency by 30% — finally, less manual work and more coffee breaks",
-        highlights: ["30%", "automated"],
+        text: "Developed RESTful APIs and React components for TraceVenue's QR-based restaurant ordering—first production codebase deployed to 50+ restaurants",
+        highlights: ["RESTful APIs", "QR-based", "50+ restaurants"],
       },
       {
-        text: "Added debouncing to search that reduced API calls by 60% — servers were grateful, users didn't notice (that's the point!)",
-        highlights: ["60%", "debouncing"],
+        text: "Automated order processing workflows, improving operational efficiency by 30% and eliminating manual data entry errors",
+        highlights: ["30%", "Automated"],
       },
       {
-        text: "Built real-time updates with Socket.IO — because users love seeing things happen instantly, and so do I",
+        text: "Implemented debounced search reducing API calls by 60%, improving server response times and UX",
+        highlights: ["60%", "debounced search"],
+      },
+      {
+        text: "Built real-time order tracking with Socket.IO, enabling instant kitchen-to-customer status updates",
         highlights: ["Socket.IO", "real-time"],
       },
+      {
+        text: "Optimized image delivery via Cloudinary CDN, reducing response times by 25%",
+        highlights: ["Cloudinary", "25%"],
+      },
     ],
-    skills: ["Node.js", "Express", "Socket.IO", "MongoDB", "Cloudinary"],
+    skills: ["Node.js", "Express", "React", "Socket.IO", "MongoDB", "Cloudinary", "REST APIs", "Git"],
   },
 ];
 
@@ -263,7 +291,7 @@ const ExperienceSection = () => {
           Where I&apos;ve <span className="gradient-text">Worked</span>
         </h2>
         <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl">
-          A quick peek into my professional journey — the projects, the late nights, and the &quot;aha!&quot; moments that made it worthwhile.
+          2+ years of shipping production systems, leading teams of 4–7 engineers, and owning end-to-end delivery. Clean code, system design, and remote-first collaboration.
         </p>
       </div>
 
@@ -281,7 +309,7 @@ const ExperienceSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        Fun fact: I joined as an intern and they decided to keep me around 😄
+        From intern to team lead, architecting enterprise systems and mentoring engineers. The journey continues 🚀
       </motion.p>
     </section>
   );
