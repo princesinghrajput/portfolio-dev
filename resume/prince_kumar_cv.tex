@@ -1,0 +1,261 @@
+%-------------------------
+% Prince Kumar - Google-Optimized CV
+% Two-Page ATS-Friendly Resume for SWE/SDE Roles
+% Compile with: pdflatex prince_kumar_google_cv.tex
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{fontawesome5}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+%----------FONT OPTIONS----------
+% Using Computer Modern (default LaTeX font) for professional serif look
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Prince Kumar} \\ \vspace{1pt}
+    \small \faPhone\ +91-8292222569 $|$ 
+    \href{mailto:hello@princecodes.com}{\faEnvelope\ hello@princecodes.com} $|$ 
+    \href{https://linkedin.com/in/princesinghrajput}{\faLinkedin\ LinkedIn} $|$
+    \href{https://github.com/princesinghrajput}{\faGithub\ GitHub} $|$
+    \href{https://www.princecodes.com}{\faGlobe\ www.princecodes.com} \\
+    Mohali, Punjab, India
+    \vspace{-8pt}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {CT University}{Ludhiana, Punjab}
+      {Bachelor of Technology in Computer Science Engineering -- CGPA: 8.67/10.0}{2020 -- 2024}
+  \resumeSubHeadingListEnd
+\vspace{-16pt}
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     % \textbf{Desktop Development}{: Electron.js, IPC Communication, Context Isolation, Preload Scripts, Auto-Updater, Native Integrations} \\
+     \textbf{Languages \& Frameworks}{: JavaScript, TypeScript, Python, React 19, Next.js, React Native, Node.js, Express.js, Fastify} \\
+     \textbf{Frontend Technologies}{: Redux, Zustand, Vite, Tailwind CSS, Material-UI, Bootstrap, Radix UI} \\
+     \textbf{Web3 Basics}{: Web3.js, Ethers.js, Wallet Integration, MetaMask, Smart Contract Interaction} \\
+     \textbf{Backend \& Databases}{: MongoDB, PostgreSQL, Prisma, Redis, RabbitMQ, WebRTC, Socket.io, RESTful APIs} \\
+     \textbf{Cloud \& DevOps}{: AWS (EC2, ECS, S3, IAM, CloudWatch), Docker, Jenkins, CI/CD, Auto Scaling, Kubernetes} \\
+     \textbf{Tools \& Practices}{: Git, GitHub, Jira, Agile/Scrum, Linux, Version Control}
+    }}
+ \end{itemize}
+ \vspace{-16pt}
+
+
+%-----------PROFESSIONAL EXPERIENCE-----------
+\section{Professional Experience \hfill \normalfont\small 3+ Years Experience}
+  \resumeSubHeadingListStart
+
+ \resumeSubheading
+  {Software Engineer (Team Lead)}{Jun 2023 -- Present}
+  {Sensation Software Solutions Pvt. Ltd.}{Mohali, Punjab}
+  \resumeItemListStart
+    \resumeItem{Led development of \textbf{TraceVenue} multi-tenant B2B2C venue booking platform using \textbf{MERN stack} with \textbf{Socket.IO} for real-time booking synchronization, automated proposal workflows, and \textbf{JWT authentication} with role-based access control across customer, venue admin, and super-admin roles, scaling to handle \textbf{10,000+ venue bookings}; deployed on \textbf{AWS EC2} with \textbf{Docker} containerization and \textbf{S3} for file storage}
+    
+    \resumeItem{Architected scalable \textbf{College ERP (CERP)} frontend platform using \textbf{React 19} and \textbf{TypeScript}, supporting \textbf{17+ academic and administrative modules} with \textbf{1,300+ component files}; led team of \textbf{4--6 developers} defining frontend architecture, component contracts, and performance standards}
+    
+    \resumeItem{Designed \textbf{TailUX}, a custom design system on \textbf{TailwindCSS 4}, reducing UI development time by \textbf{40\%}; built intelligent \textbf{Exam Seating Planner} with visual grid-based allocation, drag-and-drop assignment, and \textbf{PDF/Excel exports}}
+    
+    \resumeItem{Engineered \textbf{SensationCRM (LeadNest)} platform using \textbf{React 19, Vite}, and \textbf{TailwindCSS} with lead pipeline management, drag-and-drop form builder, role-based access control, and \textbf{TanStack Table} for handling \textbf{10,000+ records} with Excel/PDF export and fuzzy search capabilities}
+    
+    \resumeItem{Built \textbf{AppyPay} digital payments platform with responsive merchant dashboard using \textbf{Material-UI} and reusable compound components; implemented centralized \textbf{Redux Toolkit} state management for merchant onboarding, KYC verification, and payment method integration, reducing code duplication and onboarding time by \textbf{40\%}}
+    
+    \resumeItem{Developed and shipped \textbf{3 enterprise GSSC systems} (Accommodation, Vehicle, and Complaint Management), reducing manual operational effort by \textbf{50\%} and scheduling conflicts by \textbf{40\%}; built interactive analytics dashboards for \textbf{Supra.tools} using \textbf{Next.js} and \textbf{Chart.js}, visualizing complex feature matrices and reducing stakeholder analysis time by \textbf{40\%}}
+    
+    \resumeItem{Integrated real-time communication features: \textbf{Twilio Voice SDK} for calls, \textbf{WhatsApp messaging API}, Firebase notifications, \textbf{SignalR} live updates, \textbf{ApexCharts} dashboards, multi-language support (\textbf{i18n}), and \textbf{Sentry} error monitoring achieving \textbf{99.9\% uptime}}
+    
+    \resumeItem{Implemented \textbf{role-based access control (RBAC)}, \textbf{JWT authentication}, and secure API endpoints handling \textbf{50,000+ API requests daily} with optimized database indexing and \textbf{Redis caching} strategies}
+  \resumeItemListEnd
+    
+  \resumeSubheading
+  {Software Engineer Intern}{Jan 2023 -- Jun 2023}
+  {Sensation Software Solutions Pvt. Ltd.}{Mohali, Punjab}
+  \resumeItemListStart
+    \resumeItem{Built RESTful APIs and React components for \textbf{TraceMenu} QR-based restaurant management system, automating order processing and improving operational efficiency by \textbf{30\%} with real-time kitchen display integration deployed to \textbf{50+ restaurants}}
+    
+    \resumeItem{Implemented \textbf{Redux store} for cart management with intelligent item aggregation—automatically incremented quantity for duplicate items and maintained cart persistence across page refreshes, reducing redundant API calls}
+    
+    \resumeItem{Utilized \textbf{MongoDB transactions} to ensure data consistency across orders, payments, and inventory updates; implemented automatic rollback mechanism on payment failures to maintain database integrity}
+    
+    \resumeItem{Optimized search functionality with debouncing techniques reducing API calls by \textbf{60\%}; implemented real-time updates via \textbf{Socket.IO}, pagination, and email notifications using \textbf{Nodemailer}}
+    
+    \resumeItem{Integrated \textbf{Cloudinary} for image optimization and CDN delivery achieving \textbf{25\% reduction} in system response time and improved page load performance}
+  \resumeItemListEnd
+    
+  \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+%-----------KEY PROJECTS-----------
+\section{Key Projects}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{Virtual Focus Room (Web + Mobile)} $|$ \emph{React 19, React Native, WebRTC, Socket.io}}{}
+          \resumeItemListStart
+            \resumeItem{Built full-stack real-time virtual co-working platform with \textbf{P2P video/audio via WebRTC}, screen sharing, collaborative whiteboard, and chat supporting concurrent sessions with tiered permissions (guest/free/premium)}
+            \resumeItem{Implemented custom \textbf{Socket.io signaling server} and complete \textbf{WebRTC flow} (offer/answer/ICE candidates) using STUN servers; utilized \textbf{RTCRtpSender.replaceTrack} for seamless screen-share toggling without peer renegotiation}
+            \resumeItem{Developed cross-platform experience with \textbf{React Native mobile app} and responsive web client; designed VideoGrid component with pinning, spotlight mode, and productivity tools (Pomodoro timers, todos, ambient sounds)}
+            \resumeItem{\href{https://virtual-focus-room.vercel.app}{\faExternalLink*\ Live Web} $|$ \href{https://github.com/princesinghrajput/virtual-focus-room}{\faGithub\ GitHub}}
+          \resumeItemListEnd
+          \vspace{-13pt}
+          
+      \resumeProjectHeading
+          {\textbf{AlgoForge Studios -- Enterprise LMS} $|$ \emph{Next.js 15, TypeScript, MongoDB, AWS S3}}{\href{https://github.com/princesinghrajput/algoforge-lms}{\faGithub\ GitHub}}
+          \resumeItemListStart
+            \resumeItem{Designed production-ready Learning Management System for EdTech institute supporting \textbf{hybrid learning} (online + offline) with polymorphic MongoDB schemas, \textbf{JWT-based RBAC}, and automated CI/CD pipeline}
+            \resumeItem{Achieved \textbf{60\% reduction in server load} by implementing AWS S3 for video storage and CloudFront CDN for content delivery; optimized video streaming with adaptive bitrate and lazy loading}
+            \resumeItem{Built comprehensive course management with curriculum builder, assignment tracking, grading system, and analytics dashboard serving \textbf{1,000+ students} with 99.5\% uptime}
+          \resumeItemListEnd 
+          \vspace{-13pt}
+          
+      \resumeProjectHeading
+          {\textbf{DrawIO -- Collaborative Whiteboard} $|$ \emph{Next.js 14, TypeScript, ConvexDB, React Flow}}{\href{https://erasor-clone.vercel.app}{\faExternalLink*\ Live} $|$ \href{https://github.com/princesinghrajput/drawio}{\faGithub\ GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built real-time collaborative infinite canvas with \textbf{ConvexDB} for instant synchronization, \textbf{CRDT-based conflict resolution}, live cursor tracking, and efficient viewport culling for rendering \textbf{1,000+ elements}}
+            \resumeItem{Implemented drawing tools (pen, shapes, text), layer management, undo/redo with command pattern, and multi-user presence indicators supporting \textbf{50+ concurrent collaborators}}
+          \resumeItemListEnd 
+          \vspace{-13pt}
+          
+      \resumeProjectHeading
+          {\textbf{ErgoSmart -- AI Posture Coach} $|$ \emph{React 18, TensorFlow.js, MediaPipe BlazePose, WebGL}}{\href{https://ergosmart.vercel.app}{\faExternalLink*\ Live} $|$ \href{https://github.com/princesinghrajput/ergosmart}{\faGithub\ GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built client-side AI posture correction app using \textbf{TensorFlow.js} and \textbf{MediaPipe BlazePose} achieving \textbf{30fps real-time inference} with 33-point body landmark detection and zero backend dependency}
+            \resumeItem{Implemented WebGL acceleration, angle calculation algorithms for posture analysis, and real-time feedback system with audio/visual alerts improving user posture by \textbf{35\%} in usability testing}
+          \resumeItemListEnd 
+          \vspace{-13pt}
+          
+      \resumeProjectHeading
+          {\textbf{VitalWatch -- AI Exercise Correction Platform} $|$ \emph{React, TensorFlow.js, Pose Estimation}}{\href{https://github.com/princesinghrajput/vitalwatch}{\faGithub\ GitHub}}
+          \resumeItemListStart
+            \resumeItem{Built \textbf{VitalWatch} AI-powered exercise correction platform using \textbf{TensorFlow.js} with real-time \textbf{pose estimation} and skeletal tracking, achieving \textbf{<100ms inference latency} for instant form feedback with admin interface for exercise configuration}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+\vspace{-12pt}
+
+%-----------DEVOPS & CLOUD EXPERTISE-----------
+\section{DevOps \& Cloud Expertise}
+    \resumeSubHeadingListStart
+    
+      \resumeProjectHeading
+          {\textbf{AWS Cloud Fundamentals \& Infrastructure}}{\href{https://github.com/princesinghrajput}{\faGithub\ GitHub}}
+          \resumeItemListStart
+            \resumeItem{Deployed and managed \textbf{Node.js applications} on \textbf{AWS ECS (Fargate)} using containerized workloads; built and pushed \textbf{Docker images} to \textbf{Amazon ECR} with secure ECS service configuration and task definitions}
+            
+            \resumeItem{Automated application deployment using \textbf{CI/CD pipelines with Jenkins}, reducing manual deployment effort; configured \textbf{AWS EC2 instances} for application hosting with environment setup and process management}
+            
+            \resumeItem{Utilized \textbf{Auto Scaling Groups (ASG)} to handle traffic spikes and improve application availability; implemented \textbf{AWS IAM} roles and policies for secure service-to-service communication with least-privilege access}
+            
+            \resumeItem{Integrated \textbf{Amazon CloudWatch Logs} for centralized logging and monitoring of ECS tasks and services; utilized \textbf{Amazon S3} for static asset storage, backup solutions, and configuration management}
+            
+            \resumeItem{Worked with \textbf{Docker} to containerize Node.js applications and manage multi-environment builds; familiar with \textbf{Kubernetes} concepts including Pods, Deployments, Services, and container orchestration}
+            
+            \resumeItem{Followed \textbf{Agile/Scrum methodology} using \textbf{Jira} for sprint planning, task tracking, issue management, and collaborative development workflows}
+          \resumeItemListEnd
+          
+    \resumeSubHeadingListEnd
+
+
+\end{document}
