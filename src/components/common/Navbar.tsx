@@ -68,7 +68,7 @@ const Navbar = () => {
                             {/* Resume Link - Always visible */}
                             {/* Resume Link - Updated for Mobile Visibility */}
                             <Link
-                                href="/assests/resume.pdf"
+                                href="/assests/Prince_Kumar(CV).pdf"
                                 target="_blank"
                                 className="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm shadow-primary/20"
                             >

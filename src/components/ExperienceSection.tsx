@@ -25,85 +25,114 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     id: 1,
-    period: "January 2023 – Present",
-    duration: "2+ years",
-    title: "Software Engineer → Team Lead",
+    period: "August 2024 – Present",
+    duration: "7 months",
+    title: "Team Lead",
     company: "Sensation Software Solutions",
     companyUrl: "https://sensationsolutions.com",
     location: "Mohali, Punjab",
     type: "full-time",
     achievements: [
       {
-        text: "Led cross-functional teams of 4–7 engineers across 8+ projects, improving delivery predictability by 35% through structured sprint planning and async workflows",
-        highlights: ["4–7 engineers", "8+ projects", "35%"],
+        text: "Led development of TraceVenue B2B2C platform with live booking sync, multi-tenant isolation, and automated proposal workflows using Socket.IO for real-time updates, scaling to handle 10,000+ venue bookings",
+        highlights: ["TraceVenue", "Socket.IO", "10,000+ venue bookings"],
       },
       {
-        text: "Architected Dullet POS from ground up: 14 REST API modules, RBAC with granular permissions, atomic order generation eliminating race conditions under 500+ daily transactions",
-        highlights: ["Dullet POS", "14 REST API", "RBAC", "500+ daily"],
+        text: "Architected scalable College ERP frontend platform (CERP) using React 19 and TypeScript, supporting 17+ academic, HR, and Fee modules with payment gateway integration across 1,300+ component files; leading team of 4–6 developers",
+        highlights: ["CERP", "React 19", "17+", "HR", "Fee modules", "payment gateway", "1,300+ component", "4–6 developers"],
       },
       {
-        text: "Engineered a 50+ page React 19 + TypeScript SPA with service-oriented architecture, enabling independent module scaling and 30% faster feature delivery",
-        highlights: ["50+ page", "React 19", "TypeScript", "30%"],
+        text: "Designed TailUX, a custom design system on TailwindCSS 4, reducing UI development time by 40%; built intelligent Exam Seating Planner with visual grid allocation, drag-and-drop assignment, and PDF/Excel exports",
+        highlights: ["TailUX", "TailwindCSS 4", "40%", "Exam Seating Planner"],
       },
       {
-        text: "Spearheaded TraceVenue B2B2C platform development: real-time Socket.IO bookings, multi-tenant isolation, scaled to handle 10,000+ venue bookings",
-        highlights: ["TraceVenue", "Socket.IO", "10,000+"],
+        text: "Architected hierarchical Buildings & Rooms system (Campus → Building → Floor → Room) with visual configuration, capacity mapping, and SignalR-based real-time synchronization for multi-user collaboration",
+        highlights: ["Buildings & Rooms", "SignalR", "real-time synchronization"],
       },
       {
-        text: "Reduced frontend code duplication by 40% on AppyPay through reusable component architecture and centralized Redux state management",
-        highlights: ["40%", "AppyPay", "Redux"],
+        text: "Engineered SensationCRM (LeadNest) platform with lead pipeline management, drag-and-drop form builders, and TanStack Table handling 10,000+ records with fuzzy search, Excel/PDF export, and role-based access control",
+        highlights: ["SensationCRM", "LeadNest", "10,000+ records", "drag-and-drop"],
       },
       {
-        text: "Built AI exercise correction platform with TensorFlow.js: real-time pose estimation achieving <100ms inference latency for form feedback",
-        highlights: ["TensorFlow.js", "<100ms", "pose estimation"],
-      },
-      {
-        text: "Shipped 3 enterprise GSSC systems (Accommodation, Vehicle, Complaint Management), reducing manual effort by 50% and scheduling conflicts by 40%",
-        highlights: ["GSSC", "50%", "40%"],
-      },
-      {
-        text: "Optimized DentalMarketing.com with Next.js SSR/SSG, improving Core Web Vitals and organic search visibility",
-        highlights: ["DentalMarketing.com", "SSR/SSG", "Core Web Vitals"],
-      },
-      {
-        text: "Built Supra.tools analytics dashboards with Chart.js, reducing stakeholder analysis time by 40% through interactive data visualization",
-        highlights: ["Supra.tools", "Chart.js", "40%"],
+        text: "Integrated real-time communication features: Twilio Voice SDK for calls, WhatsApp messaging API, Firebase notifications, SignalR live updates, and ApexCharts dashboards achieving 99.9% uptime with Sentry monitoring",
+        highlights: ["Twilio Voice SDK", "WhatsApp", "SignalR", "ApexCharts", "99.9% uptime"],
       },
     ],
-    skills: ["React 19", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Socket.IO", "AWS S3", "TensorFlow.js", "Redis", "Docker"],
+    skills: ["React 19", "TypeScript", "TailwindCSS 4", "TanStack Table", "SignalR", "Twilio", "Socket.IO", "ApexCharts", "Firebase", "Sentry"],
   },
   {
     id: 2,
-    period: "July 2022 – December 2022",
+    period: "June 2023 – August 2024",
+    duration: "1 year 2 months",
+    title: "Software Engineer",
+    company: "Sensation Software Solutions",
+    companyUrl: "https://sensationsolutions.com",
+    location: "Mohali, Punjab",
+    type: "full-time",
+    achievements: [
+      {
+        text: "Architected full-stack POS and order management system (Dullet) using MERN stack with React 19, featuring real-time order tracking, inventory management, and settlement workflows serving 500+ daily transactions with atomic order number generation preventing race conditions",
+        highlights: ["Dullet", "MERN stack", "React 19", "500+ daily transactions"],
+      },
+      {
+        text: "Implemented role-based access control (RBAC) with granular module.action permission matrix, JWT authentication, and secure API endpoints handling 50,000+ API requests daily with optimized database indexing and Redis caching strategies",
+        highlights: ["RBAC", "JWT", "50,000+ API requests", "Redis"],
+      },
+      {
+        text: "Engineered AppyPay merchant dashboard using React, Next.js, and Redux with multi-step onboarding flow handling payment integrations, bank validation, and KYC workflows; reduced frontend code duplication by 40% through reusable component architecture",
+        highlights: ["AppyPay", "Next.js", "Redux", "40%"],
+      },
+      {
+        text: "Built enterprise internal systems (GSSC) for Accommodation Management, Vehicle Management with real-time booking calendars, and Complaint Management with priority-based escalation; developed cross-platform React Native mobile app with offline-first architecture",
+        highlights: ["GSSC", "React Native", "offline-first"],
+      },
+      {
+        text: "Built VitalWatch AI-powered exercise correction platform using TensorFlow.js with real-time pose estimation and skeletal tracking, achieving <100ms inference latency for instant form feedback with admin interface for exercise configuration",
+        highlights: ["VitalWatch", "TensorFlow.js", "pose estimation", "<100ms"],
+      },
+      {
+        text: "Built dynamic product analytics dashboard for Supra.tools using Next.js processing complex feature matrices with Chart.js visualizations and interactive data exploration, reducing stakeholder analysis time by 40%",
+        highlights: ["Supra.tools", "Next.js", "Chart.js", "40%"],
+      },
+      {
+        text: "Optimized DentalMarketing.com using Next.js SSR/SSG with server-side rendering and static generation, improving Core Web Vitals scores and organic search visibility through rendering and performance optimizations",
+        highlights: ["DentalMarketing.com", "SSR/SSG", "Core Web Vitals"],
+      },
+    ],
+    skills: ["React 19", "React Native", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Socket.IO", "AWS S3", "TensorFlow.js", "Redis", "Docker"],
+  },
+  {
+    id: 3,
+    period: "January 2023 – June 2023",
     duration: "6 months",
-    title: "Software Developer Intern",
+    title: "Software Engineer Intern",
     company: "Sensation Software Solutions",
     companyUrl: "https://sensationsolutions.com",
     location: "Mohali, Punjab",
     type: "internship",
     achievements: [
       {
-        text: "Developed RESTful APIs and React components for TraceVenue's QR-based restaurant ordering—first production codebase deployed to 50+ restaurants",
-        highlights: ["RESTful APIs", "QR-based", "50+ restaurants"],
+        text: "Built RESTful APIs and React components for TraceMenu QR-based restaurant management system, automating order processing and improving operational efficiency by 30% with real-time kitchen display integration deployed to 50+ restaurants",
+        highlights: ["TraceMenu", "QR-based", "30%", "50+ restaurants"],
       },
       {
-        text: "Automated order processing workflows, improving operational efficiency by 30% and eliminating manual data entry errors",
-        highlights: ["30%", "Automated"],
+        text: "Implemented Redux store for cart management with intelligent item aggregation—automatically incremented quantity for duplicate items and maintained cart persistence across page refreshes, reducing redundant API calls",
+        highlights: ["Redux", "cart management"],
       },
       {
-        text: "Implemented debounced search reducing API calls by 60%, improving server response times and UX",
-        highlights: ["60%", "debounced search"],
+        text: "Utilized MongoDB transactions to ensure data consistency across orders, payments, and inventory updates; implemented automatic rollback mechanism on payment failures to maintain database integrity",
+        highlights: ["MongoDB transactions", "database integrity"],
       },
       {
-        text: "Built real-time order tracking with Socket.IO, enabling instant kitchen-to-customer status updates",
-        highlights: ["Socket.IO", "real-time"],
+        text: "Optimized search functionality with debouncing techniques reducing API calls by 60%; implemented real-time updates via Socket.IO, pagination, and email notifications using Nodemailer",
+        highlights: ["60%", "Socket.IO", "Nodemailer"],
       },
       {
-        text: "Optimized image delivery via Cloudinary CDN, reducing response times by 25%",
+        text: "Integrated Cloudinary for image optimization and CDN delivery achieving 25% reduction in system response time and improved page load performance",
         highlights: ["Cloudinary", "25%"],
       },
     ],
-    skills: ["Node.js", "Express", "React", "Socket.IO", "MongoDB", "Cloudinary", "REST APIs", "Git"],
+    skills: ["Node.js", "Express", "React", "Redux", "Socket.IO", "MongoDB", "Cloudinary", "REST APIs", "Git"],
   },
 ];
 
@@ -159,9 +188,9 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
           {/* Header */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full p-4 sm:p-5 text-left"
+            className="w-full p-3 sm:p-4 text-left"
           >
-            <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
+            <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
               {/* Type badge */}
               <span
                 className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider ${exp.type === "full-time"
@@ -199,11 +228,11 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
             </div>
 
             {/* Period */}
-            <p className="mt-2 text-xs text-muted-foreground/70">{exp.period}</p>
+            <p className="mt-1 text-xs text-muted-foreground/70">{exp.period}</p>
 
             {/* Expand indicator */}
             <motion.div
-              className="flex items-center justify-center mt-3 text-muted-foreground"
+              className="flex items-center justify-center mt-2 text-muted-foreground"
               animate={{ rotate: isExpanded ? 180 : 0 }}
             >
               <ChevronDown className="w-5 h-5" />
@@ -220,14 +249,14 @@ const ExperienceCard = ({ exp, index }: { exp: ExperienceItem; index: number }) 
                 transition={{ duration: 0.3 }}
                 className="border-t border-border"
               >
-                <div className="p-4 sm:p-5 space-y-4">
+                <div className="p-3 sm:p-4 space-y-3">
                   {/* Achievements */}
                   <div>
-                    <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex items-center gap-2">
                       <Sparkles className="w-3 h-3 text-primary" />
                       What I did
                     </h4>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2">
                       {exp.achievements.map((achievement, i) => (
                         <motion.li
                           key={i}

@@ -46,7 +46,7 @@ const ResumeSection = () => {
                     {/* Actions */}
                     <div className="flex gap-2 w-full sm:w-auto">
                         <motion.a
-                            href="/assests/resume.pdf"
+                            href="/assests/Prince_Kumar(CV).pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-primary text-primary-foreground"
@@ -58,7 +58,7 @@ const ResumeSection = () => {
                         </motion.a>
 
                         <motion.a
-                            href="/assests/resume.pdf"
+                            href="/assests/Prince_Kumar(CV).pdf"
                             download="Prince_Kumar_Resume.pdf"
                             className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-medium border border-border bg-muted/50 hover:bg-muted transition-colors"
                             whileHover={{ scale: 1.02 }}
