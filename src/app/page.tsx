@@ -109,7 +109,7 @@ const Page = () => {
 
                 {/* Bio - More personal */}
                 <motion.p variants={item} className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
-                  A calm, curious engineer who loves building systems, studying people and cultures, and exploring ideas beyond the obvious.
+                  Software Engineer & Team Lead with 3+ years of experience architecting scalable systems. I specialize in the MERN stack, Next.js, and AWS, building everything from enterprise ERPs to real-time WebRTC platforms.
                 </motion.p>
 
                 {/* Location + Status */}
@@ -277,7 +277,11 @@ const InteractiveCodeCard = () => {
             <span className="text-muted-foreground">,</span>{"\n"}
             {"  "}<span className="text-accent">role</span>
             <span className="text-muted-foreground">:</span>{" "}
-            <span className="text-emerald-400">&quot;Full Stack Dev&quot;</span>
+            <span className="text-emerald-400">&quot;Software Eng. & Team Lead&quot;</span>
+            <span className="text-muted-foreground">,</span>{"\n"}
+            {"  "}<span className="text-accent">experience</span>
+            <span className="text-muted-foreground">:</span>{" "}
+            <span className="text-orange-400">&quot;3+ Years&quot;</span>
             <span className="text-muted-foreground">,</span>{"\n"}
             {"  "}<span className="text-accent">mood</span>
             <span className="text-muted-foreground">:</span>{" "}

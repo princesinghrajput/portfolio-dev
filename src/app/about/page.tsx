@@ -60,8 +60,8 @@ const AboutPage = () => {
                     </h1>
 
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8">
-                        A digital explorer crafting solutions at the intersection of code and creativity.
-                        I build systems that solve real-world problems with a focus on user experience.
+                        Software Engineer & Team Lead with 3+ years of experience architecting scalable systems.
+                        I specialize in the MERN stack, React 19, Next.js, and AWS, driving complex enterprise systems from concept to production.
                     </p>
 
                     <div className="flex justify-center gap-4">

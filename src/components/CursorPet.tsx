@@ -10,10 +10,13 @@ const CursorPet: React.FC = () => {
     const [mood, setMood] = useState<"awake" | "sleepy" | "happy" | "excited">("awake");
     const [idleTimer, setIdleTimer] = useState(0);
     const [clickCount, setClickCount] = useState(0);
+    const [isBlinking, setIsBlinking] = useState(false);
     
-    // Store mouse offset for the SVG eyes
-    const mouseX = useSpring(0, { stiffness: 100, damping: 30 });
-    const mouseY = useSpring(0, { stiffness: 100, damping: 30 });
+    // Store mouse offset for the SVG eyes and 2.5D face parallax
+    const mouseX = useSpring(0, { stiffness: 200, damping: 30 });
+    const mouseY = useSpring(0, { stiffness: 200, damping: 30 });
+    const faceX = useSpring(0, { stiffness: 100, damping: 40 });
+    const faceY = useSpring(0, { stiffness: 100, damping: 40 });
     const containerRef = useRef<HTMLDivElement>(null);
     const clickTimeoutRef = useRef<NodeJS.Timeout | null>(null);
     const lastScrollYRef = useRef(0);
@@ -31,7 +34,26 @@ const CursorPet: React.FC = () => {
         }, 1500);
     }, []);
 
-    // Idle tracking to change behavior & eye tracking
+    // Random Blinking Algorithm for extreme realism
+    useEffect(() => {
+        let isSubscribed = true;
+        const blinkLoop = () => {
+            if (!isSubscribed) return;
+            setIsBlinking(true);
+            setTimeout(() => {
+                if (isSubscribed) setIsBlinking(false);
+            }, 150); // Blink duration
+            // Schedule next blink randomly between 2s and 7s
+            setTimeout(blinkLoop, Math.random() * 5000 + 2000);
+        };
+        const timeout = setTimeout(blinkLoop, 3000);
+        return () => {
+            isSubscribed = false;
+            clearTimeout(timeout);
+        };
+    }, []);
+
+    // Idle tracking, Eye tracking, and 2.5D Parallax
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             setIdleTimer(0);
@@ -55,6 +77,12 @@ const CursorPet: React.FC = () => {
             const angle = Math.atan2(dy, dx);
             mouseX.set(Math.cos(angle) * distance);
             mouseY.set(Math.sin(angle) * distance);
+
+            // 2.5D Face Parallax mapping (face turns slightly towards mouse)
+            const fX = Math.max(-4, Math.min(4, (dx / window.innerWidth) * 15));
+            const fY = Math.max(-3, Math.min(3, (dy / window.innerHeight) * 15));
+            faceX.set(fX);
+            faceY.set(fY);
         };
 
         const handleActivity = () => {
@@ -77,9 +105,24 @@ const CursorPet: React.FC = () => {
             lastScrollYRef.current = scrollY;
         };
 
+        // Smart Element Hovering (Dog comments on what you hover over)
+        const handleElementHover = (e: MouseEvent) => {
+            handleActivity();
+            const target = e.target as HTMLElement;
+            if (mood === "sleepy" || mood === "excited" || message) return;
+            
+            const isClickable = target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button');
+            if (isClickable && Math.random() < 0.05) { // 5% chance on any hover to speak to not be annoying
+                setMessage(Math.random() > 0.5 ? "Ooh, click it! 🐾" : "That looks interesting! 👀");
+                setMood("happy");
+                setTimeout(() => { setMessage(null); setMood("awake"); }, 3000);
+            }
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("scroll", handleScroll);
         window.addEventListener("click", handleActivity);
+        window.addEventListener("mouseover", handleElementHover);
 
         const interval = setInterval(() => {
             setIdleTimer((prev) => prev + 1);
@@ -89,9 +132,10 @@ const CursorPet: React.FC = () => {
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("scroll", handleScroll);
             window.removeEventListener("click", handleActivity);
+            window.removeEventListener("mouseover", handleElementHover);
             clearInterval(interval);
         };
-    }, [mood, mouseX, mouseY]);
+    }, [mood, mouseX, mouseY, faceX, faceY, message]);
 
     // Triggers sleepy mood after 15 seconds of no activity
     useEffect(() => {
@@ -103,8 +147,10 @@ const CursorPet: React.FC = () => {
             // gently settle tracking to center while sleeping
             mouseX.set(0);
             mouseY.set(0);
+            faceX.set(0);
+            faceY.set(0);
         }
-    }, [idleTimer, mood, mouseX, mouseY]);
+    }, [idleTimer, mood, mouseX, mouseY, faceX, faceY]);
 
     // Humanized interactions on click (The Awww Algorithm)
     const handlePetClick = () => {
@@ -194,15 +240,14 @@ const CursorPet: React.FC = () => {
                             ? { y: [0, -6, 0] } 
                             : mood === "sleepy"
                                 ? { scale: [1, 0.98, 1], y: [0, 2, 0] } 
-                                : { y: [0, -1.5, 0] } // subtle breathing float
+                                : { y: 0 } // sit still when awake
                 }
                 transition={{
-                    repeat: Infinity,
+                    repeat: mood === "awake" ? 0 : Infinity,
                     duration: mood === "excited" ? 0.3 : mood === "happy" ? 0.35 : mood === "sleepy" ? 3.5 : 4.5,
                     ease: "easeInOut"
                 }}
             >
-                {/* High-Fidelity Controllable Gray & White Fluffy Dog SVG */}
                 {/* High-Fidelity Geometric Gray & White Puppy SVG */}
                 <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-2xl overflow-visible">
                     {/* Shadow under the dog */}
@@ -232,94 +277,97 @@ const CursorPet: React.FC = () => {
                     {/* Dark Grey Outer Head Base (Perfect smooth dome) */}
                     <ellipse cx="50" cy="48" rx="38" ry="34" fill="#888E96" />
                     
-                    {/* Smooth White Face Mask / Snout */}
-                    <ellipse cx="50" cy="64" rx="34" ry="24" fill="#F7F8F9" />
-                    
-                    {/* White Forehead Stripe (Blends seamlessly into snout) */}
-                    <path d="M 36 21 Q 50 10 64 21 Q 58 45 61 55 L 39 55 Q 42 45 36 21 Z" fill="#F7F8F9" />
+                    {/* 2.5D Parallax Group - The face physically points toward the cursor */}
+                    <motion.g style={{ x: faceX, y: faceY }}>
+                        {/* Smooth White Face Mask / Snout */}
+                        <ellipse cx="50" cy="64" rx="34" ry="24" fill="#F7F8F9" />
+                        
+                        {/* White Forehead Stripe (Blends seamlessly into snout) */}
+                        <path d="M 36 21 Q 50 10 64 21 Q 58 45 61 55 L 39 55 Q 42 45 36 21 Z" fill="#F7F8F9" />
 
-                    {/* Cute Grey Fur Tufts styling on cheeks */}
-                    <path d="M 12 55 Q 5 60 14 62" stroke="#888E96" strokeWidth="4" fill="none" strokeLinecap="round" />
-                    <path d="M 88 55 Q 95 60 86 62" stroke="#888E96" strokeWidth="4" fill="none" strokeLinecap="round" />
-                    <path d="M 44 14 L 46 8 L 50 12 L 54 8 L 56 14 Z" fill="#888E96" /> {/* Top hair tuft */}
+                        {/* Cute Grey Fur Tufts styling on cheeks */}
+                        <path d="M 12 55 Q 5 60 14 62" stroke="#888E96" strokeWidth="4" fill="none" strokeLinecap="round" />
+                        <path d="M 88 55 Q 95 60 86 62" stroke="#888E96" strokeWidth="4" fill="none" strokeLinecap="round" />
+                        <path d="M 44 14 L 46 8 L 50 12 L 54 8 L 56 14 Z" fill="#888E96" /> {/* Top hair tuft */}
 
-                    {/* Eyes - Giant white expressive cartoon circles */}
-                    {mood === 'sleepy' ? (
-                        <>
-                            <path d="M 28 47 Q 34 52 40 47" stroke="#4A4D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                            <path d="M 60 47 Q 66 52 72 47" stroke="#4A4D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
-                        </>
-                    ) : (mood === 'happy' || mood === 'excited') ? (
-                        <>
-                            <path d="M 28 45 Q 34 35 40 45" stroke="#4A4D52" strokeWidth="4.5" fill="none" strokeLinecap="round" />
-                            <path d="M 60 45 Q 66 35 72 45" stroke="#4A4D52" strokeWidth="4.5" fill="none" strokeLinecap="round" />
-                            {mood === 'excited' && (
-                                <>
-                                    <path d="M 34 50 Q 34 40 40 45" stroke="#4A4D52" strokeWidth="2" fill="none" strokeLinecap="round" />
-                                    <path d="M 66 50 Q 66 40 72 45" stroke="#4A4D52" strokeWidth="2" fill="none" strokeLinecap="round" />
-                                </>
-                            )}
-                        </>
-                    ) : (
-                        <>
-                            {/* Eye Sclera */}
-                            <circle cx="34" cy="45" r="10" fill="#FFFFFF" />
-                            <circle cx="66" cy="45" r="10" fill="#FFFFFF" />
-                            
-                            {/* Tracking Pupils */}
-                            <motion.circle cx="34" cy="45" r="6.5" fill="#22252A" style={{ x: mouseX, y: mouseY }} />
-                            <motion.circle cx="66" cy="45" r="6.5" fill="#22252A" style={{ x: mouseX, y: mouseY }} />
-                            
-                            {/* Premium Catchlights */}
-                            <motion.circle cx="32" cy="41" r="2.5" fill="white" style={{ x: mouseX, y: mouseY }} />
-                            <motion.circle cx="64" cy="41" r="2.5" fill="white" style={{ x: mouseX, y: mouseY }} />
-                            
-                            <motion.ellipse cx="36" cy="48" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.6" style={{ x: mouseX, y: mouseY }} />
-                            <motion.ellipse cx="68" cy="48" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.6" style={{ x: mouseX, y: mouseY }} />
-                        </>
-                    )}
+                        {/* Eyes - Giant white expressive cartoon circles */}
+                        {(mood === 'sleepy' || isBlinking) ? (
+                            <>
+                                <path d="M 28 47 Q 34 52 40 47" stroke="#4A4D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+                                <path d="M 60 47 Q 66 52 72 47" stroke="#4A4D52" strokeWidth="3.5" fill="none" strokeLinecap="round" />
+                            </>
+                        ) : (mood === 'happy' || mood === 'excited') ? (
+                            <>
+                                <path d="M 28 45 Q 34 35 40 45" stroke="#4A4D52" strokeWidth="4.5" fill="none" strokeLinecap="round" />
+                                <path d="M 60 45 Q 66 35 72 45" stroke="#4A4D52" strokeWidth="4.5" fill="none" strokeLinecap="round" />
+                                {mood === 'excited' && (
+                                    <>
+                                        <path d="M 34 50 Q 34 40 40 45" stroke="#4A4D52" strokeWidth="2" fill="none" strokeLinecap="round" />
+                                        <path d="M 66 50 Q 66 40 72 45" stroke="#4A4D52" strokeWidth="2" fill="none" strokeLinecap="round" />
+                                    </>
+                                )}
+                            </>
+                        ) : (
+                            <>
+                                {/* Eye Sclera */}
+                                <circle cx="34" cy="45" r="10" fill="#FFFFFF" />
+                                <circle cx="66" cy="45" r="10" fill="#FFFFFF" />
+                                
+                                {/* Tracking Pupils */}
+                                <motion.circle cx="34" cy="45" r="6.5" fill="#22252A" style={{ x: mouseX, y: mouseY }} />
+                                <motion.circle cx="66" cy="45" r="6.5" fill="#22252A" style={{ x: mouseX, y: mouseY }} />
+                                
+                                {/* Premium Catchlights */}
+                                <motion.circle cx="32" cy="41" r="2.5" fill="white" style={{ x: mouseX, y: mouseY }} />
+                                <motion.circle cx="64" cy="41" r="2.5" fill="white" style={{ x: mouseX, y: mouseY }} />
+                                
+                                <motion.ellipse cx="36" cy="48" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.6" style={{ x: mouseX, y: mouseY }} />
+                                <motion.ellipse cx="68" cy="48" rx="1.5" ry="1" fill="#FFFFFF" opacity="0.6" style={{ x: mouseX, y: mouseY }} />
+                            </>
+                        )}
 
-                    {/* Expressive Eyebrows */}
-                    <path d="M 28 30 Q 34 26 40 32" stroke="#5C6066" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-                    <path d="M 72 30 Q 66 26 60 32" stroke="#5C6066" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                        {/* Expressive Eyebrows */}
+                        <path d="M 28 30 Q 34 26 40 32" stroke="#5C6066" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                        <path d="M 72 30 Q 66 26 60 32" stroke="#5C6066" strokeWidth="2.5" fill="none" strokeLinecap="round" />
 
-                    {/* Cute Big Dark Oval Nose */}
-                    <ellipse cx="50" cy="58" rx="8.5" ry="6" fill="#44474A" />
-                    {/* Nose highlight bridge */}
-                    <ellipse cx="48" cy="55.5" rx="3.5" ry="1.5" fill="#FFFFFF" opacity="0.4" /> 
+                        {/* Cute Big Dark Oval Nose */}
+                        <ellipse cx="50" cy="58" rx="8.5" ry="6" fill="#44474A" />
+                        {/* Nose highlight bridge */}
+                        <ellipse cx="48" cy="55.5" rx="3.5" ry="1.5" fill="#FFFFFF" opacity="0.4" /> 
 
-                    {/* Mouth and Tongue */}
-                    {(mood === 'happy' || mood === 'excited') ? (
-                        <>
-                            <path d="M 40 68 Q 50 78 60 68" stroke="#44474A" strokeWidth="2" fill="none" strokeLinecap="round" />
-                            {/* Panting tongue dropping down */}
-                            <motion.path 
-                                d="M 45 69 L 45 78 C 45 84 55 84 55 78 L 55 69 Z" 
-                                fill="#F06B78" 
-                                animate={{ scaleY: [1, 1.3, 1] }} 
-                                transition={{ repeat: Infinity, duration: mood === 'excited' ? 0.15 : 0.25 }}
-                                style={{ transformOrigin: "50px 69px" }}
-                            /> 
-                            <path d="M 50 69 L 50 79" stroke="#D1505D" strokeWidth="1.5" fill="none" opacity="0.6" /> {/* tongue crease */}
-                        </>
-                    ) : (
-                        <>
-                            {/* Smiling mouth connecting to nose */}
-                            <path d="M 50 64 L 50 69" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                            <path d="M 50 69 Q 40 76 34 70" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                            <path d="M 50 69 Q 60 76 66 70" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-                            
-                            {/* Cute little tongue peeking out */}
-                            <motion.path 
-                                d="M 46.5 70.5 L 46.5 75 C 46.5 79 53.5 79 53.5 75 L 53.5 70.5 Z" 
-                                fill="#F06B78" 
-                                animate={ mood === "sleepy" ? { scale: 0 } : { scale: [1, 1.05, 1] } }
-                                transition={{ repeat: Infinity, duration: 2 }}
-                                style={{ transformOrigin: "50px 70px" }}
-                            />
-                            <path d="M 50 70.5 L 50 76" stroke="#D1505D" strokeWidth="1" fill="none" opacity="0.6" />
-                        </>
-                    )}
+                        {/* Mouth and Tongue */}
+                        {(mood === 'happy' || mood === 'excited') ? (
+                            <>
+                                <path d="M 40 68 Q 50 78 60 68" stroke="#44474A" strokeWidth="2" fill="none" strokeLinecap="round" />
+                                {/* Panting tongue dropping down */}
+                                <motion.path 
+                                    d="M 45 69 L 45 78 C 45 84 55 84 55 78 L 55 69 Z" 
+                                    fill="#F06B78" 
+                                    animate={{ scaleY: [1, 1.3, 1] }} 
+                                    transition={{ repeat: Infinity, duration: mood === 'excited' ? 0.15 : 0.25 }}
+                                    style={{ transformOrigin: "50px 69px" }}
+                                /> 
+                                <path d="M 50 69 L 50 79" stroke="#D1505D" strokeWidth="1.5" fill="none" opacity="0.6" /> {/* tongue crease */}
+                            </>
+                        ) : (
+                            <>
+                                {/* Smiling mouth connecting to nose */}
+                                <path d="M 50 64 L 50 69" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                                <path d="M 50 69 Q 40 76 34 70" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                                <path d="M 50 69 Q 60 76 66 70" stroke="#44474A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+                                
+                                {/* Cute little tongue peeking out */}
+                                <motion.path 
+                                    d="M 46.5 70.5 L 46.5 75 C 46.5 79 53.5 79 53.5 75 L 53.5 70.5 Z" 
+                                    fill="#F06B78" 
+                                    animate={ mood === "sleepy" ? { scale: 0 } : { scale: [1, 1.05, 1] } }
+                                    transition={{ repeat: Infinity, duration: 2 }}
+                                    style={{ transformOrigin: "50px 70px" }}
+                                />
+                                <path d="M 50 70.5 L 50 76" stroke="#D1505D" strokeWidth="1" fill="none" opacity="0.6" />
+                            </>
+                        )}
+                    </motion.g>
 
                     {/* Blush on Hover */}
                     <AnimatePresence>

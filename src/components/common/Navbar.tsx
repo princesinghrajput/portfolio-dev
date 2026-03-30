@@ -77,13 +77,13 @@ const Navbar = () => {
                             </Link>
 
                             {/* Ask AI Button - Desktop only */}
-                            <button
+                            {/* <button
                                 onClick={() => setIsAskMeOpen(true)}
                                 className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-colors duration-200"
                             >
                                 <Bot className="w-4 h-4" />
                                 Ask AI
-                            </button>
+                            </button> */}
 
                             {/* Dark Mode Toggle - Always visible */}
                             <ModeToggle />

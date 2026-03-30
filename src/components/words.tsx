@@ -4,14 +4,14 @@ import React from "react";
 import { FlipWords } from "./ui/words";
 
 export function FlipWordsDemo() {
-  // More fun and personality-driven phrases
+  // More fun and personality-driven phrases mixed with professional titles
   const words = [
-    "curious builder",
-    "system thinker",
+    "team lead",
+    "systems architect",
+    "software engineer",
+    "MERN stack dev",
     "chai enthusiast",
-    "culture explorer",
-    "minimalist designer",
-    "full-stack dev",
+    "curious builder",
   ];
 
   return (

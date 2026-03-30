@@ -17,12 +17,12 @@ const funFacts = [
 ];
 
 const interests = [
-    { label: "Systems Thinking", emoji: "🧠" },
-    { label: "Human Psychology", emoji: "🔮" },
+    { label: "Scalable Architecture", emoji: "🏗️" },
+    { label: "Real-Time Systems", emoji: "⚡" },
     { label: "Minimalist Design", emoji: "✨" },
     { label: "Open Source", emoji: "💻" },
-    { label: "Cultural Anthropology", emoji: "🌏" },
-    { label: "Philosophy", emoji: "📖" },
+    { label: "AI Integration", emoji: "🤖" },
+    { label: "Human Psychology", emoji: "🧠" },
 ];
 
 const currentlyLearning = [
@@ -57,7 +57,7 @@ const FunFacts: React.FC = () => {
                     More Than a <span className="gradient-text">Developer</span>
                 </h2>
                 <p className="mt-2 text-xs sm:text-sm text-muted-foreground max-w-2xl leading-relaxed hidden sm:block">
-                    Sure, I write code. But I also spend time understanding why people do what they do.
+                    Beyond architecting systems and leading engineering teams, I'm just a curious human who loves learning, exploring, and building cool things.
                 </p>
             </div>
 
