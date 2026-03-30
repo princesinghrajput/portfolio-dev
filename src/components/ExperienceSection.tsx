@@ -320,7 +320,7 @@ const ExperienceSection = () => {
           Where I&apos;ve <span className="gradient-text">Worked</span>
         </h2>
         <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-xl">
-          2+ years of shipping production systems, leading teams of 4–7 engineers, and owning end-to-end delivery. Clean code, system design, and remote-first collaboration.
+          3+ years of shipping production systems, leading teams of 4–7 engineers, and owning end-to-end delivery. Clean code, system design, and remote-first collaboration.
         </p>
       </div>
 

@@ -26,9 +26,9 @@ const interests = [
 ];
 
 const currentlyLearning = [
-    { item: "Rust", emoji: "🦀", progress: 30, color: "from-orange-500 to-red-500" },
-    { item: "System Design", emoji: "🏗️", progress: 60, color: "from-blue-500 to-purple-500" },
-    { item: "Playing Guitar", emoji: "🎸", progress: 15, color: "from-pink-500 to-rose-500" },
+    { item: "LangChain & AI Agents", emoji: "🤖", progress: 80, color: "from-cyan-500 to-blue-500" },
+    { item: "System Design", emoji: "🏗️", progress: 70, color: "from-blue-500 to-purple-500" },
+    { item: "Playing Chess", emoji: "♟️", progress: 60, color: "from-pink-500 to-rose-500" },
 ];
 
 const FunFacts: React.FC = () => {

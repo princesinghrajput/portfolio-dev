@@ -34,7 +34,7 @@ const ResumeSection = () => {
                         </div>
                         <div>
                             <h3 className="text-base sm:text-lg font-bold mb-0.5">Prince Kumar - Resume</h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground mb-2">Full Stack Developer • 2+ years experience</p>
+                            <p className="text-xs sm:text-sm text-muted-foreground mb-2">Full Stack Developer • 3+ years experience</p>
                             <div className="flex flex-wrap gap-1.5">
                                 <span className="px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-muted rounded text-muted-foreground">React</span>
                                 <span className="px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-muted rounded text-muted-foreground">Next.js</span>

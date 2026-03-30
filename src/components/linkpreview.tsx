@@ -13,7 +13,7 @@ export function LinkPreviewDemo() {
         </LinkPreview>{" "}
         and{" "} have worked over projects like{ " "}
         <LinkPreview url="https://github.com/princesinghrajput" className="font-bold">
-          DeCentr-Freelance
+          DeCentr
         </LinkPreview>{" "}
         and Personal Spotify.
       </p>

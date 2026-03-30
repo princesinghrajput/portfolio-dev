@@ -20,16 +20,22 @@ const skills: Skill[] = [
   { name: "TypeScript", icon: "/assests/skills/typescript.webp", level: "proficient", category: "languages", description: "Types save lives" },
   { name: "JavaScript", icon: "/assests/skills/js.webp", level: "expert", category: "languages", description: "Where it all began" },
   { name: "Node.js", icon: "/assests/skills/nodejs.webp", level: "proficient", category: "backend", description: "Backend backbone" },
+  { name: "NestJS", icon: "/assests/skills/nestjs.svg", level: "proficient", category: "backend", description: "Node.js framework" },
   { name: "Tailwind", icon: "/assests/skills/tailwind.webp", level: "expert", category: "frontend", description: "CSS on steroids" },
   { name: "MongoDB", icon: "/assests/skills/mongoDB.webp", level: "proficient", category: "database", description: "Document love" },
   { name: "PostgreSQL", icon: "/assests/skills/postgre.webp", level: "proficient", category: "database", description: "Relational power" },
+  { name: "AWS", icon: "/assests/skills/aws.webp", level: "proficient", category: "backend", description: "Cloud infrastructure" },
   { name: "Git", icon: "/assests/skills/git.webp", level: "expert", category: "tools", description: "Version control wizard" },
-  { name: "Docker", icon: "/assests/skills/docker.webp", level: "learning", category: "tools", description: "Containerizing things" },
+  { name: "Docker", icon: "/assests/skills/docker.webp", level: "proficient", category: "tools", description: "Containerizing things" },
+  { name: "Langchain", icon: "/assests/skills/langchain.svg", level: "learning", category: "tools", description: "AI & Agents" },
+  { name: "GitHub Actions", icon: "/assests/skills/githubActions.webp", level: "proficient", category: "tools", description: "CI/CD pipelines" },
   { name: "Firebase", icon: "/assests/skills/firebase.webp", level: "proficient", category: "backend", description: "Quick MVPs" },
   { name: "Python", icon: "/assests/skills/python.webp", level: "proficient", category: "languages", description: "Scripting & ML" },
+  { name: "Vite", icon: "/assests/skills/vite.webp", level: "expert", category: "tools", description: "Lightning fast builds" },
+  { name: "Web3.js", icon: "/assests/skills/web3js.webp", level: "learning", category: "languages", description: "DApp interactions" },
+  { name: "Ethers.js", icon: "/assests/skills/ethers.webp", level: "learning", category: "languages", description: "Ethereum library" },
   { name: "HTML", icon: "/assests/skills/html.webp", level: "expert", category: "frontend", description: "The foundation" },
   { name: "CSS", icon: "/assests/skills/css.webp", level: "expert", category: "frontend", description: "Making things pretty" },
-  { name: "GraphQL", icon: "/assests/skills/graphql.webp", level: "learning", category: "backend", description: "Querying smarter" },
   { name: "Vercel", icon: "/assests/skills/vercel.webp", level: "proficient", category: "tools", description: "Deploy in seconds" },
 ];
 
@@ -187,7 +193,7 @@ const HoverImageComponent: React.FC = () => {
         <Zap className="w-4 h-4 text-yellow-500" />
         <p className="text-xs text-muted-foreground">
           Always learning something new. Currently exploring{" "}
-          <span className="text-foreground font-medium">Rust 🦀</span> and{" "}
+          <span className="text-foreground font-medium">LangChain & AI 🤖</span> and{" "}
           <span className="text-foreground font-medium">System Design</span>
         </p>
       </motion.div>

@@ -27,7 +27,7 @@ export interface Project {
   liveUrl?: string;
   githubUrl: string;
   featured?: boolean;
-  category: 'fullstack' | 'ai' | 'tool' | 'extension' | 'freelance';
+  category: 'fullstack' | 'ai' | 'tool' | 'extension';
   features: ProjectFeature[];
   impact?: string; // Short impact statement
 }
@@ -77,8 +77,8 @@ export const projects: Project[] = [
   {
     id: 'algoforge-lms',
     title: 'AlgoForge Studios — Enterprise Learning Management System',
-    description: 'Freelance project for an EdTech institute focused on managing hybrid (online + offline) learning at scale.',
-    longDescription: 'Designed and built a production-ready Learning Management System for a fast-growing educational institute running both online and offline programs. The core challenge was handling hybrid cohorts without operational complexity. The platform supports scalable content delivery, structured role-based access, and smooth deployments via automated CI/CD. AWS S3 is used for reliable, cost-efficient asset management, ensuring performance and scalability from the start.',
+    description: 'Full-stack LMS built with NestJS and Next.js, featuring modular course workflows and secure media pipelines.',
+    longDescription: 'Architected an enterprise-grade Learning Management System with NestJS backend and Next.js frontend. Implemented robust RBAC (Admin, Instructor, Student), JWT authentication, and complex Mongoose schemas. Built a secure media pipeline utilizing AWS S3 presigned URLs and CloudFront CDN for adaptive video/audio delivery, cutting server load by 60%. Integrated Razorpay for seamless enrolments and developed real-time progress tracking analytics.',
     thumbnail: '/assests/algoforge.png',
     images: [
       '/assests/algoblog.png',
@@ -91,38 +91,39 @@ export const projects: Project[] = [
     ],
     techStack: [
       'Next.js 15',
+      'NestJS',
       'TypeScript',
       'MongoDB (Mongoose)',
       'AWS S3',
-      'GitHub Actions (CI/CD)',
-      'Tailwind CSS',
-      'Zod'
+      'CloudFront',
+      'Razorpay',
+      'Tailwind CSS'
     ],
     liveUrl: 'https://algo-forge-studios.vercel.app/',
     githubUrl: 'https://github.com/princesinghrajput/AlgoForgeStudios',
     featured: true,
-    category: 'freelance',
-    impact: 'Hybrid cohort support • ~60% reduction in server load via S3 offloading • Zero-downtime deployments',
+    category: 'fullstack',
+    impact: '60% server load reduction via S3/CloudFront • End-to-end Razorpay integration • Adaptive media delivery',
     features: [
       {
         icon: 'Server',
-        title: 'Scalable Infrastructure',
-        description: 'Built with AWS S3 for asset offloading and automated CI/CD pipelines, enabling reliable scaling and high availability.'
+        title: 'Modular Backend Engine',
+        description: 'NestJS backend architecture featuring course creation workflows, Mongoose schemas, and tiered RBAC (Admin/Instructor/Student).'
       },
       {
-        icon: 'ShieldCheck',
-        title: 'Role-Based Access Control',
-        description: 'Secure separation of Admin and Student workflows using JWT-based authentication and middleware-protected routes.'
+        icon: 'Cloud',
+        title: 'Secure Media Pipeline',
+        description: 'Implemented AWS S3 presigned URLs with CloudFront CDN for adaptive delivery of video, audio, and PDF content under heavy workloads.'
       },
       {
-        icon: 'Database',
-        title: 'Flexible Data Architecture',
-        description: 'Polymorphic MongoDB schemas designed to support multiple curriculum structures, including generic and executive programs.'
+        icon: 'CreditCard',
+        title: 'Enrollment & Payments',
+        description: 'End-to-end Razorpay integration for seamless enrollment workflows alongside real-time progress tracking and analytics dashboards.'
       },
       {
-        icon: 'Zap',
-        title: 'Hybrid Learning Engine',
-        description: 'Content and session management optimized for live online classes as well as in-person attendance and progress tracking.'
+        icon: 'LayoutDashboard',
+        title: 'Comprehensive Frontend',
+        description: 'Responsive Next.js UI with curriculum builder, grading interfaces, and performance optimizations using lazy loading.'
       }
     ]
   },
@@ -319,7 +320,7 @@ export const getProjectById = (id: string): Project | undefined => {
 };
 
 export const getAllCategories = (): Project['category'][] => {
-  return ['fullstack', 'ai', 'tool', 'extension', 'freelance'];
+  return ['fullstack', 'ai', 'tool', 'extension'];
 };
 
 export const categoryLabels: Record<Project['category'], { label: string; color: string; bgColor: string }> = {
@@ -342,10 +343,5 @@ export const categoryLabels: Record<Project['category'], { label: string; color:
     label: 'Extension',
     color: 'text-amber-400',
     bgColor: 'bg-amber-500/10 border-amber-500/20'
-  },
-  freelance: {
-    label: 'Freelance',
-    color: 'text-rose-400',
-    bgColor: 'bg-rose-500/10 border-rose-500/20'
   }
 };
