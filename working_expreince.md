@@ -9,7 +9,11 @@ Order applied:
 
 **Software Engineer → Team Lead**
 Mohali, Punjab, India
-**January 2023 – Present**
+**January 2023 – Present (3 years 3 months)**
+
+- **Team Lead:** Aug 2025 – Present (8 months)
+- **Software Engineer:** Jun 2023 – Present (2 years 10 months)
+- **Software Engineer Intern:** Jan 2023 – Jun 2023 (6 months)
 
 Worked on scalable ERP systems, CRM platforms, analytics dashboards, AI-driven applications, and enterprise products, progressing from hands-on development to technical ownership and delivery leadership.
 
@@ -122,6 +126,17 @@ SignalR, jsPDF, ApexCharts, SWR, i18next**
 * Implemented **Redux-based cart management** with intelligent item aggregation and persistence.
 * Optimized search with **debouncing**, reducing API calls by **~60%**.
 * Added real-time updates via Socket.IO and email notifications.
-* Integrated Cloudinary for image optimization and CDN delivery, reducing response time by **~25%**.
+* Achieved 25% reduction in system response time and improved page load performance.
 
 ---
+
+### **Oceana Tech**
+
+**Web Development Intern**
+Mohali, Punjab (Remote)
+**January 2022 – March 2022 (3 months)**
+
+* Developed responsive landing pages and UI components using HTML, CSS, and JavaScript.
+* Ensured cross-browser compatibility and focused on mobile-first design.
+* Collaborated with senior developers to implement frontend features and fix UI bugs.
+* Contributed to backend API development and database integration.

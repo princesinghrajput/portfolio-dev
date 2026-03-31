@@ -25,12 +25,12 @@ interface ExperienceItem {
 const experiences: ExperienceItem[] = [
   {
     id: 1,
-    period: "August 2024 – Present",
-    duration: "7 months",
+    period: "August 2025 – Present",
+    duration: "8 months",
     title: "Team Lead",
     company: "Sensation Software Solutions",
     companyUrl: "https://sensationsolutions.com",
-    location: "Mohali, Punjab",
+    location: "Sahibzada Ajit Singh Nagar, Punjab, India",
     type: "full-time",
     achievements: [
       {
@@ -62,12 +62,12 @@ const experiences: ExperienceItem[] = [
   },
   {
     id: 2,
-    period: "June 2023 – August 2024",
-    duration: "1 year 2 months",
+    period: "June 2023 – Present",
+    duration: "2 years 10 months",
     title: "Software Engineer",
     company: "Sensation Software Solutions",
     companyUrl: "https://sensationsolutions.com",
-    location: "Mohali, Punjab",
+    location: "Sahibzada Ajit Singh Nagar, Punjab, India",
     type: "full-time",
     achievements: [
       {
@@ -133,6 +133,26 @@ const experiences: ExperienceItem[] = [
       },
     ],
     skills: ["Node.js", "Express", "React", "Redux", "Socket.IO", "MongoDB", "Cloudinary", "REST APIs", "Git"],
+  },
+  {
+    id: 4,
+    period: "January 2022 – March 2022",
+    duration: "3 months",
+    title: "Web Development Intern",
+    company: "Oceana Tech",
+    location: "Mohali, Punjab (Remote)",
+    type: "internship",
+    achievements: [
+      {
+        text: "Developed responsive landing pages and UI components using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and mobile-first design",
+        highlights: ["HTML", "CSS", "JavaScript", "mobile-first"],
+      },
+      {
+        text: "Collaborated with senior developers to implement frontend features and fix UI bugs improving user engagement by 15%",
+        highlights: ["15%"],
+      },
+    ],
+    skills: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Git"],
   },
 ];
 

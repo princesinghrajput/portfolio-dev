@@ -13,8 +13,10 @@ Prince Kumar
  +91-8292222569 | # psr8084@gmail.com | ï LinkedIn | § GitHub |  Porfolio
 Mohali, Punjab, India
 Professional Experience 3+ Years Experience
-Software Engineer (Team Lead) Jun 2023 – Present
-Sensation Software Solutions Pvt. Ltd. Mohali, Punjab
+Software Engineer (Team Lead) Aug 2025 – Present
+Sensation Software Solutions Pvt. Ltd. | Mohali, Punjab
+Software Engineer Jun 2023 – Present
+Sensation Software Solutions Pvt. Ltd. | Mohali, Punjab
 • Led development of TraceVenue multi-tenant B2B2C venue booking platform using MERN stack with Socket.IO for
 real-time booking synchronization, automated proposal workflows, and JWT authentication with role-based access
 control across customer, venue admin, and super-admin roles, scaling to handle 10,000+ venue bookings; deployed on
@@ -52,6 +54,10 @@ implemented automatic rollback mechanism on payment failures to maintain databas
 via Socket.IO, pagination, and email notifications using Nodemailer
 • Integrated Cloudinary for image optimization and CDN delivery achieving 25% reduction in system response time
 and improved page load performance
+Web Development Intern Jan 2022 – Mar 2022
+Oceana Tech | Mohali, Punjab (Remote)
+• Developed responsive landing pages and UI components using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and mobile-first design
+• Collaborated with senior developers to implement frontend features and fix UI bugs improving user engagement by 15%
 Technical Skills
 Languages & Frameworks: JavaScript, TypeScript, Python, React 19, Next.js, React Native, Node.js, Express.js, Fastify
 Frontend Technologies: Redux, Zustand, Vite, Tailwind CSS, Material-UI, Bootstrap, Radix UI

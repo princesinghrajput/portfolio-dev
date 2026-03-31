@@ -62,51 +62,31 @@ I am a **Full Stack Developer** specializing in modern web technologies, cloud i
 ## Professional Experience
 
 ### Sensation Software Solutions, Pvt. Ltd. (Mohali, Punjab, India)
+- **Total Experience:** 3 years 3 months (Jan 2023 – Present)
 
-#### Full Stack Developer (July 2024 – Present)
+#### Team Lead (Aug 2025 – Present)
+- Leading development of TraceVenue B2B2C platform and College ERP (CERP) frontend
+- Architecting scalable platforms using React 19, TypeScript, and TailwindCSS 4
+- Managing a team of 4–6 developers and defining performance standards
 
-##### AppyPay (Digital Payment Platform)
-- Architected and implemented a responsive merchant dashboard with dynamic theming capabilities
-- Developed a compound component system that reduced UI development time by 40%
-- Implemented complex state management for transactional workflows using Redux Toolkit
-- Created animations for user feedback and engagement using Framer Motion
-- **Technologies used:** React.js, Material-UI, Redux Toolkit, Framer Motion
+#### Software Engineer (Jun 2023 – Present)
+- Architected full-stack POS and order management systems (Dullet)
+- Engineered AppyPay merchant dashboard and merchant onboarding flows
+- Developed AI-powered platforms like VitalWatch and ErgoSmart
+- Built internal systems (GSSC) and product analytics dashboards (Supra.tools)
+- **Technologies used:** React 19, Next.js, Node.js, MongoDB, TypeScript, Socket.IO, TensorFlow.js
 
-##### Merchant Registration & KYC System
-- Built a comprehensive multi-step registration process with validation
-- Developed secure document verification workflows for KYC compliance
-- Integrated with banking APIs for account validation and verification
-- Reduced merchant onboarding time from 5 days to 3 days (40% improvement)
-- **Technologies used:** Next.js, TypeScript, Zod, React Hook Form, AWS S3
-
-##### Supra.tools (Product Analytics Dashboard)
-- Designed and developed an analytics dashboard featuring interactive visualizations
-- Implemented real-time data filtering and custom reporting capabilities
-- Created responsive charts and graphs displaying complex metrics
-- Built admin tools for defining custom KPIs and analytics rules
-- **Technologies used:** Next.js, Chart.js, React Table, TailwindCSS
-
-##### AI-powered Exercise Correction Platform
-- Developed a web-based platform for real-time exercise form correction
-- Implemented TensorFlow.js and MediaPipe for skeletal tracking and pose estimation
-- Created custom pose detection algorithms with configurable exercise templates
-- Built an admin interface for exercise customization and user management
-- **Technologies used:** React.js, TensorFlow.js, MediaPipe, Express.js, MongoDB
-
-#### Software Developer Intern (Jan 2024 – June 2024)
-- Developed key components for a QR-Based Restaurant Management System
+#### Software Engineer Intern (Jan 2023 – June 2023)
+- Developed key components for a QR-Based Restaurant Management System (TraceMenu)
 - Created RESTful APIs for order processing, inventory management, and analytics
 - Implemented real-time order tracking and notifications using Socket.IO
-- Enhanced search functionality with debouncing and pagination
-- Integrated email notifications and optimized image processing
 - **Technologies used:** Node.js, Express.js, React, MongoDB, Socket.IO, Cloudinary
 
-### Oceana Tech (Remote, Mohali)
-#### Web Development Intern (Mar 2022 – May 2022)
-- Built responsive front-end components following design specifications
-- Contributed to backend API development and database integration
-- Participated in code reviews and implemented feedback
-- **Technologies used:** React.js, MongoDB, Express.js
+### Oceana Tech (Mohali, Punjab - Remote)
+#### Web Development Intern (Jan 2022 – March 2022)
+- Built responsive front-end components and landing pages
+- Contributed to backend API development and UI bug fixes
+- **Technologies used:** HTML, CSS, JavaScript, React.js, MongoDB, Express.js
 
 ## Notable Projects
 
