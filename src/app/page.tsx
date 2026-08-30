@@ -2,16 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Coffee, MapPin, Zap, Heart } from "lucide-react";
+import { Sparkles, Coffee, MapPin, Zap, Heart, ExternalLink } from "lucide-react";
 import MyProjects from "@/components/projects";
 import CopyCmd from "@/components/copycmd";
-import { FlipWordsDemo } from "@/components/words";
 import { DockDemo } from "@/components/dock";
 import HoverImageComponent from "@/components/skills";
 import ContactMe from "@/components/contact";
 import ResumeSection from "@/components/ResumeSection";
 import ExperienceSection from "@/components/ExperienceSection";
-import FunFacts from "@/components/FunFacts";
 import AchievementsSection from "@/components/AchievementsSection";
 
 const container = {
@@ -102,14 +100,28 @@ const Page = () => {
                   </motion.span>
                 </motion.h1>
 
-                {/* Role */}
-                <motion.div variants={item} className="text-lg sm:text-xl lg:text-2xl">
-                  <FlipWordsDemo />
+                {/* Role & Company */}
+                <motion.div variants={item} className="space-y-2">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight text-foreground leading-snug">
+                    Senior Software Engineer at{" "}
+                    <a
+                      href="https://pixoryofficial.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-baseline gap-1 text-primary hover:text-primary/80 font-bold transition-colors underline decoration-primary/40 underline-offset-4 hover:decoration-primary group whitespace-nowrap"
+                    >
+                      <span>Pixory</span>
+                      <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 inline self-center opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+                  </h2>
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    Building scalable, resilient, and production-grade systems
+                  </p>
                 </motion.div>
 
-                {/* Bio - More personal */}
+                {/* Bio */}
                 <motion.p variants={item} className="text-base sm:text-lg text-muted-foreground max-w-lg leading-relaxed">
-                  Software Engineer & Team Lead with 3+ years of experience architecting scalable systems. I specialize in the MERN stack, Next.js, and AWS, building everything from enterprise ERPs to real-time WebRTC platforms.
+                  With 3+ years of experience shipping production web applications, I architect end-to-end solutions across the MERN stack, Next.js, and AWS—solving complex engineering challenges from multi-tenant enterprise platforms to real-time WebRTC systems.
                 </motion.p>
 
                 {/* Location + Status */}
@@ -149,18 +161,6 @@ const Page = () => {
 
           {/* Sections */}
           <div className="space-y-6 sm:space-y-16 lg:space-y-20 mt-6 sm:mt-16 lg:mt-20">
-            {/* Fun Facts - New! */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5 }}
-            >
-              <FunFacts />
-            </motion.div>
-
-            <div className="section-divider" />
-
             {/* Skills */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -277,7 +277,11 @@ const InteractiveCodeCard = () => {
             <span className="text-muted-foreground">,</span>{"\n"}
             {"  "}<span className="text-accent">role</span>
             <span className="text-muted-foreground">:</span>{" "}
-            <span className="text-emerald-400">&quot;Software Eng. & Team Lead&quot;</span>
+            <span className="text-emerald-400">&quot;Senior Software Engineer&quot;</span>
+            <span className="text-muted-foreground">,</span>{"\n"}
+            {"  "}<span className="text-accent">company</span>
+            <span className="text-muted-foreground">:</span>{" "}
+            <span className="text-emerald-400">&quot;Pixory&quot;</span>
             <span className="text-muted-foreground">,</span>{"\n"}
             {"  "}<span className="text-accent">experience</span>
             <span className="text-muted-foreground">:</span>{" "}

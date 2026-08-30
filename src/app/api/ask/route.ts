@@ -20,7 +20,7 @@ const CONTEXT = `
 # Prince Kumar - Full Stack Developer Profile
 
 ## Core Identity & Professional Summary
-I am a **Full Stack Developer** specializing in modern web technologies, cloud infrastructure, and AI applications. With expertise in the complete software development lifecycle, I build scalable applications that deliver exceptional user experiences and solve complex business problems. My focus areas include digital payment platforms, data visualization dashboards, and AI-powered web applications.
+I am a **Senior Software Engineer at Pixory** with 3+ years of experience building production-grade web applications. I work across modern web technologies, cloud infrastructure, and AI applications. I specialize in the MERN stack, Next.js, and AWS, solving complex problems from enterprise systems to real-time WebRTC platforms.
 
 ## Personal & Contact Information
 - **Name:** Prince Kumar
@@ -61,15 +61,22 @@ I am a **Full Stack Developer** specializing in modern web technologies, cloud i
 
 ## Professional Experience
 
-### Sensation Software Solutions, Pvt. Ltd. (Mohali, Punjab, India)
-- **Total Experience:** 3 years 3 months (Jan 2023 – Present)
+### Pixory
+- **Senior Software Engineer (May 2026 – Present)** · Remote · Wyoming, USA
+- Set up and managed self-hosted Sentry infrastructure on AWS EC2 for complete production observability
+- Analyzed production issue clusters affecting 100+ users to convert noisy telemetry into prioritized engineering tasks
+- Engineered Sentry-to-ClickUp automated workflows to streamline issue discovery, triage, and task assignment
+- Contributed to core production systems using React, Next.js, TypeScript, Node.js, and AWS EC2
 
-#### Team Lead (Aug 2025 – Present)
+### Sensation Software Solutions, Pvt. Ltd. (Mohali, Punjab, India)
+- **Total Experience:** 3 years 4 months (Jan 2023 – Apr 2026)
+
+#### Team Lead (Aug 2025 – Apr 2026)
 - Leading development of TraceVenue B2B2C platform and College ERP (CERP) frontend
 - Architecting scalable platforms using React 19, TypeScript, and TailwindCSS 4
 - Managing a team of 4–6 developers and defining performance standards
 
-#### Software Engineer (Jun 2023 – Present)
+#### Software Engineer (Jun 2023 – Aug 2025)
 - Architected full-stack POS and order management systems (Dullet)
 - Engineered AppyPay merchant dashboard and merchant onboarding flows
 - Developed AI-powered platforms like VitalWatch and ErgoSmart

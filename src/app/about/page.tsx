@@ -60,8 +60,7 @@ const AboutPage = () => {
                     </h1>
 
                     <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8">
-                        Software Engineer & Team Lead with 3+ years of experience architecting scalable systems.
-                        I specialize in the MERN stack, React 19, Next.js, and AWS, driving complex enterprise systems from concept to production.
+                        Senior Software Engineer at <span className="text-foreground font-semibold">Pixory</span>. With 3+ years of experience shipping production software, I architect full-stack solutions across the MERN stack, Next.js, and AWS—building resilient systems from multi-tenant enterprise platforms to real-time WebRTC infrastructure.
                     </p>
 
                     <div className="flex justify-center gap-4">
