@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Code2, Sparkles, Zap } from "lucide-react";
+import { Code2, Sparkles, Zap, Layers, Layout, Server, Database, Code, Wrench, Bot } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
@@ -40,12 +40,12 @@ const skills: Skill[] = [
 ];
 
 const categories = [
-  { id: "all", label: "All", emoji: "✨" },
-  { id: "frontend", label: "Frontend", emoji: "🎨" },
-  { id: "backend", label: "Backend", emoji: "⚙️" },
-  { id: "database", label: "Database", emoji: "🗄️" },
-  { id: "languages", label: "Languages", emoji: "📝" },
-  { id: "tools", label: "Tools", emoji: "🔧" },
+  { id: "all", label: "All", icon: Layers },
+  { id: "frontend", label: "Frontend", icon: Layout },
+  { id: "backend", label: "Backend", icon: Server },
+  { id: "database", label: "Database", icon: Database },
+  { id: "languages", label: "Languages", icon: Code },
+  { id: "tools", label: "Tools", icon: Wrench },
 ];
 
 const levelColors = {
@@ -112,7 +112,7 @@ const HoverImageComponent: React.FC = () => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <span>{cat.emoji}</span>
+              <cat.icon className="w-3.5 h-3.5" />
               <span>{cat.label}</span>
             </motion.button>
           ))}
@@ -191,9 +191,12 @@ const HoverImageComponent: React.FC = () => {
         viewport={{ once: true }}
       >
         <Zap className="w-4 h-4 text-yellow-500" />
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-muted-foreground flex items-center justify-center gap-1.5 flex-wrap">
           Always learning something new. Currently exploring{" "}
-          <span className="text-foreground font-medium">LangChain & AI 🤖</span> and{" "}
+          <span className="text-foreground font-medium inline-flex items-center gap-1">
+            <Bot className="w-3.5 h-3.5 text-sky-500 inline" /> LangChain & AI
+          </span>{" "}
+          and{" "}
           <span className="text-foreground font-medium">System Design</span>
         </p>
       </motion.div>

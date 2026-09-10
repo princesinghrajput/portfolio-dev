@@ -30,13 +30,14 @@ const slugs = [
   "postman",
   "netlify",
   "solidity",
-
-
+  "python",
+  "mongodb",
+  "tailwindcss",
 ];
 
 export function IconCloudDemo() {
   return (
-    <div className="relative flex h-full w-full max-w-[40rem] items-center justify-center overflow-hidden rounded-lg  bg-background px-20 pb-20 pt-8 ">
+    <div className="relative flex h-full w-full max-w-[42rem] items-center justify-center overflow-hidden rounded-2xl bg-transparent px-4 pb-12 pt-2">
       <IconCloud iconSlugs={slugs} />
     </div>
   );

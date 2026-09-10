@@ -11,11 +11,11 @@ export interface DockProps extends VariantProps<typeof dockVariants> {
   children: React.ReactNode;
 }
 
-const DEFAULT_MAGNIFICATION = 60;
-const DEFAULT_DISTANCE = 140;
+const DEFAULT_MAGNIFICATION = 46;
+const DEFAULT_DISTANCE = 100;
 
 const dockVariants = cva(
-  "mx-auto w-max  h-[58px] p-2 flex items-end gap-2 border dark:border-[#ffffff]",
+  "mx-auto w-max h-11 p-1.5 flex items-center justify-center gap-1.5 border",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -33,18 +33,19 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
 
     const renderChildren = () => {
       return React.Children.map(children, (child: any) => {
+        if (!React.isValidElement(child)) return child;
         return React.cloneElement(child, {
           mouseX: mouseX,
           magnification: magnification,
           distance: distance,
-        });
+        } as any);
       });
     };
 
     return (
       <motion.div
         ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseMove={(e) => mouseX.set(e.clientX)}
         onMouseLeave={() => mouseX.set(Infinity)}
         {...props}
         className={cn(dockVariants({ className }), className)}
@@ -68,7 +69,7 @@ export interface DockIconProps {
 }
 
 const DockIcon = ({
-  size,
+  size = 34,
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,
   mouseX,
@@ -80,28 +81,27 @@ const DockIcon = ({
 
   const distanceCalc = useTransform(mouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(
+  const widthSync = useTransform(
     distanceCalc,
     [-distance, 0, distance],
-    [40, magnification, 40],
+    [size, magnification, size],
   );
 
-  let width = useSpring(widthSync, {
+  const width = useSpring(widthSync, {
     mass: 0.1,
-    stiffness: 150,
-    damping: 12,
+    stiffness: 180,
+    damping: 14,
   });
 
   return (
     <motion.div
       ref={ref}
-      style={{ width }}
+      style={{ width, height: width }}
       className={cn(
-        "flex aspect-square cursor-pointer items-center justify-center rounded-full bg-neutral-400/40",
+        "flex aspect-square cursor-pointer items-center justify-center rounded-xl shrink-0",
         className,
       )}
       {...props}

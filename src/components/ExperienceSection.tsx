@@ -640,8 +640,9 @@ const ExperienceSection = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <p className="text-xs text-muted-foreground/70 italic">
-          From intern to team lead and senior engineer, architecting high-scale enterprise systems 🚀
+        <p className="text-xs text-muted-foreground/70 italic flex items-center justify-center gap-1.5">
+          <span>From intern to team lead and senior engineer, architecting high-scale enterprise systems</span>
+          <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />
         </p>
       </motion.div>
     </section>

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, MessageSquare, Send, Terminal, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Mail, Github, Linkedin, MessageSquare, Send, Terminal, Sparkles, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { TwitterLogoIcon } from '@radix-ui/react-icons';
 
 const socialLinks = [
@@ -24,7 +24,6 @@ const ContactMe: React.FC = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
       processCommand();
     }
   };
@@ -32,8 +31,8 @@ const ContactMe: React.FC = () => {
   const processCommand = () => {
     const trimmedCommand = command.trim();
 
-    // Pattern: git add . "message content"
-    const addMatch = trimmedCommand.match(/^git add \. ["'](.+)["']$/);
+    // Pattern: git add -m "message content"
+    const addMatch = trimmedCommand.match(/^git add -m ["'](.+)["']$/);
     // Pattern: git commit -m "email@example.com"
     const commitMatch = trimmedCommand.match(/^git commit -m ["'](.+)["']$/);
     // Pattern: git push origin prince
@@ -42,18 +41,18 @@ const ContactMe: React.FC = () => {
     if (addMatch && addMatch[1]) {
       setFormData({ ...formData, message: addMatch[1] });
       setCommand('');
-      setFormStatus('✓ Message staged!');
+      setFormStatus('Message staged!');
       setCurrentStep(1);
       setTimeout(() => setFormStatus(''), 2000);
     } else if (commitMatch && commitMatch[1]) {
       setFormData({ ...formData, email: commitMatch[1] });
       setCommand('');
-      setFormStatus('✓ Email committed!');
+      setFormStatus('Email committed!');
       setCurrentStep(2);
       setTimeout(() => setFormStatus(''), 2000);
     } else if (pushMatch) {
       if (!formData.message || !formData.email) {
-        setFormStatus('⚠ Stage message & commit email first');
+        setFormStatus('Stage message & commit email first');
         return;
       }
       handleSubmit();
@@ -83,7 +82,7 @@ const ContactMe: React.FC = () => {
 
       const result = await res.json();
       if (result.success) {
-        setFormStatus('✓ Message sent!');
+        setFormStatus('Message sent!');
         setFormData({ name: '', email: '', message: '' });
       } else {
         setFormStatus('Failed to push');
@@ -128,9 +127,10 @@ const ContactMe: React.FC = () => {
                   href={link.href}
                   target={link.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noopener noreferrer"
-                  className={`group flex items-center gap-2 sm:gap-3 p-3 sm:p-4 card-premium transition-all duration-200 active:scale-95 ${link.color}`}
-                  whileHover={{ y: -2 }}
+                  className={`group relative overflow-hidden flex items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-card border border-border rounded-xl transition-colors duration-200 hover:shadow-md hover:shadow-primary/5 ${link.color}`}
+                  whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
                   <div className="p-2 rounded-lg bg-muted group-hover:bg-transparent group-active:bg-transparent transition-colors">
                     <IconComponent className="h-4 w-4" />
@@ -222,25 +222,32 @@ const ContactMe: React.FC = () => {
 
               {/* Status Message */}
               {formStatus && (
-                <motion.p
-                  className={`text-[10px] sm:text-xs font-medium ${formStatus.includes('✓')
-                    ? 'text-emerald-500'
-                    : formStatus.includes('⚠')
-                      ? 'text-amber-500'
-                      : formStatus.includes('Invalid')
-                        ? 'text-red-400'
-                        : 'text-muted-foreground'
-                    }`}
+                <motion.div
+                  className={`flex items-center gap-1.5 text-[10px] sm:text-xs font-medium ${
+                    formStatus.includes('sent') || formStatus.includes('staged') || formStatus.includes('committed')
+                      ? 'text-emerald-500'
+                      : formStatus.includes('Stage message')
+                        ? 'text-amber-500'
+                        : formStatus.includes('Invalid') || formStatus.includes('Failed')
+                          ? 'text-red-400'
+                          : 'text-muted-foreground'
+                  }`}
                   initial={{ opacity: 0, y: -5 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  {formStatus}
-                </motion.p>
+                  {formStatus.includes('sent') || formStatus.includes('staged') || formStatus.includes('committed') ? (
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                  ) : formStatus.includes('Stage message') ? (
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  ) : null}
+                  <span>{formStatus}</span>
+                </motion.div>
               )}
 
               {/* Mobile hint */}
-              <p className="text-[9px] text-muted-foreground/50 text-center sm:hidden">
-                💡 Copy commands from above, replace placeholder with your info
+              <p className="text-[9px] text-muted-foreground/60 text-center sm:hidden flex items-center justify-center gap-1">
+                <Info className="w-3 h-3 text-muted-foreground/60 shrink-0 inline" />
+                <span>Copy commands from above, replace placeholder with your info</span>
               </p>
             </div>
           </div>

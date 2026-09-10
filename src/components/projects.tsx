@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Folder, ArrowRight } from 'lucide-react';
+import { Folder, ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 import { projects, getFeaturedProjects } from '@/lib/projects-data';
 import ProjectCard from './ProjectCard';
@@ -18,23 +18,27 @@ const MyProjects: React.FC = () => {
   return (
     <section className='section py-4 sm:py-10'>
       {/* Header */}
-      <div className='mb-6 sm:mb-8'>
-        <div className='flex items-center gap-2 mb-1.5 sm:mb-2'>
-          <div className='p-1.5 sm:p-2 rounded-lg bg-primary/10'>
-            <Folder className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary' />
+      <div className='flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-10 gap-4'>
+        <div>
+          <div className='flex items-center gap-2 mb-2'>
+            <div className='p-1.5 rounded-lg bg-primary/10 text-primary'>
+              <Folder className='w-3.5 h-3.5' />
+            </div>
+            <span className='text-xs font-medium text-muted-foreground uppercase tracking-wider'>
+              Featured Work
+            </span>
           </div>
-          <span className='text-[10px] sm:text-sm font-medium text-muted-foreground uppercase tracking-wider'>Portfolio</span>
+          <h2 className='text-2xl sm:text-3xl font-bold tracking-tight'>
+            Things I&apos;ve <span className='gradient-text inline-block'>Built</span>
+          </h2>
+          <p className='mt-2 text-xs sm:text-sm text-muted-foreground max-w-lg'>
+            A collection of production platforms, enterprise tools, and side experiments.
+          </p>
         </div>
-        <h2 className='text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight'>
-          Things I&apos;ve <span className='gradient-text'>Built</span>
-        </h2>
-        <p className='mt-2 text-xs sm:text-sm text-muted-foreground max-w-xl hidden sm:block'>
-          Side projects and things I built. <span className='text-muted-foreground/60'>(Usually harder than expected)</span>
-        </p>
       </div>
 
-      {/* Projects Grid */}
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5'>
+      {/* Grid */}
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6'>
         {displayProjects.map((project, index) => (
           <ProjectCard
             key={project.id}
@@ -52,8 +56,9 @@ const MyProjects: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
       >
-        <p className="text-xs text-muted-foreground/60 mb-4 italic">
-          These are just the highlights. I have more experiments hiding in my GitHub 🙈
+        <p className="text-xs text-muted-foreground/60 mb-4 flex items-center justify-center gap-1.5">
+          <span>These are just the highlights. I have more experiments exploring new ideas on GitHub</span>
+          <Github className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
         </p>
         <Link href="/projects">
           <motion.span

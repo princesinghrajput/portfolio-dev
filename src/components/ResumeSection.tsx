@@ -33,7 +33,7 @@ const ResumeSection = () => {
                             <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
                         <div>
-                            <h3 className="text-base sm:text-lg font-bold mb-0.5">Prince Kumar - Resume</h3>
+                            <h3 className="text-base sm:text-lg font-bold mb-0.5">Prince - Resume</h3>
                             <p className="text-xs sm:text-sm text-muted-foreground mb-2">Senior Software Engineer at Pixory • 3+ years experience</p>
                             <div className="flex flex-wrap gap-1.5">
                                 <span className="px-2 py-0.5 text-[10px] sm:text-xs font-medium bg-muted rounded text-muted-foreground">React</span>

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Folder, Filter } from 'lucide-react';
+import { Folder, Filter, Sparkles, Wrench, FlaskConical } from 'lucide-react';
 import { projects, categoryLabels, Project } from '@/lib/projects-data';
 import ProjectCard from '@/components/ProjectCard';
 
@@ -44,9 +44,9 @@ export default function ProjectsPage() {
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
             Projects & <span className="gradient-text">Experiments</span>
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl">
-            A collection of things I&apos;ve built, from side projects to learning experiments.
-            Some actually work, some are works in progress. 🚀
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl flex items-center gap-1.5 flex-wrap">
+            <span>A collection of things I&apos;ve built, from side projects to learning experiments. Some actually work, some are works in progress.</span>
+            <Sparkles className="w-4 h-4 text-primary shrink-0 inline" />
           </p>
         </motion.div>
 
@@ -104,7 +104,10 @@ export default function ProjectsPage() {
             animate={{ opacity: 1 }}
             className="text-center py-16"
           >
-            <p className="text-muted-foreground">No projects in this category yet. Stay tuned! 🔧</p>
+            <p className="text-muted-foreground flex items-center justify-center gap-1.5">
+              <span>No projects in this category yet. Stay tuned!</span>
+              <Wrench className="w-4 h-4 text-muted-foreground shrink-0 inline" />
+            </p>
           </motion.div>
         )}
 
@@ -116,8 +119,9 @@ export default function ProjectsPage() {
           className="mt-12 sm:mt-16 text-center"
         >
           <div className="inline-block p-6 rounded-2xl bg-muted/50 border border-border">
-            <p className="text-sm text-muted-foreground mb-4">
-              Want to see more? Check out my GitHub for all the experiments! 🧪
+            <p className="text-sm text-muted-foreground mb-4 flex items-center justify-center gap-1.5">
+              <span>Want to see more? Check out my GitHub for all the experiments!</span>
+              <FlaskConical className="w-4 h-4 text-primary shrink-0 inline" />
             </p>
             <a
               href="https://github.com/princesinghrajput"

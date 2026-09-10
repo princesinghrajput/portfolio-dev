@@ -14,7 +14,7 @@ const suggestedQuestions = [
   },
   {
     icon: <Briefcase className="w-4 h-4" />,
-    text: "Tell me about your experience at Sensation Software",
+    text: "Tell me about your experience at Pixory",
     category: "Experience"
   },
   {

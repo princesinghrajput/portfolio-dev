@@ -36,7 +36,7 @@ export default function Footer() {
                       <Link
                         href={link.href}
                         target="_blank"
-                        className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted active:bg-muted active:scale-95 transition-all duration-200"
+                        className="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted active:bg-muted transition-colors duration-200"
                       >
                         <link.icon className="h-4 w-4" />
                       </Link>
@@ -51,9 +51,9 @@ export default function Footer() {
           {/* Copyright */}
           <p className="flex items-center gap-1.5 text-xs sm:text-sm text-muted-foreground order-last sm:order-none">
             Made with <Heart className="w-3.5 h-3.5 text-[hsl(12,76%,61%)] animate-pulse" fill="currentColor" /> by{" "}
-            <Link href="https://linktr.ee/prince" target="_blank" className="font-semibold text-foreground hover:text-primary transition-colors">
+            <span className="font-semibold text-foreground">
               Prince
-            </Link>
+            </span>
           </p>
 
           {/* Back to top */}
@@ -70,7 +70,7 @@ export default function Footer() {
 
         <div className="mt-6 pt-4 border-t border-border/50 text-center">
           <p className="text-[10px] sm:text-xs text-muted-foreground/60">
-            © {currentYear} Prince Kumar. All rights reserved.
+            © {currentYear} Prince. All rights reserved.
           </p>
         </div>
       </div>

@@ -17,25 +17,25 @@ const personalCards = [
     icon: Coffee,
     title: "Problem Solver",
     description: "I probably think about a bug longer than I should.",
-    tag: "☕ Caffeine & Code",
+    tag: "Caffeine & Code",
   },
   {
     icon: Bot,
     title: "Practical AI",
     description: "Exploring how agents can genuinely improve engineering workflows.",
-    tag: "🤖 Agents & LLMs",
+    tag: "Agents & LLMs",
   },
   {
     icon: Gamepad2,
     title: "Gamer",
     description: "Give me a good open-world game and I'll disappear for a while.",
-    tag: "🎮 Open Worlds",
+    tag: "Open Worlds",
   },
   {
     icon: Terminal,
     title: "Builder",
     description: "I like turning ideas and annoying problems into tools that work.",
-    tag: "💻 Side Projects",
+    tag: "Side Projects",
   },
 ];
 
